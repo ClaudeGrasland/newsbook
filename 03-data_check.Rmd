@@ -1,0 +1,100 @@
+# Data Check {#data_check}
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(quanteda)
+library(dplyr)
+library(ggplot2)
+
+```
+
+In this chapter, we present some basic test of the data collected. The tools are basesd on the package quanteda. The reader non familiar with this package could have a look at *Quick Start* available on the website of the project :
+
+https://quanteda.io/articles/quickstart.html
+
+
+```{r}
+qd<-readRDS("_data/qd/en_USA_nytime_20200101_20200630.RDS")
+```
+
+
+
+## Corpus principles
+
+>A corpus is designed to be a "library" of original documents that have been converted to plain, UTF-8 encoded text, and stored along with meta-data at the corpus level and at the document-level.  We have a special name for document-level meta-data: *docvars*.  These are variables or features that describe attributes of each document.A corpus is designed to be a more or less static container of texts with respect to processing and analysis.  This means that the texts in corpus are not designed to be changed internally through (for example) cleaning or pre-processing steps, such as stemming or removing punctuation.  Rather, texts can be extracted from the corpus as part of processing, and assigned to new objects, but the idea is that the corpus will remain as an original reference copy so that other analyses -- for instance those in which stems and punctuation were required, such as analyzing a reading ease index -- can be performed on the same corpus.
+
+To extract texts from a corpus, we use an extractor, called `texts()`.  
+
+```{r}
+texts(qd)[2]
+```
+
+To summarize the texts from a corpus, we can call a `summary()` method defined for a corpus.
+
+```{r}
+summary(qd, n = 5)
+```
+
+
+## Corpus properties
+
+We can save the output from the summary command as a data frame in order to obtain for each text the number of sentences and words.
+
+```{r}
+tokeninfo <- summary(qd,length(qd))
+kable(head(tokeninfo))
+```
+
+- What is the distribution of the number of sentences ?
+
+```{r}
+x<-tokeninfo %>% group_by(Sentences) %>%
+            summarise(nb = n()) %>%  
+            ungroup() %>%
+            mutate(pct = 100*nb/sum(nb))
+
+ kable(x,caption = "Number of sentences of news", digits=1) 
+
+```
+
+- What is the distribution of the number of tokens ?
+
+```{r}
+summary(tokeninfo$Tokens)
+p<-ggplot(tokeninfo,aes(x=Tokens))+geom_histogram()
+p
+```
+
+## The research of suspect pieces of texts
+
+In many case, the news are characterized by the recurrence of pieces of text added by the journal that are not part of the text itself like *Read More*, *See also*. A good way to discover these supsect pieces of texts is to compute the most frequent n-grams
+
+
+```{r}
+# bigrams
+qd %>% tokens() %>% tokens_ngrams(n=2L) %>% dfm() %>% topfeatures(50)
+# trigrams  
+qd %>% tokens() %>% tokens_ngrams(n=3L) %>% dfm() %>% topfeatures(50)
+```
+In our example, we can eliminate some obvious problems (*- The New York Times*, *Live updates*) and correct some abbreviations (*U.S.*, *N.Y.C.*, *N.Y.*) which are likely to create problems. 
+
+
+```{r}
+qd2<-qd
+texts(qd2)<-gsub(pattern = " - the new york times", x = texts(qd2),replacement = "", ignore.case=TRUE)
+texts(qd2)<-gsub(pattern = "live updates", x = texts(qd2),replacement = "", ignore.case=TRUE)
+texts(qd2)<-gsub(pattern = "u.s.", x = texts(qd2),replacement = "US", ignore.case=TRUE)
+texts(qd2)<-gsub(pattern = "n.y.c.", x = texts(qd2),replacement = "NYC", ignore.case=TRUE)
+texts(qd2)<-gsub(pattern = "n.y.", x = texts(qd2),replacement = "NYC", ignore.case=TRUE)
+qd2 %>% tokens() %>% tokens_ngrams(n=2L) %>% dfm() %>% topfeatures(50)
+saveRDS(qd2,"_data/qd/en_USA_nytime_20200101_20200630_clean.RDS")
+```
+
+
+
+
+
+
+
+

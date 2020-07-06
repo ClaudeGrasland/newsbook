@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Data Check | The News Book</title>
+  <meta name="description" content="This is a summary of experience and methods developped for the analysis of news flow." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Data Check | The News Book" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a summary of experience and methods developped for the analysis of news flow." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Data Check | The News Book" />
+  
+  <meta name="twitter:description" content="This is a summary of experience and methods developped for the analysis of news flow." />
+  
+
+<meta name="author" content="Claude Grasland" />
+
+
+<meta name="date" content="2020-07-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-collect.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objectives</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="data-collect.html"><a href="data-collect.html"><i class="fa fa-check"></i><b>3</b> Data collection</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-collect.html"><a href="data-collect.html#the-case-of-title-of-news"><i class="fa fa-check"></i><b>3.1</b> The case of title of news</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collect.html"><a href="data-collect.html#download-titles-with-mediacloud-interface"><i class="fa fa-check"></i><b>3.1.1</b> Download titles with mediacloud interface</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-collect.html"><a href="data-collect.html#transformation-and-storage-in-quanteda-format."><i class="fa fa-check"></i><b>3.1.2</b> Transformation and storage in quanteda format.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-check.html"><a href="data-check.html"><i class="fa fa-check"></i><b>4</b> Data Check</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-check.html"><a href="data-check.html#corpus-principles"><i class="fa fa-check"></i><b>4.1</b> Corpus principles</a></li>
+<li class="chapter" data-level="4.2" data-path="data-check.html"><a href="data-check.html#corpus-properties"><i class="fa fa-check"></i><b>4.2</b> Corpus properties</a></li>
+<li class="chapter" data-level="4.3" data-path="data-check.html"><a href="data-check.html#the-research-of-suspect-pieces-of-texts"><i class="fa fa-check"></i><b>4.3</b> The research of suspect pieces of texts</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The News Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data_check" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Data Check</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-check.html#cb1-1"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb1-2"><a href="data-check.html#cb1-2"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>, <span class="dt">warning =</span> <span class="ot">FALSE</span>, <span class="dt">message =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb1-3"><a href="data-check.html#cb1-3"></a><span class="kw">library</span>(quanteda)</span>
+<span id="cb1-4"><a href="data-check.html#cb1-4"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="data-check.html#cb1-5"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<p>In this chapter, we present some basic test of the data collected. The tools are basesd on the package quanteda. The reader non familiar with this package could have a look at <em>Quick Start</em> available on the website of the project :</p>
+<p><a href="https://quanteda.io/articles/quickstart.html" class="uri">https://quanteda.io/articles/quickstart.html</a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-check.html#cb2-1"></a>qd&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;_data/qd/en_USA_nytime_20200101_20200630.RDS&quot;</span>)</span></code></pre></div>
+<div id="corpus-principles" class="section level2">
+<h2><span class="header-section-number">4.1</span> Corpus principles</h2>
+<blockquote>
+<p>A corpus is designed to be a “library” of original documents that have been converted to plain, UTF-8 encoded text, and stored along with meta-data at the corpus level and at the document-level. We have a special name for document-level meta-data: <em>docvars</em>. These are variables or features that describe attributes of each document.A corpus is designed to be a more or less static container of texts with respect to processing and analysis. This means that the texts in corpus are not designed to be changed internally through (for example) cleaning or pre-processing steps, such as stemming or removing punctuation. Rather, texts can be extracted from the corpus as part of processing, and assigned to new objects, but the idea is that the corpus will remain as an original reference copy so that other analyses – for instance those in which stems and punctuation were required, such as analyzing a reading ease index – can be performed on the same corpus.</p>
+</blockquote>
+<p>To extract texts from a corpus, we use an extractor, called <code>texts()</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-check.html#cb3-1"></a><span class="kw">texts</span>(qd)[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##                                                                     text2 
+## &quot;Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events&quot;</code></pre>
+<p>To summarize the texts from a corpus, we can call a <code>summary()</code> method defined for a corpus.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-check.html#cb5-1"></a><span class="kw">summary</span>(qd, <span class="dt">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## Corpus consisting of 30265 documents, showing 5 documents:
+## 
+##   Text Types Tokens Sentences                date
+##  text1    10     10         1 2020-01-01 00:00:08
+##  text2    12     13         1 2020-01-01 00:05:07
+##  text3    13     14         1 2020-01-01 01:00:05
+##  text4    12     13         2 2020-01-01 03:00:11
+##  text5     5      5         1 2020-01-01 03:00:13</code></pre>
+</div>
+<div id="corpus-properties" class="section level2">
+<h2><span class="header-section-number">4.2</span> Corpus properties</h2>
+<p>We can save the output from the summary command as a data frame in order to obtain for each text the number of sentences and words.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-check.html#cb7-1"></a>tokeninfo &lt;-<span class="st"> </span><span class="kw">summary</span>(qd,<span class="kw">length</span>(qd))</span>
+<span id="cb7-2"><a href="data-check.html#cb7-2"></a><span class="kw">kable</span>(<span class="kw">head</span>(tokeninfo))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Text</th>
+<th align="right">Types</th>
+<th align="right">Tokens</th>
+<th align="right">Sentences</th>
+<th align="left">date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">text1</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">1</td>
+<td align="left">2020-01-01 00:00:08</td>
+</tr>
+<tr class="even">
+<td align="left">text2</td>
+<td align="right">12</td>
+<td align="right">13</td>
+<td align="right">1</td>
+<td align="left">2020-01-01 00:05:07</td>
+</tr>
+<tr class="odd">
+<td align="left">text3</td>
+<td align="right">13</td>
+<td align="right">14</td>
+<td align="right">1</td>
+<td align="left">2020-01-01 01:00:05</td>
+</tr>
+<tr class="even">
+<td align="left">text4</td>
+<td align="right">12</td>
+<td align="right">13</td>
+<td align="right">2</td>
+<td align="left">2020-01-01 03:00:11</td>
+</tr>
+<tr class="odd">
+<td align="left">text5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="left">2020-01-01 03:00:13</td>
+</tr>
+<tr class="even">
+<td align="left">text6</td>
+<td align="right">9</td>
+<td align="right">9</td>
+<td align="right">1</td>
+<td align="left">2020-01-01 04:22:34</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>What is the distribution of the number of sentences ?</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-check.html#cb8-1"></a>x&lt;-tokeninfo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Sentences) <span class="op">%&gt;%</span></span>
+<span id="cb8-2"><a href="data-check.html#cb8-2"></a><span class="st">            </span><span class="kw">summarise</span>(<span class="dt">nb =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb8-3"><a href="data-check.html#cb8-3"></a><span class="st">            </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb8-4"><a href="data-check.html#cb8-4"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">pct =</span> <span class="dv">100</span><span class="op">*</span>nb<span class="op">/</span><span class="kw">sum</span>(nb))</span>
+<span id="cb8-5"><a href="data-check.html#cb8-5"></a></span>
+<span id="cb8-6"><a href="data-check.html#cb8-6"></a> <span class="kw">kable</span>(x,<span class="dt">caption =</span> <span class="st">&quot;Number of sentences of news&quot;</span>, <span class="dt">digits=</span><span class="dv">1</span>) </span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-7">Table 4.1: </span>Number of sentences of news</caption>
+<thead>
+<tr class="header">
+<th align="right">Sentences</th>
+<th align="right">nb</th>
+<th align="right">pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">25933</td>
+<td align="right">85.7</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">4021</td>
+<td align="right">13.3</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">270</td>
+<td align="right">0.9</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">41</td>
+<td align="right">0.1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>What is the distribution of the number of tokens ?</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data-check.html#cb9-1"></a><span class="kw">summary</span>(tokeninfo<span class="op">$</span>Tokens)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.00    8.00   11.00   10.73   13.00   66.00</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-check.html#cb11-1"></a>p&lt;-<span class="kw">ggplot</span>(tokeninfo,<span class="kw">aes</span>(<span class="dt">x=</span>Tokens))<span class="op">+</span><span class="kw">geom_histogram</span>()</span>
+<span id="cb11-2"><a href="data-check.html#cb11-2"></a>p</span></code></pre></div>
+<p><img src="newsbook_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="the-research-of-suspect-pieces-of-texts" class="section level2">
+<h2><span class="header-section-number">4.3</span> The research of suspect pieces of texts</h2>
+<p>In many case, the news are characterized by the recurrence of pieces of text added by the journal that are not part of the text itself like <em>Read More</em>, <em>See also</em>. A good way to discover these supsect pieces of texts is to compute the most frequent n-grams</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-check.html#cb12-1"></a><span class="co"># bigrams</span></span>
+<span id="cb12-2"><a href="data-check.html#cb12-2"></a>qd <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tokens</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tokens_ngrams</span>(<span class="dt">n=</span>2L) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">dfm</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">topfeatures</span>(<span class="dv">50</span>)</span></code></pre></div>
+<pre><code>##        new_york         the_new      york_times           -_the the_coronavirus 
+##            4623            4234            4147            4093             899 
+##           u.s_.          of_the          in_the          ,_dies         dies_at 
+##             884             751             653             601             562 
+##             :_&#39;          how_to             &#39;_:             ,_&#39;    live_updates 
+##             509             456             443             428             406 
+##       opinion_|        review_:             ,_a          on_the           ,_and 
+##             383             367             347             346             340 
+##           ,_but            in_a          to_the             :_a   coronavirus_, 
+##             335             330             310             308             306 
+##           &#39;_the  coronavirus_in         n.y.c_.           :_the        &#39;_review 
+##             288             285             277             272             272 
+##          :_live          :_what           day_:         the_day         for_the 
+##             266             254             248             245             243 
+##           &#39;_and         and_the             ._&#39;       updates_:          :_your 
+##             242             235             233             226             221 
+##           ,_the           a_new          in_new             ._:             ._- 
+##             210             210             208             207             200 
+##         what_to           and_&#39;        from_the          ,_2020           to_be 
+##             198             197             191             190             189</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-check.html#cb14-1"></a><span class="co"># trigrams  </span></span>
+<span id="cb14-2"><a href="data-check.html#cb14-2"></a>qd <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tokens</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tokens_ngrams</span>(<span class="dt">n=</span>3L) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">dfm</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">topfeatures</span>(<span class="dv">50</span>)</span></code></pre></div>
+<pre><code>##             the_new_york           new_york_times                -_the_new 
+##                     4162                     4147                     4069 
+##                ,_dies_at               &#39;_review_:               of_the_day 
+##                      521                      272                      230 
+##                the_day_:           :_live_updates                  ._-_the 
+##                      225                      212                      200 
+##           live_updates_:        coronavirus_-_the               in_n.y.c_. 
+##                      177                      176                      174 
+##                the_u.s_.                  &#39;_and_&#39; coronavirus_live_updates 
+##                      165                      165                      163 
+##              in_new_york             what&#39;s_on_tv         quotation_of_the 
+##                      155                      152                      147 
+##                  ?_-_the                  &#39;_-_the                 in_n.y_. 
+##                      139                      107                      103 
+##               is_dead_at                ,_is_dead            new_york_city 
+##                      100                       98                       92 
+##              word_+_quiz                 +_quiz_:          :_what_happened 
+##                       85                       85                       85 
+##   during_the_coronavirus          briefing_:_what                n.y.c_._: 
+##                       84                       83                       82 
+##   coronavirus_briefing_: the_coronavirus_pandemic      what_happened_today 
+##                       82                       81                       81 
+##            lesson_of_the                  day_:_&#39;               review_:_a 
+##                       78                       78                       76 
+##                    ._&#39;_s                  n.y_._:     coronavirus_in_n.y.c 
+##                       75                       75                       72 
+##            on_politics_:             n.y.c_._this       coronavirus_in_n.y 
+##                       70                       68                       68 
+##           ._this_weekend         :_latest_updates       of_the_coronavirus 
+##                       66                       64                       63 
+##            in_a_pandemic               in_the_u.s            opinion_|_the 
+##                       63                       63                       61 
+##     your_monday_briefing               ._:_latest 
+##                       61                       60</code></pre>
+<p>In our example, we can eliminate some obvious problems (<em>- The New York Times</em>, <em>Live updates</em>) and correct some abbreviations (<em>U.S.</em>, <em>N.Y.C.</em>, <em>N.Y.</em>) which are likely to create problems.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-check.html#cb16-1"></a>qd2&lt;-qd</span>
+<span id="cb16-2"><a href="data-check.html#cb16-2"></a><span class="kw">texts</span>(qd2)&lt;-<span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot; - the new york times&quot;</span>, <span class="dt">x =</span> <span class="kw">texts</span>(qd2),<span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ignore.case=</span><span class="ot">TRUE</span>)</span>
+<span id="cb16-3"><a href="data-check.html#cb16-3"></a><span class="kw">texts</span>(qd2)&lt;-<span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;live updates&quot;</span>, <span class="dt">x =</span> <span class="kw">texts</span>(qd2),<span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ignore.case=</span><span class="ot">TRUE</span>)</span>
+<span id="cb16-4"><a href="data-check.html#cb16-4"></a><span class="kw">texts</span>(qd2)&lt;-<span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;u.s.&quot;</span>, <span class="dt">x =</span> <span class="kw">texts</span>(qd2),<span class="dt">replacement =</span> <span class="st">&quot;US&quot;</span>, <span class="dt">ignore.case=</span><span class="ot">TRUE</span>)</span>
+<span id="cb16-5"><a href="data-check.html#cb16-5"></a><span class="kw">texts</span>(qd2)&lt;-<span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;n.y.c.&quot;</span>, <span class="dt">x =</span> <span class="kw">texts</span>(qd2),<span class="dt">replacement =</span> <span class="st">&quot;NYC&quot;</span>, <span class="dt">ignore.case=</span><span class="ot">TRUE</span>)</span>
+<span id="cb16-6"><a href="data-check.html#cb16-6"></a><span class="kw">texts</span>(qd2)&lt;-<span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;n.y.&quot;</span>, <span class="dt">x =</span> <span class="kw">texts</span>(qd2),<span class="dt">replacement =</span> <span class="st">&quot;NYC&quot;</span>, <span class="dt">ignore.case=</span><span class="ot">TRUE</span>)</span>
+<span id="cb16-7"><a href="data-check.html#cb16-7"></a>qd2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tokens</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tokens_ngrams</span>(<span class="dt">n=</span>2L) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">dfm</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">topfeatures</span>(<span class="dv">50</span>)</span></code></pre></div>
+<pre><code>## the_coronavirus          of_the          in_the          ,_dies         dies_at 
+##             899             751             646             599             562 
+##        new_york             :_&#39;          how_to             &#39;_:             ,_&#39; 
+##             552             509             456             440             425 
+##       opinion_|        review_:          on_the             ,_a           ,_and 
+##             383             367             344             343             340 
+##           ,_but            in_a   coronavirus_,          to_the             :_a 
+##             329             326             305             304             303 
+##   coronavirus_:           &#39;_the  coronavirus_in          in_nyc           :_the 
+##             296             288             285             276             271 
+##        &#39;_review          :_what           day_:         the_day         for_the 
+##             266             253             248             244             242 
+##           &#39;_and         and_the          :_your             ._&#39;           a_new 
+##             238             235             218             212             210 
+##           ,_the          in_new           and_&#39;         what_to        from_the 
+##             208             205             197             197             191 
+##          ,_2020    the_pandemic           to_be  bernie_sanders  of_coronavirus 
+##             190             187             187             184             181 
+##      a_pandemic            ,_is            is_a           for_a          the_us 
+##             177             176             172             167             166</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-check.html#cb18-1"></a><span class="kw">saveRDS</span>(qd2,<span class="st">&quot;_data/qd/en_USA_nytime_20200101_20200630_clean.RDS&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-collect.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-data_check.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["newsbook.pdf", "newsbook.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

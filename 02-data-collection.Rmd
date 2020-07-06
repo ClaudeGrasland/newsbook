@@ -1,14 +1,14 @@
 # Data collection {#data_collect}
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(knitr)
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(quanteda)
 ```
 
-## First example
+## The case of title of news
 
-### Download of NYT stories with mediacloud interface
+### Download titles with mediacloud interface
 
 We suppose that you want to analyze the title of the news collected by the New York Times during the first semester of 2020. You can easily proceed to such a collection with the application Mediacloud.
 
@@ -33,14 +33,12 @@ knitr::include_graphics("_bookdown_files/pics/mc003.png")
 
 Finally, by clicking on the button *Download all story URLS*, you can get a .csv file that you can easily load in your favourite porgramming language. In the case of R, you can load it with a program like this. 
 
-```{r}
-list.files("_data/mc")
+```{r loadcsv, echo=TRUE}
 df<-read.csv(file = "_data/mc/en_USA_nytime_20200101_20200630.csv",
              sep=",",
              header=T,
              encoding = "UTF-8",
              stringsAsFactors = F)
-kable(head(df,3))
 str(df)
 ```
 **N.B.** We can notice, without being able to explain this fact, that the number of stories downloaded (30265), which is less than what was announced by the mediacloud interface (47522). May be it is related to the elimination of duplicates ? 

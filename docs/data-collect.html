@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="intro.html"/>
-<link rel="next" href="data-test.html"/>
+<link rel="next" href="data-check.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -136,12 +136,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objectives</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="data-collect.html"><a href="data-collect.html"><i class="fa fa-check"></i><b>3</b> Data collection</a><ul>
-<li class="chapter" data-level="3.1" data-path="data-collect.html"><a href="data-collect.html#first-example"><i class="fa fa-check"></i><b>3.1</b> First example</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="data-collect.html"><a href="data-collect.html#download-of-nyt-stories-with-mediacloud-interface"><i class="fa fa-check"></i><b>3.1.1</b> Download of NYT stories with mediacloud interface</a></li>
+<li class="chapter" data-level="3.1" data-path="data-collect.html"><a href="data-collect.html#the-case-of-title-of-news"><i class="fa fa-check"></i><b>3.1</b> The case of title of news</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collect.html"><a href="data-collect.html#download-titles-with-mediacloud-interface"><i class="fa fa-check"></i><b>3.1.1</b> Download titles with mediacloud interface</a></li>
 <li class="chapter" data-level="3.1.2" data-path="data-collect.html"><a href="data-collect.html#transformation-and-storage-in-quanteda-format."><i class="fa fa-check"></i><b>3.1.2</b> Transformation and storage in quanteda format.</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-test.html"><a href="data-test.html"><i class="fa fa-check"></i><b>4</b> Data test</a></li>
+<li class="chapter" data-level="4" data-path="data-check.html"><a href="data-check.html"><i class="fa fa-check"></i><b>4</b> Data Check</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-check.html"><a href="data-check.html#corpus-principles"><i class="fa fa-check"></i><b>4.1</b> Corpus principles</a></li>
+<li class="chapter" data-level="4.2" data-path="data-check.html"><a href="data-check.html#corpus-properties"><i class="fa fa-check"></i><b>4.2</b> Corpus properties</a></li>
+<li class="chapter" data-level="4.3" data-path="data-check.html"><a href="data-check.html#the-research-of-suspect-pieces-of-texts"><i class="fa fa-check"></i><b>4.3</b> The research of suspect pieces of texts</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -164,18 +168,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data_collect" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Data collection</h1>
-<pre><code>## Package version: 2.0.1</code></pre>
-<pre><code>## Parallel computing: 2 of 11 threads used.</code></pre>
-<pre><code>## See https://quanteda.io for tutorials and examples.</code></pre>
-<pre><code>## 
-## Attaching package: &#39;quanteda&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:utils&#39;:
-## 
-##     View</code></pre>
-<div id="first-example" class="section level2">
-<h2><span class="header-section-number">3.1</span> First example</h2>
-<div id="download-of-nyt-stories-with-mediacloud-interface" class="section level3">
-<h3><span class="header-section-number">3.1.1</span> Download of NYT stories with mediacloud interface</h3>
+<div id="the-case-of-title-of-news" class="section level2">
+<h2><span class="header-section-number">3.1</span> The case of title of news</h2>
+<div id="download-titles-with-mediacloud-interface" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Download titles with mediacloud interface</h3>
 <p>We suppose that you want to analyze the title of the news collected by the New York Times during the first semester of 2020. You can easily proceed to such a collection with the application Mediacloud.</p>
 <p><a href="https://explorer.mediacloud.org" class="uri">https://explorer.mediacloud.org</a></p>
 <p>You need firstly to register (for free) in order to create an account. Then you can select your media, select your period and select all stories by using the request ’*’ as in the example presented below.</p>
@@ -185,61 +181,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Going down, you will find a news panel entitled <em>Total Attention</em> which gives you the total number of stories found. In our example, we have a total of 47522 stories produced by the NYT during the first semester of 2020.</p>
 <p><img src="_bookdown_files/pics/mc003.png" width="1338" /></p>
 <p>Finally, by clicking on the button <em>Download all story URLS</em>, you can get a .csv file that you can easily load in your favourite porgramming language. In the case of R, you can load it with a program like this.</p>
-<pre><code>## [1] &quot;en_USA_nytime_20200101_20200630.csv&quot;</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="right">stories_id</th>
-<th align="left">publish_date</th>
-<th align="left">title</th>
-<th align="left">url</th>
-<th align="left">language</th>
-<th align="left">ap_syndicated</th>
-<th align="left">themes</th>
-<th align="right">media_id</th>
-<th align="left">media_name</th>
-<th align="left">media_url</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1483747633</td>
-<td align="left">2020-01-01 00:00:08</td>
-<td align="left">Meteor Showers in 2020 That Will Light Up Night Skies</td>
-<td align="left"><a href="https://www.nytimes.com/2020/01/01/science/meteor-showers-2020.html" class="uri">https://www.nytimes.com/2020/01/01/science/meteor-showers-2020.html</a></td>
-<td align="left">en</td>
-<td align="left">False</td>
-<td align="left"></td>
-<td align="right">1</td>
-<td align="left">New York Times</td>
-<td align="left"><a href="http://nytimes.com" class="uri">http://nytimes.com</a></td>
-</tr>
-<tr class="even">
-<td align="right">1483747632</td>
-<td align="left">2020-01-01 00:05:07</td>
-<td align="left">Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events</td>
-<td align="left"><a href="https://www.nytimes.com/2020/01/01/science/space-astronomy-2020.html" class="uri">https://www.nytimes.com/2020/01/01/science/space-astronomy-2020.html</a></td>
-<td align="left">en</td>
-<td align="left">False</td>
-<td align="left"></td>
-<td align="right">1</td>
-<td align="left">New York Times</td>
-<td align="left"><a href="http://nytimes.com" class="uri">http://nytimes.com</a></td>
-</tr>
-<tr class="odd">
-<td align="right">1483779604</td>
-<td align="left">2020-01-01 01:00:05</td>
-<td align="left">What’s on TV Wednesday: A Linda Ronstadt Doc and ‘Doctor Who’</td>
-<td align="left"><a href="https://www.nytimes.com/2020/01/01/arts/television/whats-on-tv-wednesday-a-linda-ronstadt-doc-and-doctor-who.html" class="uri">https://www.nytimes.com/2020/01/01/arts/television/whats-on-tv-wednesday-a-linda-ronstadt-doc-and-doctor-who.html</a></td>
-<td align="left">en</td>
-<td align="left">False</td>
-<td align="left"></td>
-<td align="right">1</td>
-<td align="left">New York Times</td>
-<td align="left"><a href="http://nytimes.com" class="uri">http://nytimes.com</a></td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-collect.html#cb1-1"></a>df&lt;-<span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;_data/mc/en_USA_nytime_20200101_20200630.csv&quot;</span>,</span>
+<span id="cb1-2"><a href="data-collect.html#cb1-2"></a>             <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,</span>
+<span id="cb1-3"><a href="data-collect.html#cb1-3"></a>             <span class="dt">header=</span>T,</span>
+<span id="cb1-4"><a href="data-collect.html#cb1-4"></a>             <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>,</span>
+<span id="cb1-5"><a href="data-collect.html#cb1-5"></a>             <span class="dt">stringsAsFactors =</span> F)</span>
+<span id="cb1-6"><a href="data-collect.html#cb1-6"></a><span class="kw">str</span>(df)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    30265 obs. of  10 variables:
 ##  $ stories_id   : int  1483747633 1483747632 1483779604 1483817555 1483817553 1483858519 1483858517 1483858514 1483858512 1483858499 ...
 ##  $ publish_date : chr  &quot;2020-01-01 00:00:08&quot; &quot;2020-01-01 00:05:07&quot; &quot;2020-01-01 01:00:05&quot; &quot;2020-01-01 03:00:11&quot; ...
@@ -256,25 +203,25 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <div id="transformation-and-storage-in-quanteda-format." class="section level3">
 <h3><span class="header-section-number">3.1.2</span> Transformation and storage in quanteda format.</h3>
 <p>Currently, the size of the file (unzipped) is equal to 7.3 Mb. But we can observe that a lot of information are the same for all news and should not necessarily be kept. We can also exclude the url field if we are not interested in. We propose therefore to use a better form of storage based on <code>quanteda</code> format.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-collect.html#cb8-1"></a><span class="co"># Create Quanteda corpus</span></span>
-<span id="cb8-2"><a href="data-collect.html#cb8-2"></a>qd&lt;-<span class="kw">corpus</span>(df<span class="op">$</span>title)</span>
-<span id="cb8-3"><a href="data-collect.html#cb8-3"></a></span>
-<span id="cb8-4"><a href="data-collect.html#cb8-4"></a><span class="co"># Add date</span></span>
-<span id="cb8-5"><a href="data-collect.html#cb8-5"></a>qd<span class="op">$</span>date&lt;-<span class="kw">as.POSIXct</span>(<span class="kw">strptime</span>(df<span class="op">$</span>publish_date,<span class="st">&quot;%Y-%m-%d %H:%M:%S&quot;</span>))</span>
-<span id="cb8-6"><a href="data-collect.html#cb8-6"></a></span>
-<span id="cb8-7"><a href="data-collect.html#cb8-7"></a><span class="co"># Add initial meta</span></span>
-<span id="cb8-8"><a href="data-collect.html#cb8-8"></a><span class="kw">meta</span>(qd,<span class="st">&quot;language&quot;</span>)&lt;-df<span class="op">$</span>language[<span class="dv">1</span>]</span>
-<span id="cb8-9"><a href="data-collect.html#cb8-9"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_id&quot;</span>)&lt;-df<span class="op">$</span>media_id[<span class="dv">1</span>]</span>
-<span id="cb8-10"><a href="data-collect.html#cb8-10"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_name&quot;</span>)&lt;-df<span class="op">$</span>media_name[<span class="dv">1</span>]</span>
-<span id="cb8-11"><a href="data-collect.html#cb8-11"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_url&quot;</span>)&lt;-df<span class="op">$</span>media_url[<span class="dv">1</span>]</span>
-<span id="cb8-12"><a href="data-collect.html#cb8-12"></a></span>
-<span id="cb8-13"><a href="data-collect.html#cb8-13"></a><span class="co"># Add supplementary meta</span></span>
-<span id="cb8-14"><a href="data-collect.html#cb8-14"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_country&quot;</span>)&lt;-<span class="st">&quot;USA&quot;</span></span>
-<span id="cb8-15"><a href="data-collect.html#cb8-15"></a><span class="kw">meta</span>(qd,<span class="st">&quot;data_source&quot;</span>)&lt;-<span class="st">&quot;Media Cloud &quot;</span></span>
-<span id="cb8-16"><a href="data-collect.html#cb8-16"></a><span class="kw">meta</span>(qd,<span class="st">&quot;data_time&quot;</span>)&lt;-<span class="st">&quot;Download the 2020-07-06&quot;</span></span>
-<span id="cb8-17"><a href="data-collect.html#cb8-17"></a><span class="kw">meta</span>(qd,<span class="st">&quot;data_author&quot;</span>)&lt;-<span class="st">&quot;Elaborated by Claude Grasland&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-collect.html#cb3-1"></a><span class="co"># Create Quanteda corpus</span></span>
+<span id="cb3-2"><a href="data-collect.html#cb3-2"></a>qd&lt;-<span class="kw">corpus</span>(df<span class="op">$</span>title)</span>
+<span id="cb3-3"><a href="data-collect.html#cb3-3"></a></span>
+<span id="cb3-4"><a href="data-collect.html#cb3-4"></a><span class="co"># Add date</span></span>
+<span id="cb3-5"><a href="data-collect.html#cb3-5"></a>qd<span class="op">$</span>date&lt;-<span class="kw">as.POSIXct</span>(<span class="kw">strptime</span>(df<span class="op">$</span>publish_date,<span class="st">&quot;%Y-%m-%d %H:%M:%S&quot;</span>))</span>
+<span id="cb3-6"><a href="data-collect.html#cb3-6"></a></span>
+<span id="cb3-7"><a href="data-collect.html#cb3-7"></a><span class="co"># Add initial meta</span></span>
+<span id="cb3-8"><a href="data-collect.html#cb3-8"></a><span class="kw">meta</span>(qd,<span class="st">&quot;language&quot;</span>)&lt;-df<span class="op">$</span>language[<span class="dv">1</span>]</span>
+<span id="cb3-9"><a href="data-collect.html#cb3-9"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_id&quot;</span>)&lt;-df<span class="op">$</span>media_id[<span class="dv">1</span>]</span>
+<span id="cb3-10"><a href="data-collect.html#cb3-10"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_name&quot;</span>)&lt;-df<span class="op">$</span>media_name[<span class="dv">1</span>]</span>
+<span id="cb3-11"><a href="data-collect.html#cb3-11"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_url&quot;</span>)&lt;-df<span class="op">$</span>media_url[<span class="dv">1</span>]</span>
+<span id="cb3-12"><a href="data-collect.html#cb3-12"></a></span>
+<span id="cb3-13"><a href="data-collect.html#cb3-13"></a><span class="co"># Add supplementary meta</span></span>
+<span id="cb3-14"><a href="data-collect.html#cb3-14"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_country&quot;</span>)&lt;-<span class="st">&quot;USA&quot;</span></span>
+<span id="cb3-15"><a href="data-collect.html#cb3-15"></a><span class="kw">meta</span>(qd,<span class="st">&quot;data_source&quot;</span>)&lt;-<span class="st">&quot;Media Cloud &quot;</span></span>
+<span id="cb3-16"><a href="data-collect.html#cb3-16"></a><span class="kw">meta</span>(qd,<span class="st">&quot;data_time&quot;</span>)&lt;-<span class="st">&quot;Download the 2020-07-06&quot;</span></span>
+<span id="cb3-17"><a href="data-collect.html#cb3-17"></a><span class="kw">meta</span>(qd,<span class="st">&quot;data_author&quot;</span>)&lt;-<span class="st">&quot;Elaborated by Claude Grasland&quot;</span></span></code></pre></div>
 <p>We have created a quanteda object with a lot of information stored in various fields. The structure of the object is the following one</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data-collect.html#cb9-1"></a><span class="kw">str</span>(qd)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-collect.html#cb4-1"></a><span class="kw">str</span>(qd)</span></code></pre></div>
 <pre><code>##  &#39;corpus&#39; Named chr [1:30265] &quot;Meteor Showers in 2020 That Will Light Up Night Skies&quot; ...
 ##  - attr(*, &quot;names&quot;)= chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
 ##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:  30265 obs. of  4 variables:
@@ -304,7 +251,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 ##   .. ..$ data_time    : chr &quot;Download the 2020-07-06&quot;
 ##   .. ..$ data_author  : chr &quot;Elaborated by Claude Grasland&quot;</code></pre>
 <p>We can look at the first titles with <em>head()</em></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-collect.html#cb11-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(qd,<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-collect.html#cb6-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(qd,<span class="dv">3</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -328,7 +275,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 </tbody>
 </table>
 <p>We can get meta information on each stories with <em>summary()</em></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-collect.html#cb12-1"></a><span class="kw">summary</span>(qd,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-collect.html#cb7-1"></a><span class="kw">summary</span>(qd,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Corpus consisting of 30265 documents, showing 3 documents:
 ## 
 ##   Text Types Tokens Sentences                date
@@ -336,7 +283,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 ##  text2    12     13         1 2020-01-01 00:05:07
 ##  text3    13     14         1 2020-01-01 01:00:05</code></pre>
 <p>We can get meta information about the full document</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-collect.html#cb14-1"></a><span class="kw">meta</span>(qd)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data-collect.html#cb9-1"></a><span class="kw">meta</span>(qd)</span></code></pre></div>
 <pre><code>## $language
 ## [1] &quot;en&quot;
 ## 
@@ -361,7 +308,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 ## $data_author
 ## [1] &quot;Elaborated by Claude Grasland&quot;</code></pre>
 <p>We can finally save the object in RDS format</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-collect.html#cb16-1"></a><span class="kw">saveRDS</span>(qd,<span class="st">&quot;_data/qd/en_USA_nytime_20200101_20200630.RDS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-collect.html#cb11-1"></a><span class="kw">saveRDS</span>(qd,<span class="st">&quot;_data/qd/en_USA_nytime_20200101_20200630.RDS&quot;</span>)</span></code></pre></div>
 <p>We have kept all the information present in the initial file, but also added specific metadata of interest for us. The size of the storage is now equal to 1.2Mb which means a division by 6 as compared to the initial .csv file downloaded from Media Cloud.</p>
 
 </div>
@@ -373,7 +320,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-check.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
