@@ -12,7 +12,9 @@ github-repo: rstudio/bookdown-demo
 description: "This is a summary of experience and methods developped for the analysis of news flow."
 ---
 
-# Prerequisites
+# Objectives 
+
+This book is the result of several years of research, in particular through  projects ANR Geomedia and H2020 ODYCCEUS
 
 
 ```{r include=FALSE}

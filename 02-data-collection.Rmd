@@ -1,0 +1,3 @@
+# Data collection {#data_collect}
+
+This chapetr is deidcated to data collection
