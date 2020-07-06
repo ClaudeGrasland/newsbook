@@ -100,7 +100,7 @@ We can finally save the object in RDS format
 saveRDS(qd,"_data/qd/en_USA_nytime_20200101_20200630.RDS")
 ```
 
-We have kept all the information present in the initial file, but also added specific metadata of interest for us
+We have kept all the information present in the initial file, but also added specific metadata of interest for us. The size of the storage is now equal to 1.2Mb which means a division by 6 as compared to the initial .csv file downloaded from Media Cloud. 
 
 
 
