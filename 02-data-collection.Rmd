@@ -25,21 +25,21 @@ https://explorer.mediacloud.org
 You need firstly to register (for free) in order to create an account. Then you can select your media, select your period and select all stories by using the request '*' as in the example presented below.
 
 ```{r}
-knitr::include_graphics("_bookdown_files/pics/mc001.png")
+knitr::include_graphics("pics/mc001.png")
 ```
 
 Below your request, you obtain a graphic entitled *Attention Over Time* with the distribution of the number of news published per day which help you to verify if the distribution of news is regular through time. In our example, you an notice a classical week cycle (with decrease of the number of news publish during the week-end). But you can also observe a discontinuity at the beginning of May 2020 with a decline to a lower level of production of news. 
 
 ```{r}
-knitr::include_graphics("_bookdown_files/pics/mc002.png")
+knitr::include_graphics("pics/mc002.png")
 ```
 Going down, you will find a news panel entitled *Total Attention* which gives you the total number of stories found. In our example, we have a total of 47522 stories produced by the NYT during the first semester of 2020. 
 
 ```{r}
-knitr::include_graphics("_bookdown_files/pics/mc003.png")
+knitr::include_graphics("pics/mc003.png")
 ```
 
-Finally, by clicking on the button *Download all story URLS*, you can get a .csv file that you can easily load in your favourite porgramming language. In the case of R, you can load it with a program like this. 
+Finally, by clicking on the button *Download all story URLS*, you can get a .csv file that you can easily load in your favorite porgramming language. In the case of R, you can load it with a program like this. 
 
 ```{r loadcsv, echo=TRUE}
 df<-read.csv(file = "_data/mc/en_USA_nytime_20200101_20200630.csv",

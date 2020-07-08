@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Data collection | The News Book</title>
   <meta name="description" content="This is a summary of experience and methods developped for the analysis of news flow." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Data collection | The News Book" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Claude Grasland" />
 
 
-<meta name="date" content="2020-07-06" />
+<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -130,16 +131,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">My Book</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objectives</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="data-collect.html"><a href="data-collect.html"><i class="fa fa-check"></i><b>3</b> Data collection</a><ul>
-<li class="chapter" data-level="3.1" data-path="data-collect.html"><a href="data-collect.html#the-case-of-title-of-news"><i class="fa fa-check"></i><b>3.1</b> The case of title of news</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-collect.html"><a href="data-collect.html#data-level-1-title-of-news"><i class="fa fa-check"></i><b>3.1</b> DATA LEVEL 1 : Title of news</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="data-collect.html"><a href="data-collect.html#download-titles-with-mediacloud-interface"><i class="fa fa-check"></i><b>3.1.1</b> Download titles with mediacloud interface</a></li>
 <li class="chapter" data-level="3.1.2" data-path="data-collect.html"><a href="data-collect.html#transformation-and-storage-in-quanteda-format."><i class="fa fa-check"></i><b>3.1.2</b> Transformation and storage in quanteda format.</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collect.html"><a href="data-collect.html#data-level-2-title-of-news-description"><i class="fa fa-check"></i><b>3.2</b> DATA LEVEL 2 : Title of news + description</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-check.html"><a href="data-check.html"><i class="fa fa-check"></i><b>4</b> Data Check</a><ul>
 <li class="chapter" data-level="4.1" data-path="data-check.html"><a href="data-check.html#corpus-principles"><i class="fa fa-check"></i><b>4.1</b> Corpus principles</a></li>
@@ -147,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="data-check.html"><a href="data-check.html#the-research-of-suspect-pieces-of-texts"><i class="fa fa-check"></i><b>4.3</b> The research of suspect pieces of texts</a></li>
 </ul></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/ClaudeGrasland/newsbook" target="blank"></a></li>
 
 </ul>
 
@@ -168,26 +170,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data_collect" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Data collection</h1>
-<div id="the-case-of-title-of-news" class="section level2">
-<h2><span class="header-section-number">3.1</span> The case of title of news</h2>
+<p>We can have different use of data, depending on the amount of text available. Basically, we will distingush between three cases corresponding to three levels of information :</p>
+<ul>
+<li><strong>title of news</strong> : typically, the case of data downloaded on mediacloud</li>
+<li><strong>title of news</strong> + description : typically the case of data obtained by webscrapping of RSS flows and parsing of the XML code.</li>
+<li>**full text of *news** : typically the data obtained through a private provider of newspapers (Factiva, EuroPresse, LexisNexis …) of by (non legal) scrapping of text through the URL’s.</li>
+</ul>
+<div id="data-level-1-title-of-news" class="section level2">
+<h2><span class="header-section-number">3.1</span> DATA LEVEL 1 : Title of news</h2>
 <div id="download-titles-with-mediacloud-interface" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Download titles with mediacloud interface</h3>
 <p>We suppose that you want to analyze the title of the news collected by the New York Times during the first semester of 2020. You can easily proceed to such a collection with the application Mediacloud.</p>
 <p><a href="https://explorer.mediacloud.org" class="uri">https://explorer.mediacloud.org</a></p>
 <p>You need firstly to register (for free) in order to create an account. Then you can select your media, select your period and select all stories by using the request ’*’ as in the example presented below.</p>
-<p><img src="_bookdown_files/pics/mc001.png" width="1425" /></p>
+<p><img src="pics/mc001.png" /><!-- --></p>
 <p>Below your request, you obtain a graphic entitled <em>Attention Over Time</em> with the distribution of the number of news published per day which help you to verify if the distribution of news is regular through time. In our example, you an notice a classical week cycle (with decrease of the number of news publish during the week-end). But you can also observe a discontinuity at the beginning of May 2020 with a decline to a lower level of production of news.</p>
-<p><img src="_bookdown_files/pics/mc002.png" width="1343" />
+<p><img src="pics/mc002.png" /><!-- -->
 Going down, you will find a news panel entitled <em>Total Attention</em> which gives you the total number of stories found. In our example, we have a total of 47522 stories produced by the NYT during the first semester of 2020.</p>
-<p><img src="_bookdown_files/pics/mc003.png" width="1338" /></p>
-<p>Finally, by clicking on the button <em>Download all story URLS</em>, you can get a .csv file that you can easily load in your favourite porgramming language. In the case of R, you can load it with a program like this.</p>
+<p><img src="pics/mc003.png" /><!-- --></p>
+<p>Finally, by clicking on the button <em>Download all story URLS</em>, you can get a .csv file that you can easily load in your favorite porgramming language. In the case of R, you can load it with a program like this.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-collect.html#cb1-1"></a>df&lt;-<span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;_data/mc/en_USA_nytime_20200101_20200630.csv&quot;</span>,</span>
 <span id="cb1-2"><a href="data-collect.html#cb1-2"></a>             <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,</span>
 <span id="cb1-3"><a href="data-collect.html#cb1-3"></a>             <span class="dt">header=</span>T,</span>
 <span id="cb1-4"><a href="data-collect.html#cb1-4"></a>             <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>,</span>
 <span id="cb1-5"><a href="data-collect.html#cb1-5"></a>             <span class="dt">stringsAsFactors =</span> F)</span>
 <span id="cb1-6"><a href="data-collect.html#cb1-6"></a><span class="kw">str</span>(df)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    30265 obs. of  10 variables:
+<pre><code>## &#39;data.frame&#39;:	30265 obs. of  10 variables:
 ##  $ stories_id   : int  1483747633 1483747632 1483779604 1483817555 1483817553 1483858519 1483858517 1483858514 1483858512 1483858499 ...
 ##  $ publish_date : chr  &quot;2020-01-01 00:00:08&quot; &quot;2020-01-01 00:05:07&quot; &quot;2020-01-01 01:00:05&quot; &quot;2020-01-01 03:00:11&quot; ...
 ##  $ title        : chr  &quot;Meteor Showers in 2020 That Will Light Up Night Skies&quot; &quot;Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events&quot; &quot;What’s on TV Wednesday: A Linda Ronstadt Doc and ‘Doctor Who’&quot; &quot;Why Did the U.S. Become the Focus of Iraqis’ Anger?&quot; ...
@@ -224,7 +232,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-collect.html#cb4-1"></a><span class="kw">str</span>(qd)</span></code></pre></div>
 <pre><code>##  &#39;corpus&#39; Named chr [1:30265] &quot;Meteor Showers in 2020 That Will Light Up Night Skies&quot; ...
 ##  - attr(*, &quot;names&quot;)= chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
-##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:  30265 obs. of  4 variables:
+##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:	30265 obs. of  4 variables:
 ##   ..$ docname_: chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
 ##   ..$ docid_  : Factor w/ 30265 levels &quot;text1&quot;,&quot;text2&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
 ##   ..$ segid_  : int [1:30265] 1 1 1 1 1 1 1 1 1 1 ...
@@ -232,15 +240,18 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 ##  - attr(*, &quot;meta&quot;)=List of 3
 ##   ..$ system:List of 5
 ##   .. ..$ package-version:Classes &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1
-##   .. .. ..$ : int [1:3] 2 0 1
+##   .. .. ..$ : int [1:3] 2 1 0
 ##   .. ..$ r-version      :Classes &#39;R_system_version&#39;, &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1
-##   .. .. ..$ : int [1:3] 3 6 3
-##   .. ..$ system         : Named chr [1:3] &quot;Linux&quot; &quot;x86_64&quot; &quot;cgrasland&quot;
+##   .. .. ..$ : int [1:3] 4 0 2
+##   .. ..$ system         : Named chr [1:3] &quot;Windows&quot; &quot;x86-64&quot; &quot;CIST&quot;
 ##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;sysname&quot; &quot;machine&quot; &quot;user&quot;
-##   .. ..$ directory      : chr &quot;/data/user/g/cgrasland/newsbook&quot;
-##   .. ..$ created        : Date[1:1], format: &quot;2020-07-06&quot;
-##   ..$ object:List of 1
-##   .. ..$ unit: chr &quot;documents&quot;
+##   .. ..$ directory      : chr &quot;C:/claude/git/newsbook&quot;
+##   .. ..$ created        : Date[1:1], format: &quot;2020-07-08&quot;
+##   ..$ object:List of 2
+##   .. ..$ unit   : chr &quot;documents&quot;
+##   .. ..$ summary:List of 2
+##   .. .. ..$ hash: chr(0) 
+##   .. .. ..$ data: NULL
 ##   ..$ user  :List of 8
 ##   .. ..$ language     : chr &quot;en&quot;
 ##   .. ..$ media_id     : int 1
@@ -253,23 +264,27 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <p>We can look at the first titles with <em>head()</em></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-collect.html#cb6-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(qd,<span class="dv">3</span>))</span></code></pre></div>
 <table>
+<colgroup>
+<col width="7%" />
+<col width="92%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="left">x</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>text1</td>
+<td align="left">text1</td>
 <td align="left">Meteor Showers in 2020 That Will Light Up Night Skies</td>
 </tr>
 <tr class="even">
-<td>text2</td>
+<td align="left">text2</td>
 <td align="left">Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events</td>
 </tr>
 <tr class="odd">
-<td>text3</td>
+<td align="left">text3</td>
 <td align="left">What’s on TV Wednesday: A Linda Ronstadt Doc and ‘Doctor Who’</td>
 </tr>
 </tbody>
@@ -310,8 +325,11 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <p>We can finally save the object in RDS format</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-collect.html#cb11-1"></a><span class="kw">saveRDS</span>(qd,<span class="st">&quot;_data/qd/en_USA_nytime_20200101_20200630.RDS&quot;</span>)</span></code></pre></div>
 <p>We have kept all the information present in the initial file, but also added specific metadata of interest for us. The size of the storage is now equal to 1.2Mb which means a division by 6 as compared to the initial .csv file downloaded from Media Cloud.</p>
-
 </div>
+</div>
+<div id="data-level-2-title-of-news-description" class="section level2">
+<h2><span class="header-section-number">3.2</span> DATA LEVEL 2 : Title of news + description</h2>
+
 </div>
 </div>
             </section>
@@ -351,7 +369,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-data-collection.Rmd",
+"link": "https://github.com/ClaudeGrasland/newsbook/edit/master/02-data-collection.Rmd",
 "text": "Edit"
 },
 "history": {
