@@ -1,6 +1,6 @@
 --- 
 title: "The News Book"
-author: "Claude Grasland"
+author: "Claude Grasland, Romain Leconte, Hugues Pecout, Etienne Toureille, ..."
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook

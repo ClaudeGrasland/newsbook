@@ -141,7 +141,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.1" data-path="data-collect.html"><a href="data-collect.html#download-titles-with-mediacloud-interface"><i class="fa fa-check"></i><b>3.1.1</b> Download titles with mediacloud interface</a></li>
 <li class="chapter" data-level="3.1.2" data-path="data-collect.html"><a href="data-collect.html#transformation-and-storage-in-quanteda-format."><i class="fa fa-check"></i><b>3.1.2</b> Transformation and storage in quanteda format.</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="data-collect.html"><a href="data-collect.html#data-level-2-title-of-news-description"><i class="fa fa-check"></i><b>3.2</b> DATA LEVEL 2 : Title of news + description</a></li>
+<li class="chapter" data-level="3.2" data-path="data-collect.html"><a href="data-collect.html#data-level-2-title-of-news-description"><i class="fa fa-check"></i><b>3.2</b> DATA LEVEL 2 : Title of news + description</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collect.html"><a href="data-collect.html#metadata"><i class="fa fa-check"></i><b>3.2.1</b> metadata</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collect.html"><a href="data-collect.html#load-.csv-file"><i class="fa fa-check"></i><b>3.2.2</b> Load .csv file</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-collect.html"><a href="data-collect.html#cleaning-the-html-code-in-description-file"><i class="fa fa-check"></i><b>3.2.3</b> Cleaning the html code in description file</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data-collect.html"><a href="data-collect.html#transformation-of-textdescription-in-quanteda-corpus"><i class="fa fa-check"></i><b>3.2.4</b> Transformation of text+description in quanteda corpus</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-collect.html"><a href="data-collect.html#data-level-3-full-text"><i class="fa fa-check"></i><b>3.3</b> DATA LEVEL 3 : Full text</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-check.html"><a href="data-check.html"><i class="fa fa-check"></i><b>4</b> Data Check</a><ul>
 <li class="chapter" data-level="4.1" data-path="data-check.html"><a href="data-check.html#corpus-principles"><i class="fa fa-check"></i><b>4.1</b> Corpus principles</a></li>
@@ -329,6 +335,119 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 </div>
 <div id="data-level-2-title-of-news-description" class="section level2">
 <h2><span class="header-section-number">3.2</span> DATA LEVEL 2 : Title of news + description</h2>
+<div id="metadata" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> metadata</h3>
+<p>First, we define a distant directory where news are stored and we look at the metadata file :</p>
+<pre><code>## [1] &quot;mc2019_meta.csv&quot; &quot;qd&quot;              &quot;raw&quot;</code></pre>
+<pre><code>##   media_id                                     url                      name
+## 1    39962          http://www.24ora.com/index.php                  24ora-aw
+## 2    38880 http://www.khaleejtimes.com/index00.asp              khaleejtimes
+## 3    40717             http://www.lanacion.com.ar/               lanacion-AR
+## 4    38931                http://www.armenews.com/                  armenews
+## 5    39594              http://www.panorama.am/ru/            panorama-am-ru
+## 6    19320                   http://www.smh.com.au The Sydney Morning Herald
+##   pub_country pub_state language     media_type stories_per_day first_story
+## 1         ABW                 es digital_native           23,98  2013-03-18
+## 2         ARE     AE-DU       en   print_native           34,14  2013-03-11
+## 3         ARG      AR-C       es   print_native           84,94  2013-05-27
+## 4         ARM                 fr   print_native            34,1  2013-03-11
+## 5         ARM                 ru digital_native            34,6  2013-03-11
+## 6         AUS    AU-NSW       en   print_native          206,09  2014-02-24</code></pre>
+<p>If we are specifically interested in a country e.g. France) we can check which sources are available for this specific ountry by using its ISO3 code (e.g. FRA)</p>
+<pre><code>##     media_id                                    url                    name
+## 110    39120                http://www.lefigaro.fr/                lefigaro
+## 111    41322             http://www.ouest-france.fr             OuestFrance
+## 112    39909             http://www.laprovence.com/              laprovence
+## 113    40602             http://www.lest-eclair.fr/             lest-eclair
+## 114    41611               http://www.la-croix.com/                la-croix
+## 115    40894                  http://www.lunion.fr/                 L&#39;union
+## 116    39802            http://www.lavoixdunord.fr/            lavoixdunord
+## 117    42084             http://www.ledauphine.com/              ledauphine
+## 118    41553               http://www.ladepeche.fr/               ladepeche
+## 119    41565       http://www.larep.fr/accueil.html                   larep
+## 120    41352          http://www.estrepublicain.fr/          estrepublicain
+## 121    39055     http://www.republicain-lorrain.fr/     republicain-lorrain
+## 122    41401    http://www.lanouvellerepublique.fr/    lanouvellerepublique
+## 123    40342               http://www.leprogres.fr/               leprogres
+## 124    40931              http://www.nicematin.com/               nicematin
+## 125    39072                 http://www.lemonde.fr/                Le Monde
+## 126    39201                     http://www.dna.fr/              dna-france
+## 127    39263                 http://www.lalsace.fr/              lalsace-de
+## 128    42068               http://www.varmatin.com/                varmatin
+## 129    41583                 http://www.lepoint.fr/                 LePoint
+## 130    40303 http://www.lepopulaire.fr/accueil.html             lepopulaire
+## 131    39309             http://www.corsematin.com/              corsematin
+## 132    41372                http://www.sudouest.fr/               Sud Ouest
+## 133    41138               http://www.midilibre.fr/               midilibre
+## 134    40105            http://www.lindependant.fr/            lindependant
+## 135    39645 http://www.larepubliquedespyrenees.fr/ larepubliquedespyrenees
+## 136    39973        http://www.courrierdelouest.fr/        courrierdelouest
+## 137    40476                http://www.lesechos.fr/                LesEchos
+## 138    41936           http://www.charentelibre.fr/           charentelibre</code></pre>
+</div>
+<div id="load-.csv-file" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Load .csv file</h3>
+<p>If we are interesting in the regional newspaper <em>Sud-Ouest</em>, we pick the media_id number (41372) in order to load the corresponding file in the raw directory :</p>
+<pre><code>## &#39;data.frame&#39;:	81653 obs. of  8 variables:
+##  $ stories_id  : int  113642735 105929893 105014675 106119376 114086884 114034480 114338347 114611476 113400389 113372136 ...
+##  $ title       : chr  &quot;Lot-et-Garonne : un homme tape ses parents parce qu&#39;ils veulent vendre la maison&quot; &quot;\&quot;Thierry\&quot;, l&#39;ancien chef présumé d&#39;ETA est mort à l&#39;hôpital&quot; &quot;Chaque année les pilules contraceptives provoquent 20 décès et  2500 \&quot;accidents\&quot;&quot; &quot;Jean-Pierre Elissalde a pris des amphétamines durant sa carrière&quot; ...
+##  $ url         : chr  &quot;http://www.sudouest.fr/2013/05/03/cocumont-47-un-homme-tape-ses-parents-parce-qu-ils-veulent-vendre-la-maison-1&quot;| __truncated__ &quot;http://www.sudouest.fr/2013/03/30/thierry-l-ancien-chef-presume-d-eta-est-mort-a-l-hopital-1010669-754.php#xtor=RSS-10521769&quot; &quot;http://www.sudouest.fr/2013/03/26/chaque-annee-les-pilules-contraceptives-provoquent-20-deces-et-2500-accidents&quot;| __truncated__ &quot;http://www.sudouest.fr/2013/03/31/jean-pierre-elissalde-a-pris-des-amphetamines-durant-sa-carriere-1010963-773.&quot;| __truncated__ ...
+##  $ publish_date: chr  &quot;2013-05-03 09:00:16&quot; &quot;2013-03-30 16:32:02&quot; &quot;2013-03-26 09:55:46&quot; &quot;2013-03-31 15:00:05&quot; ...
+##  $ media_id    : int  41372 41372 41372 41372 41372 41372 41372 41372 41372 41372 ...
+##  $ media_name  : chr  &quot;Sud Ouest&quot; &quot;Sud Ouest&quot; &quot;Sud Ouest&quot; &quot;Sud Ouest&quot; ...
+##  $ media_url   : chr  &quot;http://www.sudouest.fr/&quot; &quot;http://www.sudouest.fr/&quot; &quot;http://www.sudouest.fr/&quot; &quot;http://www.sudouest.fr/&quot; ...
+##  $ description : chr  &quot;&lt;p&gt;&lt;img src=\&quot;http://www.sudouest.fr/images/2013/05/03/1043114_gendarmerie-1000_165x110.jpg\&quot; align=\&quot;left\&quot; hs&quot;| __truncated__ &quot;&lt;p&gt;&lt;img src=\&quot;http://www.sudouest.fr/images/2013/03/30/l-arrestation-tres-mediatisee-de-thierry-le-21-mai-2008-&quot;| __truncated__ &quot;&lt;p&gt;&lt;img src=\&quot;http://www.sudouest.fr/images/2013/03/26/le-rapport-preconise-diverses-pratiques-afin-de-limiter-&quot;| __truncated__ &quot;&lt;p&gt;&lt;img src=\&quot;http://www.sudouest.fr/images/2013/03/31/jean-pierre-elissalde_1134167_165x110.JPG\&quot; align=\&quot;left&quot;| __truncated__ ...</code></pre>
+<p>We can recognize many variables from our first example of download of title from Mediacloud. But with a new field called description that add more or less text, depending of the media under investigation.</p>
+</div>
+<div id="cleaning-the-html-code-in-description-file" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Cleaning the html code in description file</h3>
+<p>We have generally a high risk to find html codes in the description field which are not of prior interest for textual analysis. The problem is clearly present in our example :</p>
+<pre><code>## [1] &quot;&lt;p&gt;&lt;img src=\&quot;http://www.sudouest.fr/images/2013/05/03/1043114_gendarmerie-1000_165x110.jpg\&quot; align=\&quot;left\&quot; hspace=\&quot;10\&quot; /&gt;Les parents d&#39;un homme de 48 ans voulaient vendre la maison familiale. Mal leur en a pris.&lt;br&gt;Un couple habitant Cocumont projetaient de vendre leur maison familiale mais leur fils n&#39;a visiblement pas apprécié cette décision. A tel point que l&#39;homme, âgé de 48 ans, s&#39;en est pris à ses géniteurs le 30 avril dernier. Au volant de... &lt;a href=\&quot;http://www.sudouest.fr/2013/05/03/cocumont-47-un-homme-tape-ses-parents-parce-qu-ils-veulent-vendre-la-maison-1043114-3666.php#xtor=RSS-10521769\&quot;&gt;Lire la suite&lt;/a&gt;&lt;/p&gt;&quot;               
+## [2] &quot;&lt;p&gt;&lt;img src=\&quot;http://www.sudouest.fr/images/2013/03/30/l-arrestation-tres-mediatisee-de-thierry-le-21-mai-2008-a_1133578_165x110.JPG\&quot; align=\&quot;left\&quot; hspace=\&quot;10\&quot; /&gt;Javier Lopez Peña, dit \&quot;Thierry\&quot; est décédé des suites d&#39;un AVC à l&#39;âge de 54 ans. Il avait été interpellé à Bordeaux en 2008.&lt;br&gt;Javier Lopez Peña, dit \&quot;Thierry\&quot;, 54 ans, ancien chef présumé de l&#39;ETA interpellé en 2008 à Bordeaux, est mort dans la nuit de vendredi à samedi à l&#39;hôpital parisien de la Pitié-Salpêtrière... &lt;a href=\&quot;http://www.sudouest.fr/2013/03/30/thierry-l-ancien-chef-presume-d-eta-est-mort-a-l-hopital-1010669-754.php#xtor=RSS-10521769\&quot;&gt;Lire la suite&lt;/a&gt;&lt;/p&gt;&quot;</code></pre>
+<pre><code>## [1] &quot;&lt;p&gt;\n                    &lt;img src=\&quot;https://images.sudouest.fr/30/12/2019/5e098c2566a4bd266879ab54/idevice_01_mirror/australie-recrudescence-des-incendies-des-milliers-de-touristes-pourraient-etre-pris-au-piege.jpg\&quot; align=\&quot;left\&quot; hspace=\&quot;10\&quot;/&gt;                    Des centaines de feux de forêts brûlent actuellement à travers le continent, notamment dans la région très touristique d&#39;East Gippsland où des milliers de vacanciers pourraient être pris au piège en raison d&#39;une nouvelle vague de chaleur.&lt;br&gt;                    Des milliers de touristes pourraient se retrouver lundi pris au piège dans le... &lt;a href=\&quot;https://www.sudouest.fr/2019/12/30/australie-recrudescence-des-incendies-des-milliers-de-touristes-pourraient-etre-pris-au-piege-7007857-4803.php\&quot;&gt;Lire la suite&lt;/a&gt;&lt;/p&gt;&quot;          
+## [2] &quot;&lt;p&gt;\n                    &lt;img src=\&quot;https://images.sudouest.fr/30/12/2019/5e09eaec66a4bdf45179ab64/idevice_01_mirror/population-5-956-978-habitants-la-nouvelle-aquitaine-est-la-4e-region-la-plus-peuplee-de-france.jpg\&quot; align=\&quot;left\&quot; hspace=\&quot;10\&quot;/&gt;                    Selon les derniers chiffres du recensement, 66 524 000 habitants vivent en France au 1er janvier 2017 dont 5 956 978 en Nouvelle-Aquitaine. Une région qui reste attractive et qui doit surtout sa hausse de population aux migrations résidentielles. .&lt;br&gt;                    Au 1er janvier 2017, selon les chiffres publiés ce lundi 30 décembre par... &lt;a href=\&quot;https://www.sudouest.fr/2019/12/30/population-5-956-978-habitants-la-nouvelle-aquitaine-est-la-4e-region-la-plus-peuplee-de-france-7008263-10407.php\&quot;&gt;Lire la suite&lt;/a&gt;&lt;/p&gt;&quot;</code></pre>
+<p>Therefore, we can proceed to an immediate cleaning through a function. One of the most simple one is proposed below, but can be further completed for specific situation</p>
+<pre><code>## [1] &quot;Les parents d&#39;un homme de 48 ans voulaient vendre la maison familiale. Mal leur en a pris.Un couple habitant Cocumont projetaient de vendre leur maison familiale mais leur fils n&#39;a visiblement pas apprécié cette décision. A tel point que l&#39;homme, âgé de 48 ans, s&#39;en est pris à ses géniteurs le 30 avril dernier. Au volant de... Lire la suite&quot;
+## [2] &quot;Javier Lopez Peña, dit \&quot;Thierry\&quot; est décédé des suites d&#39;un AVC à l&#39;âge de 54 ans. Il avait été interpellé à Bordeaux en 2008.Javier Lopez Peña, dit \&quot;Thierry\&quot;, 54 ans, ancien chef présumé de l&#39;ETA interpellé en 2008 à Bordeaux, est mort dans la nuit de vendredi à samedi à l&#39;hôpital parisien de la Pitié-Salpêtrière... Lire la suite&quot;</code></pre>
+<pre><code>## [1] &quot;\n                                        Des centaines de feux de forêts brûlent actuellement à travers le continent, notamment dans la région très touristique d&#39;East Gippsland où des milliers de vacanciers pourraient être pris au piège en raison d&#39;une nouvelle vague de chaleur.                    Des milliers de touristes pourraient se retrouver lundi pris au piège dans le... Lire la suite&quot;     
+## [2] &quot;\n                                        Selon les derniers chiffres du recensement, 66 524 000 habitants vivent en France au 1er janvier 2017 dont 5 956 978 en Nouvelle-Aquitaine. Une région qui reste attractive et qui doit surtout sa hausse de population aux migrations résidentielles. .                    Au 1er janvier 2017, selon les chiffres publiés ce lundi 30 décembre par... Lire la suite&quot;</code></pre>
+<p>In our example, we can see that the description is based on a numbr of characters rather than on a number of sentences, which produce a cut followed by <em>Lire la suite</em>. It can therefore be relevant to eliminate immediately the final part But the cleaning procedure is generally much longer and complex, especially when the corpus cover many years. Indeed, the style of description may have change through time. This point will be discuss in more details in the next chapter.</p>
+</div>
+<div id="transformation-of-textdescription-in-quanteda-corpus" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Transformation of text+description in quanteda corpus</h3>
+<p>As we have done previously, we will store the resul in a quanteda corpus object with associated metadata. But before to do that we have to merge title + description in a same text where title will be the first sentence.</p>
+<p>N.B. I am not quite sure of the good separator to be used between title and description</p>
+<pre><code>## [1] &quot;Lot-et-Garonne : un homme tape ses parents parce qu&#39;ils veulent vendre la maison.\n.Les parents d&#39;un homme de 48 ans voulaient vendre la maison familiale. Mal leur en a pris.Un couple habitant Cocumont projetaient de vendre leur maison familiale mais leur fils n&#39;a visiblement pas apprécié cette décision. A tel point que l&#39;homme, âgé de 48 ans, s&#39;en est pris à ses géniteurs le 30 avril dernier. Au volant de... Lire la suite&quot;
+## [2] &quot;\&quot;Thierry\&quot;, l&#39;ancien chef présumé d&#39;ETA est mort à l&#39;hôpital.\n.Javier Lopez Peña, dit \&quot;Thierry\&quot; est décédé des suites d&#39;un AVC à l&#39;âge de 54 ans. Il avait été interpellé à Bordeaux en 2008.Javier Lopez Peña, dit \&quot;Thierry\&quot;, 54 ans, ancien chef présumé de l&#39;ETA interpellé en 2008 à Bordeaux, est mort dans la nuit de vendredi à samedi à l&#39;hôpital parisien de la Pitié-Salpêtrière... Lire la suite&quot;</code></pre>
+<pre><code>## [1] &quot;Australie : recrudescence des incendies, des milliers de touristes pourraient être pris au piège.\n.\n                                        Des centaines de feux de forêts brûlent actuellement à travers le continent, notamment dans la région très touristique d&#39;East Gippsland où des milliers de vacanciers pourraient être pris au piège en raison d&#39;une nouvelle vague de chaleur.                    Des milliers de touristes pourraient se retrouver lundi pris au piège dans le... Lire la suite&quot;       
+## [2] &quot;Population : 5 956 978 habitants, la Nouvelle-Aquitaine est la 4e région la plus peuplée de France.\n.\n                                        Selon les derniers chiffres du recensement, 66 524 000 habitants vivent en France au 1er janvier 2017 dont 5 956 978 en Nouvelle-Aquitaine. Une région qui reste attractive et qui doit surtout sa hausse de population aux migrations résidentielles. .                    Au 1er janvier 2017, selon les chiffres publiés ce lundi 30 décembre par... Lire la suite&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-collect.html#cb22-1"></a><span class="co"># Create Quanteda corpus</span></span>
+<span id="cb22-2"><a href="data-collect.html#cb22-2"></a>qd&lt;-<span class="kw">corpus</span>(df<span class="op">$</span>text)</span>
+<span id="cb22-3"><a href="data-collect.html#cb22-3"></a></span>
+<span id="cb22-4"><a href="data-collect.html#cb22-4"></a><span class="co"># Add date</span></span>
+<span id="cb22-5"><a href="data-collect.html#cb22-5"></a>qd<span class="op">$</span>date&lt;-<span class="kw">as.POSIXct</span>(<span class="kw">strptime</span>(df<span class="op">$</span>publish_date,<span class="st">&quot;%Y-%m-%d %H:%M:%S&quot;</span>))</span>
+<span id="cb22-6"><a href="data-collect.html#cb22-6"></a></span>
+<span id="cb22-7"><a href="data-collect.html#cb22-7"></a><span class="co"># Add initial meta</span></span>
+<span id="cb22-8"><a href="data-collect.html#cb22-8"></a><span class="kw">meta</span>(qd,<span class="st">&quot;language&quot;</span>)&lt;-df<span class="op">$</span>language[<span class="dv">1</span>]</span>
+<span id="cb22-9"><a href="data-collect.html#cb22-9"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_id&quot;</span>)&lt;-df<span class="op">$</span>media_id[<span class="dv">1</span>]</span>
+<span id="cb22-10"><a href="data-collect.html#cb22-10"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_name&quot;</span>)&lt;-df<span class="op">$</span>media_name[<span class="dv">1</span>]</span>
+<span id="cb22-11"><a href="data-collect.html#cb22-11"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_url&quot;</span>)&lt;-df<span class="op">$</span>media_url[<span class="dv">1</span>]</span>
+<span id="cb22-12"><a href="data-collect.html#cb22-12"></a></span>
+<span id="cb22-13"><a href="data-collect.html#cb22-13"></a><span class="co"># Add supplementary meta</span></span>
+<span id="cb22-14"><a href="data-collect.html#cb22-14"></a><span class="kw">meta</span>(qd,<span class="st">&quot;media_country&quot;</span>)&lt;-<span class="st">&quot;FRA&quot;</span></span>
+<span id="cb22-15"><a href="data-collect.html#cb22-15"></a><span class="kw">meta</span>(qd,<span class="st">&quot;data_source&quot;</span>)&lt;-<span class="st">&quot;Media Cloud &quot;</span></span>
+<span id="cb22-16"><a href="data-collect.html#cb22-16"></a><span class="kw">meta</span>(qd,<span class="st">&quot;data_time&quot;</span>)&lt;-<span class="st">&quot;Special extraction&quot;</span></span>
+<span id="cb22-17"><a href="data-collect.html#cb22-17"></a><span class="kw">meta</span>(qd,<span class="st">&quot;data_author&quot;</span>)&lt;-<span class="st">&quot;Elaborated by Claude Grasland&quot;</span></span>
+<span id="cb22-18"><a href="data-collect.html#cb22-18"></a></span>
+<span id="cb22-19"><a href="data-collect.html#cb22-19"></a><span class="co"># Save in Rdata format</span></span>
+<span id="cb22-20"><a href="data-collect.html#cb22-20"></a><span class="kw">saveRDS</span>(qd,<span class="dt">file =</span> <span class="kw">paste</span>(base, <span class="st">&quot;/qd/stories_&quot;</span>,id,<span class="st">&quot;.Rdata&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>))</span></code></pre></div>
+</div>
+</div>
+<div id="data-level-3-full-text" class="section level2">
+<h2><span class="header-section-number">3.3</span> DATA LEVEL 3 : Full text</h2>
+<p>We consider finally the case of news based on full text. It is generally related to the selection of a precise corpus related to a specific topic (e.g. migration, border, …) in order to limit the size of the resulting database.</p>
+<p>We can take the example of …</p>
+<p><em>To be done.</em></p>
 
 </div>
 </div>
