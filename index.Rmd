@@ -1,5 +1,5 @@
 --- 
-title: "The News Book"
+title: "The R News Book"
 author: "Claude Grasland, Romain Leconte, Hugues Pecout, Etienne Toureille, ..."
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

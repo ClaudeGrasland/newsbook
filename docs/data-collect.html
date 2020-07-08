@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data collection | The News Book</title>
+  <title>Chapter 3 Data collection | The R News Book</title>
   <meta name="description" content="This is a summary of experience and methods developped for the analysis of news flow." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data collection | The News Book" />
+  <meta property="og:title" content="Chapter 3 Data collection | The R News Book" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +16,12 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data collection | The News Book" />
+  <meta name="twitter:title" content="Chapter 3 Data collection | The R News Book" />
   
   <meta name="twitter:description" content="This is a summary of experience and methods developped for the analysis of news flow." />
   
 
-<meta name="author" content="Claude Grasland" />
+<meta name="author" content="Claude Grasland, Romain Leconte, Hugues Pecout, Etienne Toureille, …" />
 
 
 <meta name="date" content="2020-07-08" />
@@ -166,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The News Book</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The R News Book</a>
           </h1>
         </div>
 
@@ -221,7 +221,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <span id="cb3-2"><a href="data-collect.html#cb3-2"></a>qd&lt;-<span class="kw">corpus</span>(df<span class="op">$</span>title)</span>
 <span id="cb3-3"><a href="data-collect.html#cb3-3"></a></span>
 <span id="cb3-4"><a href="data-collect.html#cb3-4"></a><span class="co"># Add date</span></span>
-<span id="cb3-5"><a href="data-collect.html#cb3-5"></a>qd<span class="op">$</span>date&lt;-<span class="kw">as.POSIXct</span>(<span class="kw">strptime</span>(df<span class="op">$</span>publish_date,<span class="st">&quot;%Y-%m-%d %H:%M:%S&quot;</span>))</span>
+<span id="cb3-5"><a href="data-collect.html#cb3-5"></a>qd<span class="op">$</span>date&lt;-df<span class="op">$</span>publish_date</span>
 <span id="cb3-6"><a href="data-collect.html#cb3-6"></a></span>
 <span id="cb3-7"><a href="data-collect.html#cb3-7"></a><span class="co"># Add initial meta</span></span>
 <span id="cb3-8"><a href="data-collect.html#cb3-8"></a><span class="kw">meta</span>(qd,<span class="st">&quot;language&quot;</span>)&lt;-df<span class="op">$</span>language[<span class="dv">1</span>]</span>
@@ -242,7 +242,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 ##   ..$ docname_: chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
 ##   ..$ docid_  : Factor w/ 30265 levels &quot;text1&quot;,&quot;text2&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
 ##   ..$ segid_  : int [1:30265] 1 1 1 1 1 1 1 1 1 1 ...
-##   ..$ date    : POSIXct[1:30265], format: &quot;2020-01-01 00:00:08&quot; &quot;2020-01-01 00:05:07&quot; ...
+##   ..$ date    : chr [1:30265] &quot;2020-01-01 00:00:08&quot; &quot;2020-01-01 00:05:07&quot; &quot;2020-01-01 01:00:05&quot; &quot;2020-01-01 03:00:11&quot; ...
 ##  - attr(*, &quot;meta&quot;)=List of 3
 ##   ..$ system:List of 5
 ##   .. ..$ package-version:Classes &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1

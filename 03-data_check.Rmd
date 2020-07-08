@@ -1,4 +1,4 @@
-# Data Check {#data_check}
+# Data Check and Clean {#data_check}
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 library(knitr)
@@ -6,95 +6,116 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(quanteda)
 library(dplyr)
 library(ggplot2)
+library(tidytext)
 
 ```
 
-In this chapter, we present some basic test of the data collected. The tools are basesd on the package quanteda. The reader non familiar with this package could have a look at *Quick Start* available on the website of the project :
+
+
+
+In this chapter, we describe the different operation of checking and cleaning that should be necessarily realized before any sound exploration of corpus. The majority of the procedures described here can not be done automatically and implies a human expertise at each step in order to control the results and propose remediations in case of problems.
+
+
+## Prerequites
+
+
+The operations will be realized jointly with the two packages **quanteda** and **tidytext**. In the majority of case, we will use quanteda but in some specific situations tidytext will appear more adapted and will be used, thanks to (relatively) easy possibilities of exchange between the two format of dta storage of corpora. 
+
+- The reader non familiar with quanteda  should have a look at *Quick Start* available on the website of the project :
 
 https://quanteda.io/articles/quickstart.html
 
+- The reader non familiar with tidytext will find detailed explnation in the following book : 
+
+
+https://www.tidytextmining.com/
+
+
+## EXAMPLE 1 : Cleaning a text+description corpus
+
+We start by loading the corpus of news from the french newspaper Sud-Ouest that has been extract from .csv and transform in quanteda corpus in the previous chapter (**ref**). we also transform the time variable in date and sort the news by historical order.
 
 ```{r}
-qd<-readRDS("_data/qd/en_USA_nytime_20200101_20200630.RDS")
+qd<-readRDS("_data/qd/stories_41372.Rdata")
+qd$date<-as.Date(qd$date)
+qd<-qd[order(qd$date)]
+str(qd)
 ```
-
-
-
-## Corpus principles
+This structure of data appears a bit tricky at first glance (especially for old user of quanteda that has experimented modification between version 1 and 2 ...) but it offers very good guaranties of quality and efficiency. As explained by the author of the quanteda package :
 
 >A corpus is designed to be a "library" of original documents that have been converted to plain, UTF-8 encoded text, and stored along with meta-data at the corpus level and at the document-level.  We have a special name for document-level meta-data: *docvars*.  These are variables or features that describe attributes of each document.A corpus is designed to be a more or less static container of texts with respect to processing and analysis.  This means that the texts in corpus are not designed to be changed internally through (for example) cleaning or pre-processing steps, such as stemming or removing punctuation.  Rather, texts can be extracted from the corpus as part of processing, and assigned to new objects, but the idea is that the corpus will remain as an original reference copy so that other analyses -- for instance those in which stems and punctuation were required, such as analyzing a reading ease index -- can be performed on the same corpus.
 
-To extract texts from a corpus, we use an extractor, called `texts()`.  
+With the new data structure it is for example easy to extract a specific text from the corpus with an extractor, called `texts()`.  We can also have an easy access to information associated to each document like the date in our example. For example the news 666 is defined by :
 
 ```{r}
-texts(qd)[2]
+texts(qd)[666]
+qd$date[666]
+```
+For those who really don't want to use quanteda, it is also simple to convert it to other format and in particular a simple data.frame where we can find only the id of document, the text and the document level information. But we have lost all the other information like the document metadata.
+
+```{r}
+df<-convert(qd, to="data.frame")
+head(df)
 ```
 
-To summarize the texts from a corpus, we can call a `summary()` method defined for a corpus.
+
+
+
+
+### length of texts
+
+We can use the summary command applied to the whole corpus in order to obtain for each text the number of sentences and words. This operation can take some time because quanteda will proceed to a tokenization of the corpus. We suggest to store this information in the quanteda object.
+
 
 ```{r}
-summary(qd, n = 5)
-```
-
-
-## Corpus properties
-
-We can save the output from the summary command as a data frame in order to obtain for each text the number of sentences and words.
-
-```{r}
+# Compute number of sentences and tokens
 tokeninfo <- summary(qd,length(qd))
-kable(head(tokeninfo))
+
+#store in quanteda object
+docvars(qd, field="Tokens")<-tokeninfo$Tokens
+docvars(qd, field="Sentences")<-tokeninfo$Sentences
+
+# Visualize
+head(docvars(qd))
 ```
 
-- What is the distribution of the number of sentences ?
+#### What is the distribution of the number of sentences ?
 
 ```{r}
-x<-tokeninfo %>% group_by(Sentences) %>%
-            summarise(nb = n()) %>%  
-            ungroup() %>%
-            mutate(pct = 100*nb/sum(nb))
+x<-qd$Sentences
 
- kable(x,caption = "Number of sentences of news", digits=1) 
+kable(table(x),caption = "Number of sentences of news", digits=1) 
 
 ```
 
-- What is the distribution of the number of tokens ?
+The distribution appears regular with the exception of a very strange news with 57 sentences. It appears as a single case of full text ! We decide therefore to eliminate all texts with length > 10 sentences and visualize the result.
 
 ```{r}
-summary(tokeninfo$Tokens)
-p<-ggplot(tokeninfo,aes(x=Tokens))+geom_histogram()
+qd<-qd[qd$Sentences<11]
+p<-ggplot(docvars(qd),aes(x=Sentences))+geom_bar(stat="count",)
+p
+
+```
+
+
+N.B. At this point, it is also possible to harmonize the number of sentences in the datasets.But rather than deleting the "long" texts", it appears better to keep only the k first sentences of each text with the *corpus_reshape* function. This function can transform the initial text in sentences but also do the reverse operation. So, our program could look like this. Note that the operation can take some time on large corpora.
+
+
+
+#### What is the distribution of the number of tokens ?
+
+```{r}
+nbtoks<-qd$Tokens
+p<-ggplot(docvars(qd),aes(x=Tokens))+geom_histogram()
 p
 ```
-
-## The research of suspect pieces of texts
-
-In many case, the news are characterized by the recurrence of pieces of text added by the journal that are not part of the text itself like *Read More*, *See also*. A good way to discover these supsect pieces of texts is to compute the most frequent n-grams
-
+One more time, we observe some strange behavior with some very short news. We can therefore decide to harmonize and keep only the news with a value of 50 to 125 tokens.
 
 ```{r}
-# bigrams
-qd %>% tokens() %>% tokens_ngrams(n=2L) %>% dfm() %>% topfeatures(50)
-# trigrams  
-qd %>% tokens() %>% tokens_ngrams(n=3L) %>% dfm() %>% topfeatures(50)
+qd<-corpus_subset(qd,Tokens>50)
+qd<-corpus_subset(qd,Tokens<125)
+
+p<-ggplot(docvars(qd),aes(x=Tokens))+geom_histogram(stat_bin=25)
+p
 ```
-In our example, we can eliminate some obvious problems (*- The New York Times*, *Live updates*) and correct some abbreviations (*U.S.*, *N.Y.C.*, *N.Y.*) which are likely to create problems. 
-
-
-```{r}
-qd2<-qd
-texts(qd2)<-gsub(pattern = " - the new york times", x = texts(qd2),replacement = "", ignore.case=TRUE)
-texts(qd2)<-gsub(pattern = "live updates", x = texts(qd2),replacement = "", ignore.case=TRUE)
-texts(qd2)<-gsub(pattern = "u.s.", x = texts(qd2),replacement = "US", ignore.case=TRUE)
-texts(qd2)<-gsub(pattern = "n.y.c.", x = texts(qd2),replacement = "NYC", ignore.case=TRUE)
-texts(qd2)<-gsub(pattern = "n.y.", x = texts(qd2),replacement = "NYC", ignore.case=TRUE)
-qd2 %>% tokens() %>% tokens_ngrams(n=2L) %>% dfm() %>% topfeatures(50)
-saveRDS(qd2,"_data/qd/en_USA_nytime_20200101_20200630_clean.RDS")
-```
-
-
-
-
-
-
-
 

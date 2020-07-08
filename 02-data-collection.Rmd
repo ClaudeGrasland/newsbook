@@ -60,7 +60,7 @@ Currently, the size of the file (unzipped) is equal to 7.3 Mb. But we can observ
 qd<-corpus(df$title)
 
 # Add date
-qd$date<-as.POSIXct(strptime(df$publish_date,"%Y-%m-%d %H:%M:%S"))
+qd$date<-df$publish_date
 
 # Add initial meta
 meta(qd,"language")<-df$language[1]
