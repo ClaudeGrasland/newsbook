@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Introduction | The News Book</title>
+  <title>Chapter 2 Introduction | The R News Book</title>
   <meta name="description" content="This is a summary of experience and methods developped for the analysis of news flow." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Introduction | The News Book" />
+  <meta property="og:title" content="Chapter 2 Introduction | The R News Book" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Introduction | The News Book" />
+  <meta name="twitter:title" content="Chapter 2 Introduction | The R News Book" />
   
   <meta name="twitter:description" content="This is a summary of experience and methods developped for the analysis of news flow." />
   
 
-<meta name="author" content="Claude Grasland" />
+<meta name="author" content="Claude Grasland, Romain Leconte, Hugues Pecout, Etienne Toureille, …" />
 
 
-<meta name="date" content="2020-07-06" />
+<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 
@@ -66,24 +67,42 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">My Book</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objectives</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="data-collect.html"><a href="data-collect.html"><i class="fa fa-check"></i><b>3</b> Data collection</a><ul>
-<li class="chapter" data-level="3.1" data-path="data-collect.html"><a href="data-collect.html#the-case-of-title-of-news"><i class="fa fa-check"></i><b>3.1</b> The case of title of news</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-collect.html"><a href="data-collect.html#data-level-1-title-of-news"><i class="fa fa-check"></i><b>3.1</b> DATA LEVEL 1 : Title of news</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="data-collect.html"><a href="data-collect.html#download-titles-with-mediacloud-interface"><i class="fa fa-check"></i><b>3.1.1</b> Download titles with mediacloud interface</a></li>
 <li class="chapter" data-level="3.1.2" data-path="data-collect.html"><a href="data-collect.html#transformation-and-storage-in-quanteda-format."><i class="fa fa-check"></i><b>3.1.2</b> Transformation and storage in quanteda format.</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collect.html"><a href="data-collect.html#data-level-2-title-of-news-description"><i class="fa fa-check"></i><b>3.2</b> DATA LEVEL 2 : Title of news + description</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collect.html"><a href="data-collect.html#metadata"><i class="fa fa-check"></i><b>3.2.1</b> metadata</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collect.html"><a href="data-collect.html#load-.csv-file"><i class="fa fa-check"></i><b>3.2.2</b> Load .csv file</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-collect.html"><a href="data-collect.html#cleaning-the-html-code-in-description-file"><i class="fa fa-check"></i><b>3.2.3</b> Cleaning the html code in description file</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data-collect.html"><a href="data-collect.html#transformation-of-textdescription-in-quanteda-corpus"><i class="fa fa-check"></i><b>3.2.4</b> Transformation of text+description in quanteda corpus</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-check.html"><a href="data-check.html"><i class="fa fa-check"></i><b>4</b> Data Check</a><ul>
-<li class="chapter" data-level="4.1" data-path="data-check.html"><a href="data-check.html#corpus-principles"><i class="fa fa-check"></i><b>4.1</b> Corpus principles</a></li>
-<li class="chapter" data-level="4.2" data-path="data-check.html"><a href="data-check.html#corpus-properties"><i class="fa fa-check"></i><b>4.2</b> Corpus properties</a></li>
-<li class="chapter" data-level="4.3" data-path="data-check.html"><a href="data-check.html#the-research-of-suspect-pieces-of-texts"><i class="fa fa-check"></i><b>4.3</b> The research of suspect pieces of texts</a></li>
+<li class="chapter" data-level="3.3" data-path="data-collect.html"><a href="data-collect.html#data-level-3-full-text"><i class="fa fa-check"></i><b>3.3</b> DATA LEVEL 3 : Full text</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-check.html"><a href="data-check.html"><i class="fa fa-check"></i><b>4</b> Data Check and Clean</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-check.html"><a href="data-check.html#prerequites-quanteda-or-tidytext"><i class="fa fa-check"></i><b>4.1</b> Prerequites : quanteda (or tidytext)</a></li>
+<li class="chapter" data-level="4.2" data-path="data-check.html"><a href="data-check.html#check-1-length-of-texts"><i class="fa fa-check"></i><b>4.2</b> CHECK 1 : length of texts</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="data-check.html"><a href="data-check.html#number-of-sentences"><i class="fa fa-check"></i><b>4.2.1</b> Number of sentences</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-check.html"><a href="data-check.html#number-of-tokens"><i class="fa fa-check"></i><b>4.2.2</b> Number of tokens</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-check.html"><a href="data-check.html#check-2-time-distribution"><i class="fa fa-check"></i><b>4.3</b> CHECK 2 : Time distribution</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="data-check.html"><a href="data-check.html#news-without-date"><i class="fa fa-check"></i><b>4.3.1</b> News without date</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-check.html"><a href="data-check.html#distribution-of-news-through-time"><i class="fa fa-check"></i><b>4.3.2</b> Distribution of news through time</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-check.html"><a href="data-check.html#check-3-suspect-words"><i class="fa fa-check"></i><b>4.4</b> CHECK 3 : Suspect words</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-check.html"><a href="data-check.html#tips-1-simple-word-fequencies"><i class="fa fa-check"></i><b>4.4.1</b> Tips 1 : simple word fequencies</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-check.html"><a href="data-check.html#tips-2-most-frequent-n-grams"><i class="fa fa-check"></i><b>4.4.2</b> Tips 2 : most frequent n-grams</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-check.html"><a href="data-check.html#check-4-human-expertise"><i class="fa fa-check"></i><b>4.5</b> CHECK 4 : Human expertise</a></li>
 </ul></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/ClaudeGrasland/newsbook" target="blank"></a></li>
 
 </ul>
 
@@ -94,7 +113,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The News Book</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The R News Book</a>
           </h1>
         </div>
 
@@ -144,7 +163,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/ClaudeGrasland/newsbook/edit/master/01-intro.Rmd",
 "text": "Edit"
 },
 "history": {

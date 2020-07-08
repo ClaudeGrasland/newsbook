@@ -150,10 +150,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="data-collect.html"><a href="data-collect.html#data-level-3-full-text"><i class="fa fa-check"></i><b>3.3</b> DATA LEVEL 3 : Full text</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-check.html"><a href="data-check.html"><i class="fa fa-check"></i><b>4</b> Data Check and Clean</a><ul>
-<li class="chapter" data-level="4.1" data-path="data-check.html"><a href="data-check.html#prerequites"><i class="fa fa-check"></i><b>4.1</b> Prerequites</a></li>
-<li class="chapter" data-level="4.2" data-path="data-check.html"><a href="data-check.html#example-1-cleaning-a-textdescription-corpus"><i class="fa fa-check"></i><b>4.2</b> EXAMPLE 1 : Cleaning a text+description corpus</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="data-check.html"><a href="data-check.html#length-of-texts"><i class="fa fa-check"></i><b>4.2.1</b> length of texts</a></li>
+<li class="chapter" data-level="4.1" data-path="data-check.html"><a href="data-check.html#prerequites-quanteda-or-tidytext"><i class="fa fa-check"></i><b>4.1</b> Prerequites : quanteda (or tidytext)</a></li>
+<li class="chapter" data-level="4.2" data-path="data-check.html"><a href="data-check.html#check-1-length-of-texts"><i class="fa fa-check"></i><b>4.2</b> CHECK 1 : length of texts</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="data-check.html"><a href="data-check.html#number-of-sentences"><i class="fa fa-check"></i><b>4.2.1</b> Number of sentences</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-check.html"><a href="data-check.html#number-of-tokens"><i class="fa fa-check"></i><b>4.2.2</b> Number of tokens</a></li>
 </ul></li>
+<li class="chapter" data-level="4.3" data-path="data-check.html"><a href="data-check.html#check-2-time-distribution"><i class="fa fa-check"></i><b>4.3</b> CHECK 2 : Time distribution</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="data-check.html"><a href="data-check.html#news-without-date"><i class="fa fa-check"></i><b>4.3.1</b> News without date</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-check.html"><a href="data-check.html#distribution-of-news-through-time"><i class="fa fa-check"></i><b>4.3.2</b> Distribution of news through time</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-check.html"><a href="data-check.html#check-3-suspect-words"><i class="fa fa-check"></i><b>4.4</b> CHECK 3 : Suspect words</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-check.html"><a href="data-check.html#tips-1-simple-word-fequencies"><i class="fa fa-check"></i><b>4.4.1</b> Tips 1 : simple word fequencies</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-check.html"><a href="data-check.html#tips-2-most-frequent-n-grams"><i class="fa fa-check"></i><b>4.4.2</b> Tips 2 : most frequent n-grams</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-check.html"><a href="data-check.html#check-4-human-expertise"><i class="fa fa-check"></i><b>4.5</b> CHECK 4 : Human expertise</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/ClaudeGrasland/newsbook" target="blank"></a></li>
@@ -184,8 +194,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="data-check.html#cb1-5"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb1-6"><a href="data-check.html#cb1-6"></a><span class="kw">library</span>(tidytext)</span></code></pre></div>
 <p>In this chapter, we describe the different operation of checking and cleaning that should be necessarily realized before any sound exploration of corpus. The majority of the procedures described here can not be done automatically and implies a human expertise at each step in order to control the results and propose remediations in case of problems.</p>
-<div id="prerequites" class="section level2">
-<h2><span class="header-section-number">4.1</span> Prerequites</h2>
+<div id="prerequites-quanteda-or-tidytext" class="section level2">
+<h2><span class="header-section-number">4.1</span> Prerequites : quanteda (or tidytext)</h2>
 <p>The operations will be realized jointly with the two packages <strong>quanteda</strong> and <strong>tidytext</strong>. In the majority of case, we will use quanteda but in some specific situations tidytext will appear more adapted and will be used, thanks to (relatively) easy possibilities of exchange between the two format of dta storage of corpora.</p>
 <ul>
 <li>The reader non familiar with quanteda should have a look at <em>Quick Start</em> available on the website of the project :</li>
@@ -195,9 +205,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The reader non familiar with tidytext will find detailed explnation in the following book :</li>
 </ul>
 <p><a href="https://www.tidytextmining.com/" class="uri">https://www.tidytextmining.com/</a></p>
-</div>
-<div id="example-1-cleaning-a-textdescription-corpus" class="section level2">
-<h2><span class="header-section-number">4.2</span> EXAMPLE 1 : Cleaning a text+description corpus</h2>
 <p>We start by loading the corpus of news from the french newspaper Sud-Ouest that has been extract from .csv and transform in quanteda corpus in the previous chapter (<strong>ref</strong>). we also transform the time variable in date and sort the news by historical order.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-check.html#cb2-1"></a>qd&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;_data/qd/stories_41372.Rdata&quot;</span>)</span>
 <span id="cb2-2"><a href="data-check.html#cb2-2"></a>qd<span class="op">$</span>date&lt;-<span class="kw">as.Date</span>(qd<span class="op">$</span>date)</span>
@@ -267,8 +274,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2013-01-20
 ## 5 2013-01-25
 ## 6 2013-02-12</code></pre>
-<div id="length-of-texts" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> length of texts</h3>
+</div>
+<div id="check-1-length-of-texts" class="section level2">
+<h2><span class="header-section-number">4.2</span> CHECK 1 : length of texts</h2>
 <p>We can use the summary command applied to the whole corpus in order to obtain for each text the number of sentences and words. This operation can take some time because quanteda will proceed to a tokenization of the corpus. We suggest to store this information in the quanteda object.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-check.html#cb10-1"></a><span class="co"># Compute number of sentences and tokens</span></span>
 <span id="cb10-2"><a href="data-check.html#cb10-2"></a>tokeninfo &lt;-<span class="st"> </span><span class="kw">summary</span>(qd,<span class="kw">length</span>(qd))</span>
@@ -286,8 +294,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2013-01-20     14         1
 ## 5 2013-01-25      7         1
 ## 6 2013-02-12     11         1</code></pre>
-<div id="what-is-the-distribution-of-the-number-of-sentences" class="section level4">
-<h4><span class="header-section-number">4.2.1.1</span> What is the distribution of the number of sentences ?</h4>
+<div id="number-of-sentences" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Number of sentences</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-check.html#cb12-1"></a>x&lt;-qd<span class="op">$</span>Sentences</span>
 <span id="cb12-2"><a href="data-check.html#cb12-2"></a></span>
 <span id="cb12-3"><a href="data-check.html#cb12-3"></a><span class="kw">kable</span>(<span class="kw">table</span>(x),<span class="dt">caption =</span> <span class="st">&quot;Number of sentences of news&quot;</span>, <span class="dt">digits=</span><span class="dv">1</span>) </span></code></pre></div>
@@ -365,8 +373,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="newsbook_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>N.B. At this point, it is also possible to harmonize the number of sentences in the datasets.But rather than deleting the “long” texts", it appears better to keep only the k first sentences of each text with the <em>corpus_reshape</em> function. This function can transform the initial text in sentences but also do the reverse operation. So, our program could look like this. Note that the operation can take some time on large corpora.</p>
 </div>
-<div id="what-is-the-distribution-of-the-number-of-tokens" class="section level4">
-<h4><span class="header-section-number">4.2.1.2</span> What is the distribution of the number of tokens ?</h4>
+<div id="number-of-tokens" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Number of tokens</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-check.html#cb14-1"></a>nbtoks&lt;-qd<span class="op">$</span>Tokens</span>
 <span id="cb14-2"><a href="data-check.html#cb14-2"></a>p&lt;-<span class="kw">ggplot</span>(<span class="kw">docvars</span>(qd),<span class="kw">aes</span>(<span class="dt">x=</span>Tokens))<span class="op">+</span><span class="kw">geom_histogram</span>()</span>
 <span id="cb14-3"><a href="data-check.html#cb14-3"></a>p</span></code></pre></div>
@@ -378,9 +386,291 @@ One more time, we observe some strange behavior with some very short news. We ca
 <span id="cb15-4"><a href="data-check.html#cb15-4"></a>p&lt;-<span class="kw">ggplot</span>(<span class="kw">docvars</span>(qd),<span class="kw">aes</span>(<span class="dt">x=</span>Tokens))<span class="op">+</span><span class="kw">geom_histogram</span>(<span class="dt">stat_bin=</span><span class="dv">25</span>)</span>
 <span id="cb15-5"><a href="data-check.html#cb15-5"></a>p</span></code></pre></div>
 <p><img src="newsbook_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+</div>
+<div id="check-2-time-distribution" class="section level2">
+<h2><span class="header-section-number">4.3</span> CHECK 2 : Time distribution</h2>
+<p>The second step is to verify the stability of the news through times, in terms of frequencies. The main danger here is the risk to observe discontinuities in the distribution which could induce biases in the comparison of evolution through time.</p>
+<div id="news-without-date" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> News without date</h3>
+<p>After a check of the time distribution of news, we eliminate the news without date</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-check.html#cb16-1"></a><span class="kw">summary</span>(<span class="kw">docvars</span>(qd,<span class="st">&quot;date&quot;</span>))</span></code></pre></div>
+<pre><code>##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+## &quot;2013-03-18&quot; &quot;2015-06-23&quot; &quot;2017-06-12&quot; &quot;2017-02-11&quot; &quot;2018-10-24&quot; &quot;2019-12-31&quot; 
+##         NA&#39;s 
+##          &quot;9&quot;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-check.html#cb18-1"></a>qd&lt;-qd[<span class="kw">is.na</span>(qd<span class="op">$</span>date)<span class="op">==</span>F]</span></code></pre></div>
+</div>
+<div id="distribution-of-news-through-time" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Distribution of news through time</h3>
+<p>We introduce a function when_count for an easier extraction of time series with different levels of time span. The interest of this function is to add zero value for time period where no news has been observed, which would not be the case with a simple table function.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-check.html#cb19-1"></a><span class="co">#### ---------------- when_count -----------------</span></span>
+<span id="cb19-2"><a href="data-check.html#cb19-2"></a><span class="co">#&#39; @title identify number of news per time period</span></span>
+<span id="cb19-3"><a href="data-check.html#cb19-3"></a><span class="co">#&#39; @name when_count</span></span>
+<span id="cb19-4"><a href="data-check.html#cb19-4"></a><span class="co">#&#39; @description count the numbers of news per time period and add zero for missing period</span></span>
+<span id="cb19-5"><a href="data-check.html#cb19-5"></a><span class="co">#&#39; @param corpus a corpus of news (in qd format) with a column &quot;time&quot;</span></span>
+<span id="cb19-6"><a href="data-check.html#cb19-6"></a><span class="co">#&#39; @param span a time period of aggregation (days, weeks, months, year)</span></span>
+<span id="cb19-7"><a href="data-check.html#cb19-7"></a></span>
+<span id="cb19-8"><a href="data-check.html#cb19-8"></a></span>
+<span id="cb19-9"><a href="data-check.html#cb19-9"></a></span>
+<span id="cb19-10"><a href="data-check.html#cb19-10"></a>when_count&lt;-<span class="cf">function</span>(<span class="dt">corpus =</span> qd, <span class="dt">span =</span> <span class="st">&#39;weeks&#39;</span> )</span>
+<span id="cb19-11"><a href="data-check.html#cb19-11"></a>{</span>
+<span id="cb19-12"><a href="data-check.html#cb19-12"></a> <span class="co"># corpus&lt;-qd</span></span>
+<span id="cb19-13"><a href="data-check.html#cb19-13"></a><span class="co">#  span&lt;-&quot;weeks&quot;</span></span>
+<span id="cb19-14"><a href="data-check.html#cb19-14"></a></span>
+<span id="cb19-15"><a href="data-check.html#cb19-15"></a>  </span>
+<span id="cb19-16"><a href="data-check.html#cb19-16"></a>  time&lt;-<span class="kw">docvars</span>(corpus,<span class="st">&quot;date&quot;</span>)</span>
+<span id="cb19-17"><a href="data-check.html#cb19-17"></a>  tab&lt;-tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">date=</span><span class="kw">as.Date</span>(time))</span>
+<span id="cb19-18"><a href="data-check.html#cb19-18"></a>  item_date &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span></span>
+<span id="cb19-19"><a href="data-check.html#cb19-19"></a><span class="st">    </span><span class="kw">group_by</span>(<span class="dt">date =</span> <span class="kw">cut</span>(date, span, <span class="dt">start.on.monday =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb19-20"><a href="data-check.html#cb19-20"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">nb =</span> <span class="kw">n</span>())</span>
+<span id="cb19-21"><a href="data-check.html#cb19-21"></a>  item_date<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(item_date<span class="op">$</span>date)</span>
+<span id="cb19-22"><a href="data-check.html#cb19-22"></a>  all_date&lt;-<span class="kw">data_frame</span>(<span class="dt">date=</span><span class="kw">seq</span>(<span class="kw">min</span>(<span class="kw">as.Date</span>(item_date<span class="op">$</span>date)),<span class="kw">max</span>(<span class="kw">as.Date</span>(item_date<span class="op">$</span>date)),span))</span>
+<span id="cb19-23"><a href="data-check.html#cb19-23"></a>  tem_date&lt;-<span class="kw">left_join</span>(all_date,item_date)</span>
+<span id="cb19-24"><a href="data-check.html#cb19-24"></a>  item_date<span class="op">$</span>nb[<span class="kw">is.na</span>(item_date<span class="op">$</span>nb)]&lt;-<span class="dv">0</span></span>
+<span id="cb19-25"><a href="data-check.html#cb19-25"></a>  </span>
+<span id="cb19-26"><a href="data-check.html#cb19-26"></a>  <span class="kw">return</span>(item_date)</span>
+<span id="cb19-27"><a href="data-check.html#cb19-27"></a>}</span></code></pre></div>
+<div id="daily-distribtion" class="section level4">
+<h4><span class="header-section-number">4.3.2.1</span> daily distribtion</h4>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-check.html#cb20-1"></a>news_by_day&lt;-<span class="kw">when_count</span>(qd,<span class="dt">span=</span><span class="st">&quot;days&quot;</span>)</span>
+<span id="cb20-2"><a href="data-check.html#cb20-2"></a>p&lt;-<span class="kw">ggplot</span>(news_by_day, <span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y=</span>nb)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()<span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">max</span>(news_by_day<span class="op">$</span>nb)))</span>
+<span id="cb20-3"><a href="data-check.html#cb20-3"></a>p</span></code></pre></div>
+<p><img src="newsbook_files/figure-html/news_by_day-1.png" width="672" /></p>
+<p>We obtain here a relatively good results with news published every day during the period. But we can also notice a trend of increase of the number of news through time with approx. 20 news/day in 2013 against approx. 40 news per day in 2019.</p>
+</div>
+<div id="weekly-distribtion" class="section level4">
+<h4><span class="header-section-number">4.3.2.2</span> weekly distribtion</h4>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-check.html#cb21-1"></a>news_by_week&lt;-<span class="kw">when_count</span>(qd,<span class="dt">span=</span><span class="st">&quot;weeks&quot;</span>)</span>
+<span id="cb21-2"><a href="data-check.html#cb21-2"></a>p&lt;-<span class="kw">ggplot</span>(news_by_week, <span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y=</span>nb)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">max</span>(news_by_week<span class="op">$</span>nb)))</span>
+<span id="cb21-3"><a href="data-check.html#cb21-3"></a>p</span></code></pre></div>
+<p><img src="newsbook_files/figure-html/news_by_week-1.png" width="672" />
+The analysis by week reveals only two perturbation of the flow during the week of 5 December 2016 and the final week of december 2019. As a whole (and compare to many other newspapers), these flow appears pretty good !</p>
+</div>
+</div>
+</div>
+<div id="check-3-suspect-words" class="section level2">
+<h2><span class="header-section-number">4.4</span> CHECK 3 : Suspect words</h2>
+<p>A classical problem with the news collected from RSS is the existence of sequence of words that are not related to news itself but to newspaper structure. For example, the systematic addition of a copyright (<em>(c) the Journal</em>) or the introduction of references (<em>See also</em>) and many other things that can be considered as external to the message provided by the news itself. Here they are no miracle solution that can produce an automatic correction. But some technics can help the analyst to simplify the task of correction.</p>
+<div id="tips-1-simple-word-fequencies" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Tips 1 : simple word fequencies</h3>
+<p>A simple analysis of most frequent tokens can help to discover suspect words.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-check.html#cb22-1"></a>toks&lt;-<span class="kw">tokens</span>(qd, <span class="dt">remove_numbers =</span> <span class="ot">TRUE</span>, <span class="dt">remove_punct =</span> <span class="ot">TRUE</span>, <span class="dt">remove_separators =</span><span class="ot">TRUE</span>)</span>
+<span id="cb22-2"><a href="data-check.html#cb22-2"></a>dfm &lt;-<span class="st"> </span><span class="kw">dfm</span>(toks, <span class="dt">remove =</span> <span class="kw">stopwords</span>(<span class="st">&quot;french&quot;</span>))</span>
+<span id="cb22-3"><a href="data-check.html#cb22-3"></a>top10&lt;-<span class="kw">textstat_frequency</span>(dfm,<span class="dt">n=</span><span class="dv">10</span>)</span>
+<span id="cb22-4"><a href="data-check.html#cb22-4"></a><span class="kw">kable</span>(top10)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">feature</th>
+<th align="right">frequency</th>
+<th align="right">rank</th>
+<th align="right">docfreq</th>
+<th align="left">group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">suite</td>
+<td align="right">79775</td>
+<td align="right">1</td>
+<td align="right">77526</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">lire</td>
+<td align="right">77770</td>
+<td align="right">2</td>
+<td align="right">77526</td>
+<td align="left">all</td>
+</tr>
+<tr class="odd">
+<td align="left">a</td>
+<td align="right">71430</td>
+<td align="right">3</td>
+<td align="right">45400</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">ans</td>
+<td align="right">18841</td>
+<td align="right">4</td>
+<td align="right">12945</td>
+<td align="left">all</td>
+</tr>
+<tr class="odd">
+<td align="left">après</td>
+<td align="right">16275</td>
+<td align="right">5</td>
+<td align="right">13548</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">plus</td>
+<td align="right">15851</td>
+<td align="right">6</td>
+<td align="right">11929</td>
+<td align="left">all</td>
+</tr>
+<tr class="odd">
+<td align="left">france</td>
+<td align="right">14308</td>
+<td align="right">7</td>
+<td align="right">9545</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">deux</td>
+<td align="right">13900</td>
+<td align="right">8</td>
+<td align="right">9940</td>
+<td align="left">all</td>
+</tr>
+<tr class="odd">
+<td align="left">d’un</td>
+<td align="right">13881</td>
+<td align="right">9</td>
+<td align="right">11236</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">d’une</td>
+<td align="right">11846</td>
+<td align="right">10</td>
+<td align="right">9875</td>
+<td align="left">all</td>
+</tr>
+</tbody>
+</table>
+<p>The simple examination of the top 10 reveals the existence of two suspect words <em>lire</em> and <em>suite</em>. They can be explained bythe existence of the string <em>… Lire la suite</em> at the end of the majority of news. For example :</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-check.html#cb23-1"></a><span class="kw">texts</span>(qd)[<span class="dv">34</span>]</span></code></pre></div>
+<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                    text70739 
+## &quot;Drame de Port-Royal : la maternité blanchie par une enquête interne.\n.La mort du foetus n&#39;était pas prévisible et les urgences n&#39;étaient pas saturées, selon les résultats de l&#39;enquête rendus publics.\&quot;Pas d&#39;erreur médicale\&quot;    La maternité de Cochin-Port-Royal a été blanchie par une enquête interne \&quot;exceptionnelle\&quot; diligentée à la suite de la perte de son bébé par une patiente qui avait... Lire la suite&quot;</code></pre>
+</div>
+<div id="tips-2-most-frequent-n-grams" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Tips 2 : most frequent n-grams</h3>
+<p>Another approach consist in the extraction of most frequent n-grams i.e. couples of words frequently associated. This can be done with various value of n. But it is generally sufficient to check for n= 2, 3 or 4.*</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-check.html#cb25-1"></a>bigram&lt;-<span class="kw">tokens_ngrams</span>(toks,<span class="dt">n=</span><span class="kw">c</span>(<span class="dv">2</span>))</span>
+<span id="cb25-2"><a href="data-check.html#cb25-2"></a>dfm2&lt;-<span class="kw">dfm</span>(bigram)</span>
+<span id="cb25-3"><a href="data-check.html#cb25-3"></a>top10&lt;-<span class="kw">textstat_frequency</span>(dfm2,<span class="dt">n=</span><span class="dv">10</span>)</span>
+<span id="cb25-4"><a href="data-check.html#cb25-4"></a><span class="kw">kable</span>(top10)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">feature</th>
+<th align="right">frequency</th>
+<th align="right">rank</th>
+<th align="right">docfreq</th>
+<th align="left">group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">la_suite</td>
+<td align="right">78165</td>
+<td align="right">1</td>
+<td align="right">77526</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">lire_la</td>
+<td align="right">77528</td>
+<td align="right">2</td>
+<td align="right">77526</td>
+<td align="left">all</td>
+</tr>
+<tr class="odd">
+<td align="left">de_la</td>
+<td align="right">44035</td>
+<td align="right">3</td>
+<td align="right">30025</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">à_la</td>
+<td align="right">16397</td>
+<td align="right">4</td>
+<td align="right">13228</td>
+<td align="left">all</td>
+</tr>
+<tr class="odd">
+<td align="left">a_été</td>
+<td align="right">15775</td>
+<td align="right">5</td>
+<td align="right">12519</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">dans_le</td>
+<td align="right">12314</td>
+<td align="right">6</td>
+<td align="right">10186</td>
+<td align="left">all</td>
+</tr>
+<tr class="odd">
+<td align="left">de_ans</td>
+<td align="right">9415</td>
+<td align="right">7</td>
+<td align="right">6988</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">dans_la</td>
+<td align="right">8947</td>
+<td align="right">8</td>
+<td align="right">7564</td>
+<td align="left">all</td>
+</tr>
+<tr class="odd">
+<td align="left">sur_la</td>
+<td align="right">7316</td>
+<td align="right">9</td>
+<td align="right">6131</td>
+<td align="left">all</td>
+</tr>
+<tr class="even">
+<td align="left">ont_été</td>
+<td align="right">7054</td>
+<td align="right">10</td>
+<td align="right">5923</td>
+<td align="left">all</td>
+</tr>
+</tbody>
+</table>
+<p>Here, the conclusion is clear concerning our usual suspect. We can therefore proceed to the elimination of the problem with a regular expression</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-check.html#cb26-1"></a><span class="kw">texts</span>(qd)&lt;-<span class="kw">gsub</span>(<span class="st">&quot;... Lire la suite&quot;</span>, <span class="st">&quot;...&quot;</span>, <span class="kw">texts</span>(qd))</span></code></pre></div>
+</div>
+</div>
+<div id="check-4-human-expertise" class="section level2">
+<h2><span class="header-section-number">4.5</span> CHECK 4 : Human expertise</h2>
+<p>All the previous check can not replace human expert. Therefore, we strongly suggest to examine a random sample of texts extract from the news in order to have an empirical view on the texts that will be further subject to time consuming analysis. It is certainly not a vaste of time to discover issues early and avoid to replicate the whole work (pity for the climate !).</p>
+<p>A random sample of news can be easily extracted with corpus_sample function. Let’s take a sample of 10 here (but 100 would be certainly better)</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-check.html#cb27-1"></a>samp&lt;-<span class="kw">corpus_sample</span>(qd,<span class="dt">size=</span><span class="dv">10</span>)</span>
+<span id="cb27-2"><a href="data-check.html#cb27-2"></a><span class="kw">texts</span>(samp)</span></code></pre></div>
+<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text40292 
+##                                                                                                         &quot;François Chérèque, ancien secrétaire général de la CFDT, est décédé.\n.François Chérèque est décédé lundi à l&#39;âge de 60 ans.François Chérèque, ancien secrétaire général de la CFDT, est décédé lundi à l&#39;âge de 60 ans, \&quot;à la suite d&#39;une longue maladie\&quot;, ont annoncé un proche de la famille et la centrale syndicale dans des communiqués séparés.\n\nNé le 1er juin 1956 à Nancy...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text2601 
+##                                                                       &quot;Cancers de la peau : un ordinateur meilleur que les dermatologues pour les repérer.\n.Pour les chercheurs, la question n&#39;est pas de se passer des médecins au profit de l&#39;intelligence artificielle, mais de faire d&#39;elle \&quot;un outil supplémentaire\&quot;.Un ordinateur a réussi à être meilleur que les dermatologues pour repérer les cancers de la peau sur une série de photos.\n\nUne équipe germano-franco-américaine a...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text65941 
+##                                                                                            &quot;Coupe du monde de rugby 2023 : un succès bienvenu pour la France.\n.EDITION DU SOIR - La France a obtenu l’organisation de la 10e édition en coiffant sur le fil l’Afrique du Sud. Au sommaire aussi : la viticulture peut-elle se passer des produits phytosanitaires, à qui profite la commande record d&#39;Airbus ?Du lundi au vendredi à 19 heures, l&#39;Édition du Soir propose un panorama décalé de...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text13692 
+## &quot;Transport maritime : les carburants moins polluants vont faire grimper les prix à la pompe.\n.\n                                        La demande accrue pour des produits pétroliers plus sophistiqués va affecter par ricochet d&#39;autres carburants, automobiles et aériens, dont les prix risquent d&#39;augmenter. .                    Dès janvier prochain, des dizaines de milliers de navires vont devoir se tourner vers de nouveaux carburants moins polluants, une révolution qui risque...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text80879 
+##                                                                                           &quot;Déraillement d&#39;un train à Bégaar (40) : les deux wagons de soude relevés.\n.Le déraillement du train transportant des produits chimiques, vendredi, à l’usine Rayonier, occupe encore de nombreuses équipes techniques, les élus et les services de l’État.Ce dimanche matin, les deux wagons de soude vides ont été remis sur les rails lors d&#39;une impressionnante opération de relevage grâce à des...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text32144 
+##                                                                                                                      &quot;Jérôme Kerviel est sorti de prison.\n.L&#39;ancien trader doit être placé sous bracelet électronique.Jérôme Kerviel, condamné pour avoir causé une perte de 4,9 milliards d&#39;euros à la Société générale, est sorti lundi peu après 08H30 de la prison de Fleury-Mérogis (Essonne) où il était incarcéré.\n\nVêtu d&#39;un petit blouson noir, l&#39;ancien trader, symbole des dérives...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text77698 
+##    &quot;Météo : pic de chaleur jeudi et vendredi, jusqu&#39;à 36°C attendus, avant un week-end mitigé.\n.\n                                        Après un début de semaine plutôt perturbé, Météo France attend un bref pic de chaleur jeudi et vendredi. Avant un week-end plus mitigé.                    La semaine s&#39;annonce à la fois perturbée et estivale, selon Météo France, qui attend un bref pic de chaleur pour jeudi et vendredi. Avant un week-end plus mitigé.\n\nAprès une journée de...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text33318 
+##                                                                                           &quot;Bayrou pense qu&#39;il \&quot;peut aider\&quot; Macron, en attendant mieux.\n.François Bayrou en est persuadé : il peut \&quot;aider Emmanuel Macron\&quot;. Le maire de Pau n&#39;a pas renoncé à jouer un rôle dans ce quinquennat.François Bayrou \&quot;sparing partner\&quot; d&#39;Emmanuel Macron ? A défaut d&#39;être encore au gouvernement, l&#39;éphémère ministre de la Justice, aujourd&#39;hui replié dans sa ville de Pau, est loin d&#39;avoir...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text50788 
+##                                                                      &quot;Un journaliste de Quotidien agressé à coups de drapeau français au meeting de Fillon.\n.La scène surréaliste s&#39;est produite en direct lors d&#39;un meeting de François Fillon à Lyon. .Déranger les soutiens de François Fillon lors de ses meetings peut s&#39;avérer... dangereux ! Hugo Clément, un journaliste de Quotidien, en a d&#39;ailleurs fait l&#39;amère expérience mardi soir.\n\nAlors qu&#39;il tentait d&#39;interroger un jeune...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text57263 
+##                                                                         &quot;Avant/après : la métamorphose des grandes places de Bordeaux en photos.\n.DIAPORAMA INTERACTIF - Poursuivons notre plongée dans l&#39;histoire de Bordeaux en comparant en images l&#39;évolution de quelques places du port de la Lune. \n\n\nPlace de la Comédie\n\n\n\n\nLa place de la Comédie avec le Grand Théâtre à droite et le monument des Girondins au dernier plan. Dates : années 30-50 et 2015. Photos : archives...&quot;</code></pre>
+<p>The sample appears correct but some corrections could be added. We could for example eliminate the double quotes that will complicate the analysis of text. We could also decide to eliminate the final sentences that are not completed, etc. But it can also be important to keep the text as similar as possible to the initial one and to delay these final check to the next chapter where the data will be focused on a specific question.</p>
+<p>The last step here is to store the clean file for further use.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-check.html#cb29-1"></a><span class="kw">saveRDS</span>(qd, <span class="st">&quot;_data/qd/fr_FRA_sudoue.Rdata&quot;</span>)</span></code></pre></div>
 
-</div>
-</div>
 </div>
 </div>
             </section>

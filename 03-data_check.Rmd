@@ -16,7 +16,7 @@ library(tidytext)
 In this chapter, we describe the different operation of checking and cleaning that should be necessarily realized before any sound exploration of corpus. The majority of the procedures described here can not be done automatically and implies a human expertise at each step in order to control the results and propose remediations in case of problems.
 
 
-## Prerequites
+## Prerequites : quanteda (or tidytext)
 
 
 The operations will be realized jointly with the two packages **quanteda** and **tidytext**. In the majority of case, we will use quanteda but in some specific situations tidytext will appear more adapted and will be used, thanks to (relatively) easy possibilities of exchange between the two format of dta storage of corpora. 
@@ -30,8 +30,6 @@ https://quanteda.io/articles/quickstart.html
 
 https://www.tidytextmining.com/
 
-
-## EXAMPLE 1 : Cleaning a text+description corpus
 
 We start by loading the corpus of news from the french newspaper Sud-Ouest that has been extract from .csv and transform in quanteda corpus in the previous chapter (**ref**). we also transform the time variable in date and sort the news by historical order.
 
@@ -58,11 +56,7 @@ df<-convert(qd, to="data.frame")
 head(df)
 ```
 
-
-
-
-
-### length of texts
+## CHECK 1 : length of texts
 
 We can use the summary command applied to the whole corpus in order to obtain for each text the number of sentences and words. This operation can take some time because quanteda will proceed to a tokenization of the corpus. We suggest to store this information in the quanteda object.
 
@@ -79,7 +73,7 @@ docvars(qd, field="Sentences")<-tokeninfo$Sentences
 head(docvars(qd))
 ```
 
-#### What is the distribution of the number of sentences ?
+### Number of sentences
 
 ```{r}
 x<-qd$Sentences
@@ -102,7 +96,7 @@ N.B. At this point, it is also possible to harmonize the number of sentences in 
 
 
 
-#### What is the distribution of the number of tokens ?
+### Number of tokens
 
 ```{r}
 nbtoks<-qd$Tokens
@@ -118,4 +112,149 @@ qd<-corpus_subset(qd,Tokens<125)
 p<-ggplot(docvars(qd),aes(x=Tokens))+geom_histogram(stat_bin=25)
 p
 ```
+
+
+
+## CHECK 2 : Time distribution 
+
+The second step is to verify the stability of the news through times, in terms of frequencies. The main danger here is the risk to observe discontinuities in the distribution  which could induce biases in the comparison of evolution through time.
+
+
+### News without date
+
+After a check of the time distribution of news, we eliminate the news without date
+
+```{r}
+summary(docvars(qd,"date"))
+qd<-qd[is.na(qd$date)==F]
+```
+
+
+
+### Distribution of news through time
+
+
+We introduce a function when_count for an easier extraction of time series with different levels of time span. The interest of this function is to add zero value for time period where no news has been observed, which would not be the case with a simple table function. 
+
+```{r}
+#### ---------------- when_count -----------------
+#' @title identify number of news per time period
+#' @name when_count
+#' @description count the numbers of news per time period and add zero for missing period
+#' @param corpus a corpus of news (in qd format) with a column "time"
+#' @param span a time period of aggregation (days, weeks, months, year)
+
+
+
+when_count<-function(corpus = qd, span = 'weeks' )
+{
+ # corpus<-qd
+#  span<-"weeks"
+
+  
+  time<-docvars(corpus,"date")
+  tab<-tibble::tibble(date=as.Date(time))
+  item_date <- tab %>%
+    group_by(date = cut(date, span, start.on.monday = TRUE)) %>%
+    summarise(nb = n())
+  item_date$date <- as.Date(item_date$date)
+  all_date<-data_frame(date=seq(min(as.Date(item_date$date)),max(as.Date(item_date$date)),span))
+  tem_date<-left_join(all_date,item_date)
+  item_date$nb[is.na(item_date$nb)]<-0
+  
+  return(item_date)
+}
+
+```
+
+#### daily distribtion
+
+```{r, news_by_day}
+news_by_day<-when_count(qd,span="days")
+p<-ggplot(news_by_day, aes(x=date, y=nb)) + geom_line()+ scale_y_continuous(limits=c(0,max(news_by_day$nb)))
+p
+```
+
+We obtain here a relatively good results with news published every day during the period. But we can also notice a trend of increase of the number of news through time with approx. 20 news/day in 2013 against approx. 40 news per day in 2019.
+
+#### weekly distribtion
+
+```{r, news_by_week}
+news_by_week<-when_count(qd,span="weeks")
+p<-ggplot(news_by_week, aes(x=date, y=nb)) + geom_line() + scale_y_continuous(limits=c(0,max(news_by_week$nb)))
+p
+```
+The analysis by week reveals only two perturbation of the flow during the week of 5 December 2016 and the final week of december 2019. As a whole (and compare to many other newspapers), these flow appears pretty good !
+
+
+## CHECK 3 : Suspect words
+
+A classical problem with the news collected from RSS is the existence of sequence of words that are not related to news itself but to newspaper structure. For example, the systematic addition of a copyright (*(c) the Journal*) or the introduction of references (*See also*) and many other things that can be considered as external to the message provided by the news itself. Here they are no miracle solution that can produce an automatic correction. But some technics can help the analyst to simplify the task of correction.
+
+
+### Tips 1 : simple word fequencies
+
+A simple analysis of most frequent tokens can help to discover suspect words. 
+
+
+```{r}
+toks<-tokens(qd, remove_numbers = TRUE, remove_punct = TRUE, remove_separators =TRUE)
+dfm <- dfm(toks, remove = stopwords("french"))
+top10<-textstat_frequency(dfm,n=10)
+kable(top10)
+
+```
+
+The simple examination of the top 10 reveals the existence of two suspect words *lire* and *suite*.  They can be explained bythe existence of the string *... Lire la suite* at the end of the majority of news. For example :
+
+
+```{r}
+texts(qd)[34]
+```
+
+
+### Tips 2 : most frequent n-grams
+
+Another approach consist in the extraction of most frequent n-grams i.e. couples of words frequently associated. This can be done with various value of n. But it is generally sufficient to check for n= 2, 3 or 4.*
+
+```{r}
+bigram<-tokens_ngrams(toks,n=c(2))
+dfm2<-dfm(bigram)
+top10<-textstat_frequency(dfm2,n=10)
+kable(top10)
+```
+
+Here, the conclusion is clear concerning our usual suspect. We can therefore proceed to the elimination of the problem with a regular expression
+
+```{r}
+texts(qd)<-gsub("... Lire la suite", "...", texts(qd))
+```
+
+
+## CHECK 4 : Human expertise
+
+All the previous check can not replace human expert. Therefore, we strongly suggest to examine a random sample of texts extract from the news in order to have an empirical view on the texts that will be further subject to time consuming analysis. It is certainly not a vaste of time to discover issues early and avoid to replicate the whole work (pity for the climate !).
+
+A random sample of news can be easily extracted with corpus_sample function. Let's take a sample of 10 here (but 100 would be certainly better)
+
+```{r}
+samp<-corpus_sample(qd,size=10)
+texts(samp)
+```
+
+The sample appears correct but some corrections could be added. We could for example eliminate the double quotes that will complicate the analysis of text. We could also decide to eliminate the final sentences that are not completed, etc. But it can also be important to keep the text as similar as possible to the initial one and to delay these final check to the next chapter where the data will be focused on a specific question.
+
+The last step here is to store the clean file for further use. 
+
+
+```{r}
+saveRDS(qd, "_data/qd/fr_FRA_sudoue.Rdata")
+```
+
+
+
+
+
+
+
 
