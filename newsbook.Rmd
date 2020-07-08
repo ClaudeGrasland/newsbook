@@ -1,3 +1,50 @@
+--- 
+title: "The News Book"
+author: "Claude Grasland"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This is a summary of experience and methods developped for the analysis of news flow."
+---
+--- 
+title: "The News Book"
+author: "Claude Grasland"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This is a summary of experience and methods developped for the analysis of news flow."
+---
+
+# Objectives 
+
+This book is the result of several years of research, in particular through  projects ANR Geomedia and H2020 ODYCCEUS
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+<!--chapter:end:index.Rmd-->
+
+# Introduction {#intro}
+
+This book is about ...
+
+<!--chapter:end:01-intro.Rmd-->
+
 # Data collection {#data_collect}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -113,4 +160,19 @@ We have kept all the information present in the initial file, but also added spe
 ##  DATA LEVEL 2 : Title of news + description
 
 
+
+
+<!--chapter:end:02-data-collection.Rmd-->
+
+
+# Data Check {#data_check}
+
+Placeholder
+
+
+## Corpus principles
+## Corpus properties
+## The research of suspect pieces of texts
+
+<!--chapter:end:03-data_check.Rmd-->
 
