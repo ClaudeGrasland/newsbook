@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Data Check and Clean | The R News Book</title>
   <meta name="description" content="This is a summary of experience and methods developped for the analysis of news flow." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Data Check and Clean | The R News Book" />
   <meta property="og:type" content="book" />
@@ -50,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -212,9 +211,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-4"><a href="data-check.html#cb2-4"></a><span class="kw">str</span>(qd)</span></code></pre></div>
 <pre><code>##  &#39;corpus&#39; Named chr [1:81653] &quot;« Sud Ouest » : Pierre Veilletet est mort.\n.&quot; ...
 ##  - attr(*, &quot;names&quot;)= chr [1:81653] &quot;text66408&quot; &quot;text77986&quot; &quot;text78223&quot; &quot;text66409&quot; ...
-##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:	81653 obs. of  4 variables:
+##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:  81653 obs. of  4 variables:
 ##   ..$ docname_: chr [1:81653] &quot;text66408&quot; &quot;text77986&quot; &quot;text78223&quot; &quot;text66409&quot; ...
-##   ..$ docid_  : Factor w/ 81653 levels &quot;text66408&quot;,&quot;text77986&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##   ..$ docid_  : Factor w/ 81653 levels &quot;text1&quot;,&quot;text2&quot;,..: 66408 77986 78223 66409 2245 55308 23528 70312 63946 64 ...
 ##   ..$ segid_  : int [1:81653] 1 1 1 1 1 1 1 1 1 1 ...
 ##   ..$ date    : Date[1:81653], format: &quot;2013-01-08&quot; &quot;2013-01-10&quot; ...
 ##  - attr(*, &quot;meta&quot;)=List of 3
@@ -227,11 +226,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;sysname&quot; &quot;machine&quot; &quot;user&quot;
 ##   .. ..$ directory      : chr &quot;C:/claude/git/newsbook&quot;
 ##   .. ..$ created        : Date[1:1], format: &quot;2020-07-08&quot;
-##   ..$ object:List of 2
-##   .. ..$ unit   : chr &quot;documents&quot;
-##   .. ..$ summary:List of 2
-##   .. .. ..$ hash: chr(0) 
-##   .. .. ..$ data: NULL
+##   ..$ object:List of 1
+##   .. ..$ unit: chr &quot;documents&quot;
 ##   ..$ user  :List of 7
 ##   .. ..$ media_id     : int 41372
 ##   .. ..$ media_name   : chr &quot;Sud Ouest&quot;
@@ -507,9 +503,9 @@ The analysis by week reveals only two perturbation of the flow during the week o
 </tr>
 <tr class="even">
 <td align="left">plus</td>
-<td align="right">15851</td>
+<td align="right">15848</td>
 <td align="right">6</td>
-<td align="right">11929</td>
+<td align="right">11928</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
@@ -521,23 +517,23 @@ The analysis by week reveals only two perturbation of the flow during the week o
 </tr>
 <tr class="even">
 <td align="left">deux</td>
-<td align="right">13900</td>
+<td align="right">13897</td>
 <td align="right">8</td>
-<td align="right">9940</td>
+<td align="right">9939</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
 <td align="left">d’un</td>
-<td align="right">13881</td>
+<td align="right">12290</td>
 <td align="right">9</td>
-<td align="right">11236</td>
+<td align="right">9975</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">d’une</td>
-<td align="right">11846</td>
+<td align="left">lundi</td>
+<td align="right">10647</td>
 <td align="right">10</td>
-<td align="right">9875</td>
+<td align="right">8552</td>
 <td align="left">all</td>
 </tr>
 </tbody>
@@ -602,9 +598,9 @@ The analysis by week reveals only two perturbation of the flow during the week o
 </tr>
 <tr class="even">
 <td align="left">dans_le</td>
-<td align="right">12314</td>
+<td align="right">12315</td>
 <td align="right">6</td>
-<td align="right">10186</td>
+<td align="right">10187</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
@@ -647,26 +643,26 @@ The analysis by week reveals only two perturbation of the flow during the week o
 <p>A random sample of news can be easily extracted with corpus_sample function. Let’s take a sample of 10 here (but 100 would be certainly better)</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-check.html#cb27-1"></a>samp&lt;-<span class="kw">corpus_sample</span>(qd,<span class="dt">size=</span><span class="dv">10</span>)</span>
 <span id="cb27-2"><a href="data-check.html#cb27-2"></a><span class="kw">texts</span>(samp)</span></code></pre></div>
-<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text40292 
-##                                                                                                         &quot;François Chérèque, ancien secrétaire général de la CFDT, est décédé.\n.François Chérèque est décédé lundi à l&#39;âge de 60 ans.François Chérèque, ancien secrétaire général de la CFDT, est décédé lundi à l&#39;âge de 60 ans, \&quot;à la suite d&#39;une longue maladie\&quot;, ont annoncé un proche de la famille et la centrale syndicale dans des communiqués séparés.\n\nNé le 1er juin 1956 à Nancy...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text2601 
-##                                                                       &quot;Cancers de la peau : un ordinateur meilleur que les dermatologues pour les repérer.\n.Pour les chercheurs, la question n&#39;est pas de se passer des médecins au profit de l&#39;intelligence artificielle, mais de faire d&#39;elle \&quot;un outil supplémentaire\&quot;.Un ordinateur a réussi à être meilleur que les dermatologues pour repérer les cancers de la peau sur une série de photos.\n\nUne équipe germano-franco-américaine a...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text65941 
-##                                                                                            &quot;Coupe du monde de rugby 2023 : un succès bienvenu pour la France.\n.EDITION DU SOIR - La France a obtenu l’organisation de la 10e édition en coiffant sur le fil l’Afrique du Sud. Au sommaire aussi : la viticulture peut-elle se passer des produits phytosanitaires, à qui profite la commande record d&#39;Airbus ?Du lundi au vendredi à 19 heures, l&#39;Édition du Soir propose un panorama décalé de...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text13692 
-## &quot;Transport maritime : les carburants moins polluants vont faire grimper les prix à la pompe.\n.\n                                        La demande accrue pour des produits pétroliers plus sophistiqués va affecter par ricochet d&#39;autres carburants, automobiles et aériens, dont les prix risquent d&#39;augmenter. .                    Dès janvier prochain, des dizaines de milliers de navires vont devoir se tourner vers de nouveaux carburants moins polluants, une révolution qui risque...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text80879 
-##                                                                                           &quot;Déraillement d&#39;un train à Bégaar (40) : les deux wagons de soude relevés.\n.Le déraillement du train transportant des produits chimiques, vendredi, à l’usine Rayonier, occupe encore de nombreuses équipes techniques, les élus et les services de l’État.Ce dimanche matin, les deux wagons de soude vides ont été remis sur les rails lors d&#39;une impressionnante opération de relevage grâce à des...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text32144 
-##                                                                                                                      &quot;Jérôme Kerviel est sorti de prison.\n.L&#39;ancien trader doit être placé sous bracelet électronique.Jérôme Kerviel, condamné pour avoir causé une perte de 4,9 milliards d&#39;euros à la Société générale, est sorti lundi peu après 08H30 de la prison de Fleury-Mérogis (Essonne) où il était incarcéré.\n\nVêtu d&#39;un petit blouson noir, l&#39;ancien trader, symbole des dérives...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text77698 
-##    &quot;Météo : pic de chaleur jeudi et vendredi, jusqu&#39;à 36°C attendus, avant un week-end mitigé.\n.\n                                        Après un début de semaine plutôt perturbé, Météo France attend un bref pic de chaleur jeudi et vendredi. Avant un week-end plus mitigé.                    La semaine s&#39;annonce à la fois perturbée et estivale, selon Météo France, qui attend un bref pic de chaleur pour jeudi et vendredi. Avant un week-end plus mitigé.\n\nAprès une journée de...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text33318 
-##                                                                                           &quot;Bayrou pense qu&#39;il \&quot;peut aider\&quot; Macron, en attendant mieux.\n.François Bayrou en est persuadé : il peut \&quot;aider Emmanuel Macron\&quot;. Le maire de Pau n&#39;a pas renoncé à jouer un rôle dans ce quinquennat.François Bayrou \&quot;sparing partner\&quot; d&#39;Emmanuel Macron ? A défaut d&#39;être encore au gouvernement, l&#39;éphémère ministre de la Justice, aujourd&#39;hui replié dans sa ville de Pau, est loin d&#39;avoir...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text50788 
-##                                                                      &quot;Un journaliste de Quotidien agressé à coups de drapeau français au meeting de Fillon.\n.La scène surréaliste s&#39;est produite en direct lors d&#39;un meeting de François Fillon à Lyon. .Déranger les soutiens de François Fillon lors de ses meetings peut s&#39;avérer... dangereux ! Hugo Clément, un journaliste de Quotidien, en a d&#39;ailleurs fait l&#39;amère expérience mardi soir.\n\nAlors qu&#39;il tentait d&#39;interroger un jeune...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text57263 
-##                                                                         &quot;Avant/après : la métamorphose des grandes places de Bordeaux en photos.\n.DIAPORAMA INTERACTIF - Poursuivons notre plongée dans l&#39;histoire de Bordeaux en comparant en images l&#39;évolution de quelques places du port de la Lune. \n\n\nPlace de la Comédie\n\n\n\n\nLa place de la Comédie avec le Grand Théâtre à droite et le monument des Girondins au dernier plan. Dates : années 30-50 et 2015. Photos : archives...&quot;</code></pre>
+<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text37303 
+##                                                                    &quot;Orages en Gironde : des vignes touchées par la grêle, \&quot;un visage de désolation\&quot;.\n.L&#39;orage de grêle qui est remonté dans le Nord du département a haché le sud de l&#39;appellation des vins de Blaye, et une grande partie de sa voisine de Bourg. Le Sud Médoc serait aussi touché. .Une heure après le passage de l&#39;orage de grêle en Gironde, Franck Jullion le président de l&#39;appellation \&quot;Blaye Côtes de...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text27692 
+## &quot;XV de France : \&quot;De la pression comme hier, il n&#39;en ont jamais connu autant\&quot;.\n.\n                                        En marge d&#39;une réunion entre la région Occitanie et France 2023, Bernard Laporte a témoigné sa satisfaction suite à la première victoire des Bleus.                    \&quot;Il n&#39;y a pas de soulagement. Ce n&#39;est pas fini ! Il reste encore trois matchs.\&quot; Bernard Laporte, le président de la FFR, a glissé quelques mots ce dimanche au lendemain de...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text67551 
+##                                                                      &quot;Deux collisions tramway-voiture ce mardi matin à Bordeaux et Pessac.\n.Dans les deux cas, les dégâts ne sont que matériels.Un accident de la circulation a eu lieu ce mardi matin sur la ligne C du tramway. Une rame est entrée en collision avec une voiture à 8h30, rue Emile-Counord, à Bordeaux. La circulation a été interrompue dans les deux sens jusqu&#39;à 9h30 entre les stations Grand-Parc et Les...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text71428 
+##                                                                    &quot;\&quot;Tu vois, les chambres à gaz... dommage\&quot; : Dieudonné jugé ce mercredi.\n.L&#39;humoriste et polémiste est jugé pour provocation à la haine raciale après ses propos sur Patrick Cohen en décembre 2013. Il risque un an de prison.Dieudonné est jugé mercredi par le tribunal correctionnel de Paris pour provocation à la haine raciale suite à des propos sur le journaliste de France Inter Patrick Cohen il...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text52402 
+##                                                                   &quot;Affaire Benalla : durcissement des règles d&#39;octroi des badges à l&#39;Assemblée.\n.Les badges seront désormais visés par le président de l&#39;Assemblée et consultable par une instance collégiale.Le bureau de l&#39;Assemblée nationale a voté mercredi, \&quot;à l&#39;unanimité moins une voix\&quot;, des règles d&#39;attribution plus restrictives des badges pour les membres des cabinets de l&#39;exécutif, selon un communiqué de la...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text80256 
+##                                                                                &quot;Pays basque : piégées dans leur voiture par la montée des eaux.\n.Une femme de 38 ans et une fillette de 9 ans ont été secourues par les pompiers, dimanche soir, à Cambo-les-Bains.Dimanche, peu avant 22 heures, les pompiers sont intervenus à Cambo-les-Bains pour porter secours aux deux passagères d&#39;un véhicule pris au piège par la montée des eaux.\n\nUne femme de 38 ans ainsi qu&#39;une...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text34734 
+##                                                    &quot;Les raisons \&quot;accablantes\&quot; qui ont poussé Arnaud Montebourg à licencier Alexandre Benalla.\n.Alexandre Benalla avait travaillé cinq semaines pour Arnaud Montebourg, en 2012, avant d&#39;être licencié pour \&quot;son incapacité à occuper les fonctions exposées du chauffeur personnel du Ministre\&quot;.Alexandre Benalla aurait-il dû être écarté dès le départ par l&#39;Élysée ? C&#39;est la question que pose Arnaud Montebourg, ancien...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text26650 
+##                                                                 &quot;Gers : accident de car scolaire, 26 collégiens blessés dont 3 très grièvement.\n.La préfecture du Gers a déclenché le plan NOVI (Nombreuses victimes) .Vingt-six collégiens ont été blessés dont trois très grièvement dans un accident entre un car scolaire et une voiture jeudi vers 13 heures sur une route nationale du Gers à Eauze.\n\nLe bus scolaire, qui transportait 45 enfants et 4 accompagnateurs,...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text67113 
+##    &quot;Trains : trafic très perturbé le 1er janvier, légère amélioration pour jeudi.\n.\n                                        Le mouvement contre la réforme des retraites se poursuit à la SNCF. Un TGV sur 3 et 2 TER sur 10 en Nouvelle-Aquitaine devraient circuler mercredi 1er janvier. Jeudi, la moitié des TGV circulera ainsi que 4 TER sur 10                    Il y a des choses qui ne vont pas changer tout de suite malgré la nouvelle année. Les perturbations de...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text77249 
+##                                                                     &quot;Girondins : la mère de Samuel Kalu a été libérée par ses ravisseurs au Nigeria.\n.Celle-ci était détenue depuis la semaine dernière par des kidnappeurs qui réclamaient une rançon à la famille du footballeur bordelais.La mère de Samuel Kalu, international de l&#39;équipe nationale nigériane des Super Eagles et joueur des Girondins de Bordeaux, a été libérée après près d&#39;une semaine aux mains de ses...&quot;</code></pre>
 <p>The sample appears correct but some corrections could be added. We could for example eliminate the double quotes that will complicate the analysis of text. We could also decide to eliminate the final sentences that are not completed, etc. But it can also be important to keep the text as similar as possible to the initial one and to delay these final check to the next chapter where the data will be focused on a specific question.</p>
 <p>The last step here is to store the clean file for further use.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-check.html#cb29-1"></a><span class="kw">saveRDS</span>(qd, <span class="st">&quot;_data/qd/fr_FRA_sudoue.Rdata&quot;</span>)</span></code></pre></div>
