@@ -31,10 +31,10 @@ https://quanteda.io/articles/quickstart.html
 https://www.tidytextmining.com/
 
 
-We start by loading the corpus of news from the french newspaper Sud-Ouest that has been extract from .csv and transform in quanteda corpus in the previous chapter (**ref**). we also transform the time variable in date and sort the news by historical order.
+We start by loading the corpus of news from *The Guardian (UK)* that has been transformed into quanteda corpus in the previous chapter (**ref**). we also transform the time variable in date and sort the news by historical order.
 
 ```{r}
-qd<-readRDS("_data/qd/stories_41372.Rdata")
+qd<-readRDS("_data/qd/en_GBR_guardi.Rdata")
 qd$date<-as.Date(qd$date)
 qd<-qd[order(qd$date)]
 str(qd)
@@ -75,41 +75,46 @@ head(docvars(qd))
 
 ### Number of sentences
 
-```{r}
-x<-qd$Sentences
+We examine the number of sentences of texts
 
-kable(table(x),caption = "Number of sentences of news", digits=1) 
+```{r}
+nsent<-qd$Sentences
+summary(nsent)
+p<-ggplot(docvars(qd),aes(x=Sentences))+geom_histogram()
+p
 
 ```
 
-The distribution appears regular with the exception of a very strange news with 57 sentences. It appears as a single case of full text ! We decide therefore to eliminate all texts with length > 10 sentences and visualize the result.
+The distribution appears strongly asymmetric with a majority of news with 3 to 7 sentences but a minoity with much longer size. We can zoom on the news with less than 20 sentences for a better view of the distribution :
 
 ```{r}
-qd<-qd[qd$Sentences<11]
-p<-ggplot(docvars(qd),aes(x=Sentences))+geom_bar(stat="count",)
+qd2<-qd[qd$Sentences<20]
+p<-ggplot(docvars(qd2),aes(x=Sentences))+geom_bar(stat="count",)
 p
 
 ```
 
 
-N.B. At this point, it is also possible to harmonize the number of sentences in the datasets.But rather than deleting the "long" texts", it appears better to keep only the k first sentences of each text with the *corpus_reshape* function. This function can transform the initial text in sentences but also do the reverse operation. So, our program could look like this. Note that the operation can take some time on large corpora.
+At this point, it could be useful to proceed to an harmonisation of the length of texts with two possibles options :
 
+- delete the news with too much sentences
+- keep only the k first sentences of each text with the *corpus_reshape* function. 
+
+But we do not want here to anaticipate on what will decide the user so we let the issue open. 
 
 
 ### Number of tokens
 
 ```{r}
 nbtoks<-qd$Tokens
+summary(nbtoks)
 p<-ggplot(docvars(qd),aes(x=Tokens))+geom_histogram()
 p
 ```
-One more time, we observe some strange behavior with some very short news. We can therefore decide to harmonize and keep only the news with a value of 50 to 125 tokens.
+We observe the same asymmetry for the number of tokens. In the ajority of case, the number of tokens is comprise between 100 and 180 Tokens but the minimum is 12 and the maximum 3362. 
 
 ```{r}
-qd<-corpus_subset(qd,Tokens>50)
-qd<-corpus_subset(qd,Tokens<125)
-
-p<-ggplot(docvars(qd),aes(x=Tokens))+geom_histogram(stat_bin=25)
+p<-ggplot(docvars(qd2),aes(x=Tokens))+geom_histogram(stat_bin=25)+scale_x_continuous(lim = c(0,300))
 p
 ```
 
@@ -122,7 +127,7 @@ The second step is to verify the stability of the news through times, in terms o
 
 ### News without date
 
-After a check of the time distribution of news, we eliminate the news without date
+After a check of the time distribution of news, we eliminate 22 news without date
 
 ```{r}
 summary(docvars(qd,"date"))
@@ -174,8 +179,15 @@ news_by_day<-when_count(qd,span="days")
 p<-ggplot(news_by_day, aes(x=date, y=nb)) + geom_line()+ scale_y_continuous(limits=c(0,max(news_by_day$nb)))
 p
 ```
+We discover here that, despite the fact that the first news is observed the 29 April 2013, it is only after the 15th August 2016 that the flow of news become regular with an average level of 100 news per day. Therefore we reduce the sample to this period :
+```{r, news_by_day_2}
 
-We obtain here a relatively good results with news published every day during the period. But we can also notice a trend of increase of the number of news through time with approx. 20 news/day in 2013 against approx. 40 news per day in 2019.
+qd<-corpus_subset(qd,qd$date>as.Date("2016-08-14"))
+news_by_day<-when_count(qd,span="days")
+p<-ggplot(news_by_day, aes(x=date, y=nb)) + geom_line()+ scale_y_continuous(limits=c(0,max(news_by_day$nb)))
+p
+```
+For the new period, we can say that the flow is relatively regular, with very few discontinuities corresponding to zero news during one or several days.  
 
 #### weekly distribtion
 
@@ -184,7 +196,7 @@ news_by_week<-when_count(qd,span="weeks")
 p<-ggplot(news_by_week, aes(x=date, y=nb)) + geom_line() + scale_y_continuous(limits=c(0,max(news_by_week$nb)))
 p
 ```
-The analysis by week reveals only two perturbation of the flow during the week of 5 December 2016 and the final week of december 2019. As a whole (and compare to many other newspapers), these flow appears pretty good !
+The analysis by week reveals a clear perturabation during the weeks of 23 March 2019 and 3 February 2020. The other decline observed at the end of the years 2016, 2018, 2019 and 2020 are not related to problems of data collection but rather to a reduction of the activity of journalist between X'mas and New Year.Surprisingly, this decline is not observed at the end of the year 2017. The final decline is related to the fact that the final week starting the 29 June 2020 is not complete because colection stopped the 30 june 2020.
 
 
 ## CHECK 3 : Suspect words
@@ -199,17 +211,17 @@ A simple analysis of most frequent tokens can help to discover suspect words.
 
 ```{r}
 toks<-tokens(qd, remove_numbers = TRUE, remove_punct = TRUE, remove_separators =TRUE)
-dfm <- dfm(toks, remove = stopwords("french"))
+dfm <- dfm(toks, remove = stopwords("english"))
 top10<-textstat_frequency(dfm,n=10)
 kable(top10)
 
 ```
 
-The simple examination of the top 10 reveals the existence of two suspect words *lire* and *suite*.  They can be explained bythe existence of the string *... Lire la suite* at the end of the majority of news. For example :
+The simple examination of the top 10 reveals the existence of two suspect words *continue* and *reading*.  They can be explained by the existence of the string *Continue Reading* at the end of the majority of news. For example :
 
 
 ```{r}
-texts(qd)[34]
+texts(qd)[24]
 ```
 
 
@@ -227,7 +239,8 @@ kable(top10)
 Here, the conclusion is clear concerning our usual suspect. We can therefore proceed to the elimination of the problem with a regular expression
 
 ```{r}
-texts(qd)<-gsub("... Lire la suite", "...", texts(qd))
+texts(qd)<-gsub("continue reading...", "", texts(qd))
+texts(qd)<-gsub("continue reading", "", texts(qd))
 ```
 
 
@@ -244,11 +257,11 @@ texts(samp)
 
 The sample appears correct but some corrections could be added. We could for example eliminate the double quotes that will complicate the analysis of text. We could also decide to eliminate the final sentences that are not completed, etc. But it can also be important to keep the text as similar as possible to the initial one and to delay these final check to the next chapter where the data will be focused on a specific question.
 
-The last step here is to store the clean file for further use. 
+The last step here is to store the clean file for further use. Here we use the initial name but with adding information on the period of coverage. 
 
 
 ```{r}
-saveRDS(qd, "_data/qd/fr_FRA_sudoue.Rdata")
+saveRDS(qd, "_data/qd/en_GBR_guardi_20160815_20200630.Rdata")
 ```
 
 

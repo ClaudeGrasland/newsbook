@@ -24,7 +24,7 @@
 <meta name="author" content="Claude Grasland, Romain Leconte, Hugues Pecout, Etienne Toureille, …" />
 
 
-<meta name="date" content="2020-07-08" />
+<meta name="date" content="2020-07-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,10 +142,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.2" data-path="data-collect.html"><a href="data-collect.html#transformation-and-storage-in-quanteda-format."><i class="fa fa-check"></i><b>3.1.2</b> Transformation and storage in quanteda format.</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="data-collect.html"><a href="data-collect.html#data-level-2-title-of-news-description"><i class="fa fa-check"></i><b>3.2</b> DATA LEVEL 2 : Title of news + description</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="data-collect.html"><a href="data-collect.html#metadata"><i class="fa fa-check"></i><b>3.2.1</b> metadata</a></li>
-<li class="chapter" data-level="3.2.2" data-path="data-collect.html"><a href="data-collect.html#load-.csv-file"><i class="fa fa-check"></i><b>3.2.2</b> Load .csv file</a></li>
-<li class="chapter" data-level="3.2.3" data-path="data-collect.html"><a href="data-collect.html#cleaning-the-html-code-in-description-file"><i class="fa fa-check"></i><b>3.2.3</b> Cleaning the html code in description file</a></li>
-<li class="chapter" data-level="3.2.4" data-path="data-collect.html"><a href="data-collect.html#transformation-of-textdescription-in-quanteda-corpus"><i class="fa fa-check"></i><b>3.2.4</b> Transformation of text+description in quanteda corpus</a></li>
+<li class="chapter" data-level="3.2.1" data-path="data-collect.html"><a href="data-collect.html#cleaning-the-html-code-in-description-file"><i class="fa fa-check"></i><b>3.2.1</b> Cleaning the html code in description file</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collect.html"><a href="data-collect.html#transformation-of-textdescription-in-quanteda-corpus"><i class="fa fa-check"></i><b>3.2.2</b> Transformation of text+description in quanteda corpus</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="data-collect.html"><a href="data-collect.html#data-level-3-full-text"><i class="fa fa-check"></i><b>3.3</b> DATA LEVEL 3 : Full text</a></li>
 </ul></li>
@@ -205,18 +203,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The reader non familiar with tidytext will find detailed explnation in the following book :</li>
 </ul>
 <p><a href="https://www.tidytextmining.com/" class="uri">https://www.tidytextmining.com/</a></p>
-<p>We start by loading the corpus of news from the french newspaper Sud-Ouest that has been extract from .csv and transform in quanteda corpus in the previous chapter (<strong>ref</strong>). we also transform the time variable in date and sort the news by historical order.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-check.html#cb2-1"></a>qd&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;_data/qd/stories_41372.Rdata&quot;</span>)</span>
+<p>We start by loading the corpus of news from <em>The Guardian (UK)</em> that has been transformed into quanteda corpus in the previous chapter (<strong>ref</strong>). we also transform the time variable in date and sort the news by historical order.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-check.html#cb2-1"></a>qd&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;_data/qd/en_GBR_guardi.Rdata&quot;</span>)</span>
 <span id="cb2-2"><a href="data-check.html#cb2-2"></a>qd<span class="op">$</span>date&lt;-<span class="kw">as.Date</span>(qd<span class="op">$</span>date)</span>
 <span id="cb2-3"><a href="data-check.html#cb2-3"></a>qd&lt;-qd[<span class="kw">order</span>(qd<span class="op">$</span>date)]</span>
 <span id="cb2-4"><a href="data-check.html#cb2-4"></a><span class="kw">str</span>(qd)</span></code></pre></div>
-<pre><code>##  &#39;corpus&#39; Named chr [1:81653] &quot;« Sud Ouest » : Pierre Veilletet est mort.\n.&quot; ...
-##  - attr(*, &quot;names&quot;)= chr [1:81653] &quot;text66408&quot; &quot;text77986&quot; &quot;text78223&quot; &quot;text66409&quot; ...
-##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:	81653 obs. of  4 variables:
-##   ..$ docname_: chr [1:81653] &quot;text66408&quot; &quot;text77986&quot; &quot;text78223&quot; &quot;text66409&quot; ...
-##   ..$ docid_  : Factor w/ 81653 levels &quot;text66408&quot;,&quot;text77986&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
-##   ..$ segid_  : int [1:81653] 1 1 1 1 1 1 1 1 1 1 ...
-##   ..$ date    : Date[1:81653], format: &quot;2013-01-08&quot; &quot;2013-01-10&quot; ...
+<pre><code>##  &#39;corpus&#39; Named chr [1:160855] &quot;20 great Ashes moments No1: Shane Warne&#39;s ball of the century, 1993 | Barney Ronay.\n.The Australian spinner’s &quot;| __truncated__ ...
+##  - attr(*, &quot;names&quot;)= chr [1:160855] &quot;text117863&quot; &quot;text43964&quot; &quot;text149258&quot; &quot;text81406&quot; ...
+##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:	160855 obs. of  4 variables:
+##   ..$ docname_: chr [1:160855] &quot;text117863&quot; &quot;text43964&quot; &quot;text149258&quot; &quot;text81406&quot; ...
+##   ..$ docid_  : Factor w/ 160855 levels &quot;text117863&quot;,&quot;text43964&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##   ..$ segid_  : int [1:160855] 1 1 1 1 1 1 1 1 1 1 ...
+##   ..$ date    : Date[1:160855], format: &quot;2013-04-29&quot; &quot;2013-05-02&quot; ...
 ##  - attr(*, &quot;meta&quot;)=List of 3
 ##   ..$ system:List of 5
 ##   .. ..$ package-version:Classes &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1
@@ -226,16 +224,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   .. ..$ system         : Named chr [1:3] &quot;Windows&quot; &quot;x86-64&quot; &quot;CIST&quot;
 ##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;sysname&quot; &quot;machine&quot; &quot;user&quot;
 ##   .. ..$ directory      : chr &quot;C:/claude/git/newsbook&quot;
-##   .. ..$ created        : Date[1:1], format: &quot;2020-07-08&quot;
+##   .. ..$ created        : Date[1:1], format: &quot;2020-07-09&quot;
 ##   ..$ object:List of 2
 ##   .. ..$ unit   : chr &quot;documents&quot;
 ##   .. ..$ summary:List of 2
 ##   .. .. ..$ hash: chr(0) 
 ##   .. .. ..$ data: NULL
-##   ..$ user  :List of 7
-##   .. ..$ media_id     : int 41372
-##   .. ..$ media_name   : chr &quot;Sud Ouest&quot;
-##   .. ..$ media_url    : chr &quot;http://www.sudouest.fr/&quot;
+##   ..$ user  :List of 8
+##   .. ..$ media_id     : num 300560
+##   .. ..$ media_name   : chr &quot;The Guardian UK&quot;
+##   .. ..$ media_url    : chr &quot;http://www.theguardian.com/uk&quot;
+##   .. ..$ language     : chr &quot;en&quot;
 ##   .. ..$ media_country: chr &quot;FRA&quot;
 ##   .. ..$ data_source  : chr &quot;Media Cloud &quot;
 ##   .. ..$ data_time    : chr &quot;Special extraction&quot;
@@ -246,34 +245,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>With the new data structure it is for example easy to extract a specific text from the corpus with an extractor, called <code>texts()</code>. We can also have an easy access to information associated to each document like the date in our example. For example the news 666 is defined by :</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-check.html#cb4-1"></a><span class="kw">texts</span>(qd)[<span class="dv">666</span>]</span></code></pre></div>
-<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                      text49394 
-## &quot;Béarn : un technicien électrocuté par une ligne à 63 000 volts.\n.Le technicien, qui était sur une nacelle, aurait été victime d’un arc électrique. La police a ouvert une enquête.Un dramatique accident s’est produit jeudi après-midi vers 16 h 30 sur le site Euralis à Lescar. Un homme est mort électrocuté alors qu’il travaillait sur une nacelle à une dizaine de mètres du sol, à... Lire la suite&quot;</code></pre>
+<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    text156682 
+## &quot;The state pension top-up that no one seems to want.\n.More than a quarter of a million people were expected to boost their pension; fewer than 4,000 have signed up so farIt’s the great deal no one seems to know about. The government is running a scheme whereby older people can buy extra state pension on what experts say are “very favourable” terms – but the take-up so far has been shockingly low.The official prediction was that 265,000 people would take advantage of the chance to boost their retirement income by making an upfront payment. But figures published this week show that fewer than 4,000 signed up in the first six months. Here we explain how the scheme works, why you should do it, and things to watch out for. Continue reading...&quot;</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-check.html#cb6-1"></a>qd<span class="op">$</span>date[<span class="dv">666</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;2013-04-19&quot;</code></pre>
+<pre><code>## [1] &quot;2016-08-20&quot;</code></pre>
 <p>For those who really don’t want to use quanteda, it is also simple to convert it to other format and in particular a simple data.frame where we can find only the id of document, the text and the document level information. But we have lost all the other information like the document metadata.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-check.html#cb8-1"></a>df&lt;-<span class="kw">convert</span>(qd, <span class="dt">to=</span><span class="st">&quot;data.frame&quot;</span>)</span>
 <span id="cb8-2"><a href="data-check.html#cb8-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
-<pre><code>##      doc_id
-## 1 text66408
-## 2 text77986
-## 3 text78223
-## 4 text66409
-## 5  text2245
-## 6 text55308
-##                                                                          text
-## 1                               « Sud Ouest » : Pierre Veilletet est mort.\n.
-## 2                       Municipales à Pau : Bayrou entretient le suspense.\n.
-## 3 Algérie : Yann Desjeux, l’otage originaire du Pays basque, tué vendredi.\n.
-## 4     Bègles : il avait conçu et réalisé le dernier album d’Yvette Horner.\n.
-## 5                                    Le football pleure Jacques Grimonpon.\n.
-## 6                             Mariage pour tous : Jean Lassalle a dit non.\n.
+<pre><code>##       doc_id
+## 1 text117863
+## 2  text43964
+## 3 text149258
+## 4  text81406
+## 5 text104515
+## 6   text9780
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              text
+## 1 20 great Ashes moments No1: Shane Warne&#39;s ball of the century, 1993 | Barney Ronay.\n.The Australian spinner’s drifting, leaping leg-break to bowl Mike Gatting at Old Trafford introduced the cricket world to a new heroThere shouldn’t really be anything left to say about Warne’s Ball, otherwise known as Shane Warne’s opening delivery in Ashes cricket; or more commonly as The Ball of the Century, Birth of A Superstar, Awakening of the Kraken, the Jailhouse Rock of Australia’s custard-blond leg-break Elvis, and so on ad infinitum.In part this is simply because so much has already been said and written, an entire vast, groaning medieval library of ball talk, from the historian’s cold-eyed anatomy to the biographer’s partisan gurgles. And partly because the ball itself has become so enmeshed in its own mille-feuille of well-worn superlatives that there is a fear the moment itself has also become a cliche, a mini-industry of middle-aged hyperbole, asserting its own wonderfulness more insistently with each receding year. Perhaps Warne’s Ball might even have begun to look a bit like Warne himself these days: waxworked and framed, glistening with the acquired privilege of athletic celebrity and generally hanging around the place being oppressively eminent long after its own meaningful cricketing life has ended. Continue reading...
+## 2                                                                                                                                                                                    20 great Ashes moments No2: the miracle of Cardiff, 2009 | Rob Bagchi.\n.Spectators who dared to look did so through their fingers as Monty Panesar and Jimmy Anderson held on for a drawIt is to Britain’s martial and imperial past that the metaphors for a home team’s defiance of overwhelming odds still habitually turn when honour, even in retreat, is salvaged from a seemingly inevitable ignominious fate. Dunkirk and its fabled spirit, a cornered belligerence and breezy fortitude in the face of imminent catastrophe, is the most common analogy but for England’s draw with Australia in the opening match of the 2009 Ashes series, something more symbolically Welsh was required to commemorate Cardiff and the country’s first ever Test.For the generations brought up on the annual televised screening of the 1964 film Zulu, the Battle of Rorke’s Drift and specifically the poignant if apocryphal singing of Men of Harlech by a hopelessly outnumbered company of the 24th Regiment of Foot valiantly defending their position and lives against 4,000 warriors, suggested the obvious soundtrack to the highlight reels of Sunday at the Swalec Stadium. Continue reading...
+## 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     The Joy of Six: red mist in football | Scott Murray and Rob Smyth.\n.Frank Rijkaard and Rudi Völler bond during West Germany&#39;s match against Holland at Italia 90. Photograph: Getty Images
+## 4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Official World Cup balls: a potted history – in pictures.\n.Since 1970, Adidas have had the honour of producing the official match balls for the World Cup finals. With the announcement for the Telstar 18 for 2018 Russia, we take a look back at the balls that have graced the finals over the past 43 years Continue reading...
+## 5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Weather view: photos of this week&#39;s weather – by readers around the world.\n.We’re looking for your best beautiful and striking weather-related photos. From cloudy skies to glorious sunshine, share your pictures of this week’s weather and we’ll choose a selection to be printed in the paperFrom heatwaves in Australia, to snow in the US and Middle East, to storms and flooding in the UK, you’ve shared some dramatic images with the Guardian. But the weather doesn’t have to be extreme to make a great picture. Wherever you are in the world, we’d love to see your most striking photos of this week’s weather.In your description, please tell us where you took the photo (it can be anywhere in the world) and the date you took it (it should be in the last week). Continue reading...
+## 6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                The Joy of Six: football pantomime villains | Paul Doyle.\n.From the loathing for Pepe’s playacting to the puzzling rancour Michael Owen inspires, football fans love to hate a bad guyA distinction must be drawn between “football pantomime villains” and real-life villains associated with football, such as Uday Hussein, Robert Maxwell or Lee Hughes, men who have committed misdeeds too grave for any enjoyment to be had from contemplating them. Continue reading...
 ##         date
-## 1 2013-01-08
-## 2 2013-01-10
-## 3 2013-01-18
-## 4 2013-01-20
-## 5 2013-01-25
-## 6 2013-02-12</code></pre>
+## 1 2013-04-29
+## 2 2013-05-02
+## 3 2013-11-29
+## 4 2013-12-03
+## 5 2014-01-13
+## 6 2014-04-18</code></pre>
 </div>
 <div id="check-1-length-of-texts" class="section level2">
 <h2><span class="header-section-number">4.2</span> CHECK 1 : length of texts</h2>
@@ -288,103 +287,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-8"><a href="data-check.html#cb10-8"></a><span class="co"># Visualize</span></span>
 <span id="cb10-9"><a href="data-check.html#cb10-9"></a><span class="kw">head</span>(<span class="kw">docvars</span>(qd))</span></code></pre></div>
 <pre><code>##         date Tokens Sentences
-## 1 2013-01-08     11         1
-## 2 2013-01-10     10         1
-## 3 2013-01-18     15         1
-## 4 2013-01-20     14         1
-## 5 2013-01-25      7         1
-## 6 2013-02-12     11         1</code></pre>
+## 1 2013-04-29    234         5
+## 2 2013-05-02    202         4
+## 3 2013-11-29     37         3
+## 4 2013-12-03     67         3
+## 5 2014-01-13    156         6
+## 6 2014-04-18     85         3</code></pre>
 <div id="number-of-sentences" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Number of sentences</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-check.html#cb12-1"></a>x&lt;-qd<span class="op">$</span>Sentences</span>
-<span id="cb12-2"><a href="data-check.html#cb12-2"></a></span>
-<span id="cb12-3"><a href="data-check.html#cb12-3"></a><span class="kw">kable</span>(<span class="kw">table</span>(x),<span class="dt">caption =</span> <span class="st">&quot;Number of sentences of news&quot;</span>, <span class="dt">digits=</span><span class="dv">1</span>) </span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-7">Table 4.1: </span>Number of sentences of news</caption>
-<thead>
-<tr class="header">
-<th align="left">x</th>
-<th align="right">Freq</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="right">1950</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="right">287</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="right">12772</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="right">30262</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="right">23324</td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="right">9578</td>
-</tr>
-<tr class="odd">
-<td align="left">7</td>
-<td align="right">2719</td>
-</tr>
-<tr class="even">
-<td align="left">8</td>
-<td align="right">568</td>
-</tr>
-<tr class="odd">
-<td align="left">9</td>
-<td align="right">141</td>
-</tr>
-<tr class="even">
-<td align="left">10</td>
-<td align="right">37</td>
-</tr>
-<tr class="odd">
-<td align="left">11</td>
-<td align="right">11</td>
-</tr>
-<tr class="even">
-<td align="left">12</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">18</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">57</td>
-<td align="right">1</td>
-</tr>
-</tbody>
-</table>
-<p>The distribution appears regular with the exception of a very strange news with 57 sentences. It appears as a single case of full text ! We decide therefore to eliminate all texts with length &gt; 10 sentences and visualize the result.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="data-check.html#cb13-1"></a>qd&lt;-qd[qd<span class="op">$</span>Sentences<span class="op">&lt;</span><span class="dv">11</span>]</span>
-<span id="cb13-2"><a href="data-check.html#cb13-2"></a>p&lt;-<span class="kw">ggplot</span>(<span class="kw">docvars</span>(qd),<span class="kw">aes</span>(<span class="dt">x=</span>Sentences))<span class="op">+</span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>,)</span>
-<span id="cb13-3"><a href="data-check.html#cb13-3"></a>p</span></code></pre></div>
+<p>We examine the number of sentences of texts</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-check.html#cb12-1"></a>nsent&lt;-qd<span class="op">$</span>Sentences</span>
+<span id="cb12-2"><a href="data-check.html#cb12-2"></a><span class="kw">summary</span>(nsent)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   3.000   4.000   5.694   7.000 204.000</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-check.html#cb14-1"></a>p&lt;-<span class="kw">ggplot</span>(<span class="kw">docvars</span>(qd),<span class="kw">aes</span>(<span class="dt">x=</span>Sentences))<span class="op">+</span><span class="kw">geom_histogram</span>()</span>
+<span id="cb14-2"><a href="data-check.html#cb14-2"></a>p</span></code></pre></div>
+<p><img src="newsbook_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The distribution appears strongly asymmetric with a majority of news with 3 to 7 sentences but a minoity with much longer size. We can zoom on the news with less than 20 sentences for a better view of the distribution :</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-check.html#cb15-1"></a>qd2&lt;-qd[qd<span class="op">$</span>Sentences<span class="op">&lt;</span><span class="dv">20</span>]</span>
+<span id="cb15-2"><a href="data-check.html#cb15-2"></a>p&lt;-<span class="kw">ggplot</span>(<span class="kw">docvars</span>(qd2),<span class="kw">aes</span>(<span class="dt">x=</span>Sentences))<span class="op">+</span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>,)</span>
+<span id="cb15-3"><a href="data-check.html#cb15-3"></a>p</span></code></pre></div>
 <p><img src="newsbook_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>N.B. At this point, it is also possible to harmonize the number of sentences in the datasets.But rather than deleting the “long” texts", it appears better to keep only the k first sentences of each text with the <em>corpus_reshape</em> function. This function can transform the initial text in sentences but also do the reverse operation. So, our program could look like this. Note that the operation can take some time on large corpora.</p>
+<p>At this point, it could be useful to proceed to an harmonisation of the length of texts with two possibles options :</p>
+<ul>
+<li>delete the news with too much sentences</li>
+<li>keep only the k first sentences of each text with the <em>corpus_reshape</em> function.</li>
+</ul>
+<p>But we do not want here to anaticipate on what will decide the user so we let the issue open.</p>
 </div>
 <div id="number-of-tokens" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Number of tokens</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-check.html#cb14-1"></a>nbtoks&lt;-qd<span class="op">$</span>Tokens</span>
-<span id="cb14-2"><a href="data-check.html#cb14-2"></a>p&lt;-<span class="kw">ggplot</span>(<span class="kw">docvars</span>(qd),<span class="kw">aes</span>(<span class="dt">x=</span>Tokens))<span class="op">+</span><span class="kw">geom_histogram</span>()</span>
-<span id="cb14-3"><a href="data-check.html#cb14-3"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-check.html#cb16-1"></a>nbtoks&lt;-qd<span class="op">$</span>Tokens</span>
+<span id="cb16-2"><a href="data-check.html#cb16-2"></a><span class="kw">summary</span>(nbtoks)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    12.0   101.0   127.0   146.5   179.0  3362.0</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-check.html#cb18-1"></a>p&lt;-<span class="kw">ggplot</span>(<span class="kw">docvars</span>(qd),<span class="kw">aes</span>(<span class="dt">x=</span>Tokens))<span class="op">+</span><span class="kw">geom_histogram</span>()</span>
+<span id="cb18-2"><a href="data-check.html#cb18-2"></a>p</span></code></pre></div>
 <p><img src="newsbook_files/figure-html/unnamed-chunk-9-1.png" width="672" />
-One more time, we observe some strange behavior with some very short news. We can therefore decide to harmonize and keep only the news with a value of 50 to 125 tokens.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-check.html#cb15-1"></a>qd&lt;-<span class="kw">corpus_subset</span>(qd,Tokens<span class="op">&gt;</span><span class="dv">50</span>)</span>
-<span id="cb15-2"><a href="data-check.html#cb15-2"></a>qd&lt;-<span class="kw">corpus_subset</span>(qd,Tokens<span class="op">&lt;</span><span class="dv">125</span>)</span>
-<span id="cb15-3"><a href="data-check.html#cb15-3"></a></span>
-<span id="cb15-4"><a href="data-check.html#cb15-4"></a>p&lt;-<span class="kw">ggplot</span>(<span class="kw">docvars</span>(qd),<span class="kw">aes</span>(<span class="dt">x=</span>Tokens))<span class="op">+</span><span class="kw">geom_histogram</span>(<span class="dt">stat_bin=</span><span class="dv">25</span>)</span>
-<span id="cb15-5"><a href="data-check.html#cb15-5"></a>p</span></code></pre></div>
+We observe the same asymmetry for the number of tokens. In the ajority of case, the number of tokens is comprise between 100 and 180 Tokens but the minimum is 12 and the maximum 3362.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-check.html#cb19-1"></a>p&lt;-<span class="kw">ggplot</span>(<span class="kw">docvars</span>(qd2),<span class="kw">aes</span>(<span class="dt">x=</span>Tokens))<span class="op">+</span><span class="kw">geom_histogram</span>(<span class="dt">stat_bin=</span><span class="dv">25</span>)<span class="op">+</span><span class="kw">scale_x_continuous</span>(<span class="dt">lim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">300</span>))</span>
+<span id="cb19-2"><a href="data-check.html#cb19-2"></a>p</span></code></pre></div>
 <p><img src="newsbook_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 </div>
@@ -393,59 +335,65 @@ One more time, we observe some strange behavior with some very short news. We ca
 <p>The second step is to verify the stability of the news through times, in terms of frequencies. The main danger here is the risk to observe discontinuities in the distribution which could induce biases in the comparison of evolution through time.</p>
 <div id="news-without-date" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> News without date</h3>
-<p>After a check of the time distribution of news, we eliminate the news without date</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-check.html#cb16-1"></a><span class="kw">summary</span>(<span class="kw">docvars</span>(qd,<span class="st">&quot;date&quot;</span>))</span></code></pre></div>
+<p>After a check of the time distribution of news, we eliminate 22 news without date</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-check.html#cb20-1"></a><span class="kw">summary</span>(<span class="kw">docvars</span>(qd,<span class="st">&quot;date&quot;</span>))</span></code></pre></div>
 <pre><code>##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
-## &quot;2013-03-18&quot; &quot;2015-06-23&quot; &quot;2017-06-12&quot; &quot;2017-02-11&quot; &quot;2018-10-24&quot; &quot;2019-12-31&quot; 
+## &quot;2013-04-29&quot; &quot;2017-07-22&quot; &quot;2018-07-04&quot; &quot;2018-07-19&quot; &quot;2019-07-25&quot; &quot;2020-06-30&quot; 
 ##         NA&#39;s 
-##          &quot;9&quot;</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-check.html#cb18-1"></a>qd&lt;-qd[<span class="kw">is.na</span>(qd<span class="op">$</span>date)<span class="op">==</span>F]</span></code></pre></div>
+##         &quot;22&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-check.html#cb22-1"></a>qd&lt;-qd[<span class="kw">is.na</span>(qd<span class="op">$</span>date)<span class="op">==</span>F]</span></code></pre></div>
 </div>
 <div id="distribution-of-news-through-time" class="section level3">
 <h3><span class="header-section-number">4.3.2</span> Distribution of news through time</h3>
 <p>We introduce a function when_count for an easier extraction of time series with different levels of time span. The interest of this function is to add zero value for time period where no news has been observed, which would not be the case with a simple table function.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-check.html#cb19-1"></a><span class="co">#### ---------------- when_count -----------------</span></span>
-<span id="cb19-2"><a href="data-check.html#cb19-2"></a><span class="co">#&#39; @title identify number of news per time period</span></span>
-<span id="cb19-3"><a href="data-check.html#cb19-3"></a><span class="co">#&#39; @name when_count</span></span>
-<span id="cb19-4"><a href="data-check.html#cb19-4"></a><span class="co">#&#39; @description count the numbers of news per time period and add zero for missing period</span></span>
-<span id="cb19-5"><a href="data-check.html#cb19-5"></a><span class="co">#&#39; @param corpus a corpus of news (in qd format) with a column &quot;time&quot;</span></span>
-<span id="cb19-6"><a href="data-check.html#cb19-6"></a><span class="co">#&#39; @param span a time period of aggregation (days, weeks, months, year)</span></span>
-<span id="cb19-7"><a href="data-check.html#cb19-7"></a></span>
-<span id="cb19-8"><a href="data-check.html#cb19-8"></a></span>
-<span id="cb19-9"><a href="data-check.html#cb19-9"></a></span>
-<span id="cb19-10"><a href="data-check.html#cb19-10"></a>when_count&lt;-<span class="cf">function</span>(<span class="dt">corpus =</span> qd, <span class="dt">span =</span> <span class="st">&#39;weeks&#39;</span> )</span>
-<span id="cb19-11"><a href="data-check.html#cb19-11"></a>{</span>
-<span id="cb19-12"><a href="data-check.html#cb19-12"></a> <span class="co"># corpus&lt;-qd</span></span>
-<span id="cb19-13"><a href="data-check.html#cb19-13"></a><span class="co">#  span&lt;-&quot;weeks&quot;</span></span>
-<span id="cb19-14"><a href="data-check.html#cb19-14"></a></span>
-<span id="cb19-15"><a href="data-check.html#cb19-15"></a>  </span>
-<span id="cb19-16"><a href="data-check.html#cb19-16"></a>  time&lt;-<span class="kw">docvars</span>(corpus,<span class="st">&quot;date&quot;</span>)</span>
-<span id="cb19-17"><a href="data-check.html#cb19-17"></a>  tab&lt;-tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">date=</span><span class="kw">as.Date</span>(time))</span>
-<span id="cb19-18"><a href="data-check.html#cb19-18"></a>  item_date &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span></span>
-<span id="cb19-19"><a href="data-check.html#cb19-19"></a><span class="st">    </span><span class="kw">group_by</span>(<span class="dt">date =</span> <span class="kw">cut</span>(date, span, <span class="dt">start.on.monday =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb19-20"><a href="data-check.html#cb19-20"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">nb =</span> <span class="kw">n</span>())</span>
-<span id="cb19-21"><a href="data-check.html#cb19-21"></a>  item_date<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(item_date<span class="op">$</span>date)</span>
-<span id="cb19-22"><a href="data-check.html#cb19-22"></a>  all_date&lt;-<span class="kw">data_frame</span>(<span class="dt">date=</span><span class="kw">seq</span>(<span class="kw">min</span>(<span class="kw">as.Date</span>(item_date<span class="op">$</span>date)),<span class="kw">max</span>(<span class="kw">as.Date</span>(item_date<span class="op">$</span>date)),span))</span>
-<span id="cb19-23"><a href="data-check.html#cb19-23"></a>  tem_date&lt;-<span class="kw">left_join</span>(all_date,item_date)</span>
-<span id="cb19-24"><a href="data-check.html#cb19-24"></a>  item_date<span class="op">$</span>nb[<span class="kw">is.na</span>(item_date<span class="op">$</span>nb)]&lt;-<span class="dv">0</span></span>
-<span id="cb19-25"><a href="data-check.html#cb19-25"></a>  </span>
-<span id="cb19-26"><a href="data-check.html#cb19-26"></a>  <span class="kw">return</span>(item_date)</span>
-<span id="cb19-27"><a href="data-check.html#cb19-27"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-check.html#cb23-1"></a><span class="co">#### ---------------- when_count -----------------</span></span>
+<span id="cb23-2"><a href="data-check.html#cb23-2"></a><span class="co">#&#39; @title identify number of news per time period</span></span>
+<span id="cb23-3"><a href="data-check.html#cb23-3"></a><span class="co">#&#39; @name when_count</span></span>
+<span id="cb23-4"><a href="data-check.html#cb23-4"></a><span class="co">#&#39; @description count the numbers of news per time period and add zero for missing period</span></span>
+<span id="cb23-5"><a href="data-check.html#cb23-5"></a><span class="co">#&#39; @param corpus a corpus of news (in qd format) with a column &quot;time&quot;</span></span>
+<span id="cb23-6"><a href="data-check.html#cb23-6"></a><span class="co">#&#39; @param span a time period of aggregation (days, weeks, months, year)</span></span>
+<span id="cb23-7"><a href="data-check.html#cb23-7"></a></span>
+<span id="cb23-8"><a href="data-check.html#cb23-8"></a></span>
+<span id="cb23-9"><a href="data-check.html#cb23-9"></a></span>
+<span id="cb23-10"><a href="data-check.html#cb23-10"></a>when_count&lt;-<span class="cf">function</span>(<span class="dt">corpus =</span> qd, <span class="dt">span =</span> <span class="st">&#39;weeks&#39;</span> )</span>
+<span id="cb23-11"><a href="data-check.html#cb23-11"></a>{</span>
+<span id="cb23-12"><a href="data-check.html#cb23-12"></a> <span class="co"># corpus&lt;-qd</span></span>
+<span id="cb23-13"><a href="data-check.html#cb23-13"></a><span class="co">#  span&lt;-&quot;weeks&quot;</span></span>
+<span id="cb23-14"><a href="data-check.html#cb23-14"></a></span>
+<span id="cb23-15"><a href="data-check.html#cb23-15"></a>  </span>
+<span id="cb23-16"><a href="data-check.html#cb23-16"></a>  time&lt;-<span class="kw">docvars</span>(corpus,<span class="st">&quot;date&quot;</span>)</span>
+<span id="cb23-17"><a href="data-check.html#cb23-17"></a>  tab&lt;-tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">date=</span><span class="kw">as.Date</span>(time))</span>
+<span id="cb23-18"><a href="data-check.html#cb23-18"></a>  item_date &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span></span>
+<span id="cb23-19"><a href="data-check.html#cb23-19"></a><span class="st">    </span><span class="kw">group_by</span>(<span class="dt">date =</span> <span class="kw">cut</span>(date, span, <span class="dt">start.on.monday =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb23-20"><a href="data-check.html#cb23-20"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">nb =</span> <span class="kw">n</span>())</span>
+<span id="cb23-21"><a href="data-check.html#cb23-21"></a>  item_date<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(item_date<span class="op">$</span>date)</span>
+<span id="cb23-22"><a href="data-check.html#cb23-22"></a>  all_date&lt;-<span class="kw">data_frame</span>(<span class="dt">date=</span><span class="kw">seq</span>(<span class="kw">min</span>(<span class="kw">as.Date</span>(item_date<span class="op">$</span>date)),<span class="kw">max</span>(<span class="kw">as.Date</span>(item_date<span class="op">$</span>date)),span))</span>
+<span id="cb23-23"><a href="data-check.html#cb23-23"></a>  tem_date&lt;-<span class="kw">left_join</span>(all_date,item_date)</span>
+<span id="cb23-24"><a href="data-check.html#cb23-24"></a>  item_date<span class="op">$</span>nb[<span class="kw">is.na</span>(item_date<span class="op">$</span>nb)]&lt;-<span class="dv">0</span></span>
+<span id="cb23-25"><a href="data-check.html#cb23-25"></a>  </span>
+<span id="cb23-26"><a href="data-check.html#cb23-26"></a>  <span class="kw">return</span>(item_date)</span>
+<span id="cb23-27"><a href="data-check.html#cb23-27"></a>}</span></code></pre></div>
 <div id="daily-distribtion" class="section level4">
 <h4><span class="header-section-number">4.3.2.1</span> daily distribtion</h4>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-check.html#cb20-1"></a>news_by_day&lt;-<span class="kw">when_count</span>(qd,<span class="dt">span=</span><span class="st">&quot;days&quot;</span>)</span>
-<span id="cb20-2"><a href="data-check.html#cb20-2"></a>p&lt;-<span class="kw">ggplot</span>(news_by_day, <span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y=</span>nb)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()<span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">max</span>(news_by_day<span class="op">$</span>nb)))</span>
-<span id="cb20-3"><a href="data-check.html#cb20-3"></a>p</span></code></pre></div>
-<p><img src="newsbook_files/figure-html/news_by_day-1.png" width="672" /></p>
-<p>We obtain here a relatively good results with news published every day during the period. But we can also notice a trend of increase of the number of news through time with approx. 20 news/day in 2013 against approx. 40 news per day in 2019.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-check.html#cb24-1"></a>news_by_day&lt;-<span class="kw">when_count</span>(qd,<span class="dt">span=</span><span class="st">&quot;days&quot;</span>)</span>
+<span id="cb24-2"><a href="data-check.html#cb24-2"></a>p&lt;-<span class="kw">ggplot</span>(news_by_day, <span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y=</span>nb)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()<span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">max</span>(news_by_day<span class="op">$</span>nb)))</span>
+<span id="cb24-3"><a href="data-check.html#cb24-3"></a>p</span></code></pre></div>
+<p><img src="newsbook_files/figure-html/news_by_day-1.png" width="672" />
+We discover here that, despite the fact that the first news is observed the 29 April 2013, it is only after the 15th August 2016 that the flow of news become regular with an average level of 100 news per day. Therefore we reduce the sample to this period :</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-check.html#cb25-1"></a>qd&lt;-<span class="kw">corpus_subset</span>(qd,qd<span class="op">$</span>date<span class="op">&gt;</span><span class="kw">as.Date</span>(<span class="st">&quot;2016-08-14&quot;</span>))</span>
+<span id="cb25-2"><a href="data-check.html#cb25-2"></a>news_by_day&lt;-<span class="kw">when_count</span>(qd,<span class="dt">span=</span><span class="st">&quot;days&quot;</span>)</span>
+<span id="cb25-3"><a href="data-check.html#cb25-3"></a>p&lt;-<span class="kw">ggplot</span>(news_by_day, <span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y=</span>nb)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()<span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">max</span>(news_by_day<span class="op">$</span>nb)))</span>
+<span id="cb25-4"><a href="data-check.html#cb25-4"></a>p</span></code></pre></div>
+<p><img src="newsbook_files/figure-html/news_by_day_2-1.png" width="672" />
+For the new period, we can say that the flow is relatively regular, with very few discontinuities corresponding to zero news during one or several days.</p>
 </div>
 <div id="weekly-distribtion" class="section level4">
 <h4><span class="header-section-number">4.3.2.2</span> weekly distribtion</h4>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-check.html#cb21-1"></a>news_by_week&lt;-<span class="kw">when_count</span>(qd,<span class="dt">span=</span><span class="st">&quot;weeks&quot;</span>)</span>
-<span id="cb21-2"><a href="data-check.html#cb21-2"></a>p&lt;-<span class="kw">ggplot</span>(news_by_week, <span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y=</span>nb)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">max</span>(news_by_week<span class="op">$</span>nb)))</span>
-<span id="cb21-3"><a href="data-check.html#cb21-3"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-check.html#cb26-1"></a>news_by_week&lt;-<span class="kw">when_count</span>(qd,<span class="dt">span=</span><span class="st">&quot;weeks&quot;</span>)</span>
+<span id="cb26-2"><a href="data-check.html#cb26-2"></a>p&lt;-<span class="kw">ggplot</span>(news_by_week, <span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y=</span>nb)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">max</span>(news_by_week<span class="op">$</span>nb)))</span>
+<span id="cb26-3"><a href="data-check.html#cb26-3"></a>p</span></code></pre></div>
 <p><img src="newsbook_files/figure-html/news_by_week-1.png" width="672" />
-The analysis by week reveals only two perturbation of the flow during the week of 5 December 2016 and the final week of december 2019. As a whole (and compare to many other newspapers), these flow appears pretty good !</p>
+The analysis by week reveals a clear perturabation during the weeks of 23 March 2019 and 3 February 2020. The other decline observed at the end of the years 2016, 2018, 2019 and 2020 are not related to problems of data collection but rather to a reduction of the activity of journalist between X’mas and New Year.Surprisingly, this decline is not observed at the end of the year 2017. The final decline is related to the fact that the final week starting the 29 June 2020 is not complete because colection stopped the 30 june 2020.</p>
 </div>
 </div>
 </div>
@@ -455,10 +403,10 @@ The analysis by week reveals only two perturbation of the flow during the week o
 <div id="tips-1-simple-word-fequencies" class="section level3">
 <h3><span class="header-section-number">4.4.1</span> Tips 1 : simple word fequencies</h3>
 <p>A simple analysis of most frequent tokens can help to discover suspect words.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-check.html#cb22-1"></a>toks&lt;-<span class="kw">tokens</span>(qd, <span class="dt">remove_numbers =</span> <span class="ot">TRUE</span>, <span class="dt">remove_punct =</span> <span class="ot">TRUE</span>, <span class="dt">remove_separators =</span><span class="ot">TRUE</span>)</span>
-<span id="cb22-2"><a href="data-check.html#cb22-2"></a>dfm &lt;-<span class="st"> </span><span class="kw">dfm</span>(toks, <span class="dt">remove =</span> <span class="kw">stopwords</span>(<span class="st">&quot;french&quot;</span>))</span>
-<span id="cb22-3"><a href="data-check.html#cb22-3"></a>top10&lt;-<span class="kw">textstat_frequency</span>(dfm,<span class="dt">n=</span><span class="dv">10</span>)</span>
-<span id="cb22-4"><a href="data-check.html#cb22-4"></a><span class="kw">kable</span>(top10)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-check.html#cb27-1"></a>toks&lt;-<span class="kw">tokens</span>(qd, <span class="dt">remove_numbers =</span> <span class="ot">TRUE</span>, <span class="dt">remove_punct =</span> <span class="ot">TRUE</span>, <span class="dt">remove_separators =</span><span class="ot">TRUE</span>)</span>
+<span id="cb27-2"><a href="data-check.html#cb27-2"></a>dfm &lt;-<span class="st"> </span><span class="kw">dfm</span>(toks, <span class="dt">remove =</span> <span class="kw">stopwords</span>(<span class="st">&quot;english&quot;</span>))</span>
+<span id="cb27-3"><a href="data-check.html#cb27-3"></a>top10&lt;-<span class="kw">textstat_frequency</span>(dfm,<span class="dt">n=</span><span class="dv">10</span>)</span>
+<span id="cb27-4"><a href="data-check.html#cb27-4"></a><span class="kw">kable</span>(top10)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -471,89 +419,89 @@ The analysis by week reveals only two perturbation of the flow during the week o
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">suite</td>
-<td align="right">79775</td>
+<td align="left">continue</td>
+<td align="right">163448</td>
 <td align="right">1</td>
-<td align="right">77526</td>
+<td align="right">160774</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">lire</td>
-<td align="right">77770</td>
+<td align="left">reading</td>
+<td align="right">163079</td>
 <td align="right">2</td>
-<td align="right">77526</td>
+<td align="right">160774</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
-<td align="left">a</td>
-<td align="right">71430</td>
+<td align="left">new</td>
+<td align="right">48053</td>
 <td align="right">3</td>
-<td align="right">45400</td>
+<td align="right">33788</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">ans</td>
-<td align="right">18841</td>
+<td align="left">one</td>
+<td align="right">46204</td>
 <td align="right">4</td>
-<td align="right">12945</td>
+<td align="right">35371</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
-<td align="left">après</td>
-<td align="right">16275</td>
+<td align="left">first</td>
+<td align="right">36064</td>
 <td align="right">5</td>
-<td align="right">13548</td>
+<td align="right">27215</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">plus</td>
-<td align="right">15851</td>
+<td align="left">people</td>
+<td align="right">34901</td>
 <td align="right">6</td>
-<td align="right">11929</td>
+<td align="right">24858</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
-<td align="left">france</td>
-<td align="right">14308</td>
+<td align="left">us</td>
+<td align="right">34458</td>
 <td align="right">7</td>
-<td align="right">9545</td>
+<td align="right">23278</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">deux</td>
-<td align="right">13900</td>
+<td align="left">said</td>
+<td align="right">31615</td>
 <td align="right">8</td>
-<td align="right">9940</td>
+<td align="right">26348</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
-<td align="left">d’un</td>
-<td align="right">13881</td>
+<td align="left">years</td>
+<td align="right">29787</td>
 <td align="right">9</td>
-<td align="right">11236</td>
+<td align="right">23763</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">d’une</td>
-<td align="right">11846</td>
+<td align="left">world</td>
+<td align="right">28968</td>
 <td align="right">10</td>
-<td align="right">9875</td>
+<td align="right">20442</td>
 <td align="left">all</td>
 </tr>
 </tbody>
 </table>
-<p>The simple examination of the top 10 reveals the existence of two suspect words <em>lire</em> and <em>suite</em>. They can be explained bythe existence of the string <em>… Lire la suite</em> at the end of the majority of news. For example :</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-check.html#cb23-1"></a><span class="kw">texts</span>(qd)[<span class="dv">34</span>]</span></code></pre></div>
-<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                    text70739 
-## &quot;Drame de Port-Royal : la maternité blanchie par une enquête interne.\n.La mort du foetus n&#39;était pas prévisible et les urgences n&#39;étaient pas saturées, selon les résultats de l&#39;enquête rendus publics.\&quot;Pas d&#39;erreur médicale\&quot;    La maternité de Cochin-Port-Royal a été blanchie par une enquête interne \&quot;exceptionnelle\&quot; diligentée à la suite de la perte de son bébé par une patiente qui avait... Lire la suite&quot;</code></pre>
+<p>The simple examination of the top 10 reveals the existence of two suspect words <em>continue</em> and <em>reading</em>. They can be explained by the existence of the string <em>Continue Reading</em> at the end of the majority of news. For example :</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-check.html#cb28-1"></a><span class="kw">texts</span>(qd)[<span class="dv">24</span>]</span></code></pre></div>
+<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        text91459 
+## &quot;Liverpool have been rebuilding … so why is Alberto Moreno still at left-back?.\n.The Spanish defender was exposed on numerous occasions against Arsenal and looks a clear weak link in a squad that Jürgen Klopp has otherwise strengthenedLiverpool started their season in triumphant fashion on Sunday with a 4-3 win at the Emirates that included two amazing goals from Philippe Coutinho (if we think he meant to score the second off his shin), a stunning strike from Sadio Mané and some, shall we say, inconsistent defending by the left-back Alberto Moreno. Related: Liverpool and Coutinho stun stuttering Arsenal in seven-goal thriller  Continue reading...&quot;</code></pre>
 </div>
 <div id="tips-2-most-frequent-n-grams" class="section level3">
 <h3><span class="header-section-number">4.4.2</span> Tips 2 : most frequent n-grams</h3>
 <p>Another approach consist in the extraction of most frequent n-grams i.e. couples of words frequently associated. This can be done with various value of n. But it is generally sufficient to check for n= 2, 3 or 4.*</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-check.html#cb25-1"></a>bigram&lt;-<span class="kw">tokens_ngrams</span>(toks,<span class="dt">n=</span><span class="kw">c</span>(<span class="dv">2</span>))</span>
-<span id="cb25-2"><a href="data-check.html#cb25-2"></a>dfm2&lt;-<span class="kw">dfm</span>(bigram)</span>
-<span id="cb25-3"><a href="data-check.html#cb25-3"></a>top10&lt;-<span class="kw">textstat_frequency</span>(dfm2,<span class="dt">n=</span><span class="dv">10</span>)</span>
-<span id="cb25-4"><a href="data-check.html#cb25-4"></a><span class="kw">kable</span>(top10)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-check.html#cb30-1"></a>bigram&lt;-<span class="kw">tokens_ngrams</span>(toks,<span class="dt">n=</span><span class="kw">c</span>(<span class="dv">2</span>))</span>
+<span id="cb30-2"><a href="data-check.html#cb30-2"></a>dfm2&lt;-<span class="kw">dfm</span>(bigram)</span>
+<span id="cb30-3"><a href="data-check.html#cb30-3"></a>top10&lt;-<span class="kw">textstat_frequency</span>(dfm2,<span class="dt">n=</span><span class="dv">10</span>)</span>
+<span id="cb30-4"><a href="data-check.html#cb30-4"></a><span class="kw">kable</span>(top10)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -566,110 +514,111 @@ The analysis by week reveals only two perturbation of the flow during the week o
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">la_suite</td>
-<td align="right">78165</td>
+<td align="left">continue_reading</td>
+<td align="right">160775</td>
 <td align="right">1</td>
-<td align="right">77526</td>
+<td align="right">160774</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">lire_la</td>
-<td align="right">77528</td>
+<td align="left">of_the</td>
+<td align="right">114191</td>
 <td align="right">2</td>
-<td align="right">77526</td>
+<td align="right">72929</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
-<td align="left">de_la</td>
-<td align="right">44035</td>
+<td align="left">in_the</td>
+<td align="right">99843</td>
 <td align="right">3</td>
-<td align="right">30025</td>
+<td align="right">67796</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">à_la</td>
-<td align="right">16397</td>
+<td align="left">to_the</td>
+<td align="right">46934</td>
 <td align="right">4</td>
-<td align="right">13228</td>
+<td align="right">38313</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
-<td align="left">a_été</td>
-<td align="right">15775</td>
+<td align="left">on_the</td>
+<td align="right">40855</td>
 <td align="right">5</td>
-<td align="right">12519</td>
+<td align="right">33645</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">dans_le</td>
-<td align="right">12314</td>
+<td align="left">for_the</td>
+<td align="right">33354</td>
 <td align="right">6</td>
-<td align="right">10186</td>
+<td align="right">28210</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
-<td align="left">de_ans</td>
-<td align="right">9415</td>
+<td align="left">at_the</td>
+<td align="right">32413</td>
 <td align="right">7</td>
-<td align="right">6988</td>
+<td align="right">27309</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">dans_la</td>
-<td align="right">8947</td>
+<td align="left">in_a</td>
+<td align="right">32264</td>
 <td align="right">8</td>
-<td align="right">7564</td>
+<td align="right">27635</td>
 <td align="left">all</td>
 </tr>
 <tr class="odd">
-<td align="left">sur_la</td>
-<td align="right">7316</td>
+<td align="left">to_be</td>
+<td align="right">30879</td>
 <td align="right">9</td>
-<td align="right">6131</td>
+<td align="right">25535</td>
 <td align="left">all</td>
 </tr>
 <tr class="even">
-<td align="left">ont_été</td>
-<td align="right">7054</td>
+<td align="left">of_a</td>
+<td align="right">29399</td>
 <td align="right">10</td>
-<td align="right">5923</td>
+<td align="right">25276</td>
 <td align="left">all</td>
 </tr>
 </tbody>
 </table>
 <p>Here, the conclusion is clear concerning our usual suspect. We can therefore proceed to the elimination of the problem with a regular expression</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-check.html#cb26-1"></a><span class="kw">texts</span>(qd)&lt;-<span class="kw">gsub</span>(<span class="st">&quot;... Lire la suite&quot;</span>, <span class="st">&quot;...&quot;</span>, <span class="kw">texts</span>(qd))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-check.html#cb31-1"></a><span class="kw">texts</span>(qd)&lt;-<span class="kw">gsub</span>(<span class="st">&quot;continue reading...&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">texts</span>(qd))</span>
+<span id="cb31-2"><a href="data-check.html#cb31-2"></a><span class="kw">texts</span>(qd)&lt;-<span class="kw">gsub</span>(<span class="st">&quot;continue reading&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">texts</span>(qd))</span></code></pre></div>
 </div>
 </div>
 <div id="check-4-human-expertise" class="section level2">
 <h2><span class="header-section-number">4.5</span> CHECK 4 : Human expertise</h2>
 <p>All the previous check can not replace human expert. Therefore, we strongly suggest to examine a random sample of texts extract from the news in order to have an empirical view on the texts that will be further subject to time consuming analysis. It is certainly not a vaste of time to discover issues early and avoid to replicate the whole work (pity for the climate !).</p>
 <p>A random sample of news can be easily extracted with corpus_sample function. Let’s take a sample of 10 here (but 100 would be certainly better)</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-check.html#cb27-1"></a>samp&lt;-<span class="kw">corpus_sample</span>(qd,<span class="dt">size=</span><span class="dv">10</span>)</span>
-<span id="cb27-2"><a href="data-check.html#cb27-2"></a><span class="kw">texts</span>(samp)</span></code></pre></div>
-<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text40292 
-##                                                                                                         &quot;François Chérèque, ancien secrétaire général de la CFDT, est décédé.\n.François Chérèque est décédé lundi à l&#39;âge de 60 ans.François Chérèque, ancien secrétaire général de la CFDT, est décédé lundi à l&#39;âge de 60 ans, \&quot;à la suite d&#39;une longue maladie\&quot;, ont annoncé un proche de la famille et la centrale syndicale dans des communiqués séparés.\n\nNé le 1er juin 1956 à Nancy...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text2601 
-##                                                                       &quot;Cancers de la peau : un ordinateur meilleur que les dermatologues pour les repérer.\n.Pour les chercheurs, la question n&#39;est pas de se passer des médecins au profit de l&#39;intelligence artificielle, mais de faire d&#39;elle \&quot;un outil supplémentaire\&quot;.Un ordinateur a réussi à être meilleur que les dermatologues pour repérer les cancers de la peau sur une série de photos.\n\nUne équipe germano-franco-américaine a...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text65941 
-##                                                                                            &quot;Coupe du monde de rugby 2023 : un succès bienvenu pour la France.\n.EDITION DU SOIR - La France a obtenu l’organisation de la 10e édition en coiffant sur le fil l’Afrique du Sud. Au sommaire aussi : la viticulture peut-elle se passer des produits phytosanitaires, à qui profite la commande record d&#39;Airbus ?Du lundi au vendredi à 19 heures, l&#39;Édition du Soir propose un panorama décalé de...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text13692 
-## &quot;Transport maritime : les carburants moins polluants vont faire grimper les prix à la pompe.\n.\n                                        La demande accrue pour des produits pétroliers plus sophistiqués va affecter par ricochet d&#39;autres carburants, automobiles et aériens, dont les prix risquent d&#39;augmenter. .                    Dès janvier prochain, des dizaines de milliers de navires vont devoir se tourner vers de nouveaux carburants moins polluants, une révolution qui risque...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text80879 
-##                                                                                           &quot;Déraillement d&#39;un train à Bégaar (40) : les deux wagons de soude relevés.\n.Le déraillement du train transportant des produits chimiques, vendredi, à l’usine Rayonier, occupe encore de nombreuses équipes techniques, les élus et les services de l’État.Ce dimanche matin, les deux wagons de soude vides ont été remis sur les rails lors d&#39;une impressionnante opération de relevage grâce à des...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text32144 
-##                                                                                                                      &quot;Jérôme Kerviel est sorti de prison.\n.L&#39;ancien trader doit être placé sous bracelet électronique.Jérôme Kerviel, condamné pour avoir causé une perte de 4,9 milliards d&#39;euros à la Société générale, est sorti lundi peu après 08H30 de la prison de Fleury-Mérogis (Essonne) où il était incarcéré.\n\nVêtu d&#39;un petit blouson noir, l&#39;ancien trader, symbole des dérives...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text77698 
-##    &quot;Météo : pic de chaleur jeudi et vendredi, jusqu&#39;à 36°C attendus, avant un week-end mitigé.\n.\n                                        Après un début de semaine plutôt perturbé, Météo France attend un bref pic de chaleur jeudi et vendredi. Avant un week-end plus mitigé.                    La semaine s&#39;annonce à la fois perturbée et estivale, selon Météo France, qui attend un bref pic de chaleur pour jeudi et vendredi. Avant un week-end plus mitigé.\n\nAprès une journée de...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text33318 
-##                                                                                           &quot;Bayrou pense qu&#39;il \&quot;peut aider\&quot; Macron, en attendant mieux.\n.François Bayrou en est persuadé : il peut \&quot;aider Emmanuel Macron\&quot;. Le maire de Pau n&#39;a pas renoncé à jouer un rôle dans ce quinquennat.François Bayrou \&quot;sparing partner\&quot; d&#39;Emmanuel Macron ? A défaut d&#39;être encore au gouvernement, l&#39;éphémère ministre de la Justice, aujourd&#39;hui replié dans sa ville de Pau, est loin d&#39;avoir...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text50788 
-##                                                                      &quot;Un journaliste de Quotidien agressé à coups de drapeau français au meeting de Fillon.\n.La scène surréaliste s&#39;est produite en direct lors d&#39;un meeting de François Fillon à Lyon. .Déranger les soutiens de François Fillon lors de ses meetings peut s&#39;avérer... dangereux ! Hugo Clément, un journaliste de Quotidien, en a d&#39;ailleurs fait l&#39;amère expérience mardi soir.\n\nAlors qu&#39;il tentait d&#39;interroger un jeune...&quot; 
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text57263 
-##                                                                         &quot;Avant/après : la métamorphose des grandes places de Bordeaux en photos.\n.DIAPORAMA INTERACTIF - Poursuivons notre plongée dans l&#39;histoire de Bordeaux en comparant en images l&#39;évolution de quelques places du port de la Lune. \n\n\nPlace de la Comédie\n\n\n\n\nLa place de la Comédie avec le Grand Théâtre à droite et le monument des Girondins au dernier plan. Dates : années 30-50 et 2015. Photos : archives...&quot;</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-check.html#cb32-1"></a>samp&lt;-<span class="kw">corpus_sample</span>(qd,<span class="dt">size=</span><span class="dv">10</span>)</span>
+<span id="cb32-2"><a href="data-check.html#cb32-2"></a><span class="kw">texts</span>(samp)</span></code></pre></div>
+<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              text138915 
+##                                                                                                                                                                                                                                                                                                            &quot;Box office massacre: how Hollywood flopped this summer.\n.A string of disappointing movies – both critically and commercially – have led to damaging financial implications. So what exactly went wrong?We’re coming to the end of a particularly chilly summer in Hollywood. It’s been a brutal week for movie theater chains as they ready their quarterly earnings reports for shareholders and warn those investors that they’re not going to like what they see. The AMC theater chain is hemorrhaging money, with a 27% decrease in value over the summer, ticket sales have fallen 10.8% across the board, stocks are in a nosedive (China’s Wanda Group has ponied up $100m to buy out available AMC stock), and the four largest multiplex operations have cumulatively lost $1.3bn. Present projections predict a year-end total of $11.2bn in ticket sales, chalking up a hefty slide down from last year’s $11.37bn. Just last week, The Dark Tower, a starry wannabe franchise-starter, became the latest under-seen fatality of the season. Things are not looking good. Continue reading...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               text96947 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         &quot;Northern Ireland power-sharing talks break down.\n.Sinn Féin says it will not nominate deputy first minister by deadline, raising prospect of direct rule from WestminsterSinn Féin has said the talks process aimed at restoring devolution in Northern Ireland has run its course.The republican party will not be nominating a deputy first minister on Monday, the leader at Stormont, Michelle O’Neill, said, triggering another crisis at Stormont. Continue reading...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               text61589 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           &quot;Merienda, Edinburgh: ‘Good in parts’ – restaurant review.\n.Some of the small plates here are lovely, others merely bafflingMerienda, 30 North West Circus Place, Edinburgh EH3 6TP (0103 220 2020). All savoury dishes £5.90-£9.50, desserts £7, wines from £26There is a strain within postwar modern sculpture that, like the male ego, is dependent for its impact on enlargement. The small and banal is rendered otherworldly and apparently interesting simply by dint of having been expanded to something far beyond the expected. Think Jeff Koons’s shiny, polished balloon animals, inflated to elephantine size, or the 70m-long pink knitted rabbit, seemingly dropped on to a hillside by the Austrian art collective Gelitin, as if the discarded toy of some unimaginably giant child. Continue reading...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               text48856 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               &quot;Whitehall knife accused denies terrorism and explosives charges.\n.Khalid Ali was detained by police near Downing Street in April, allegedly in possession of three blades An alleged terrorist accused of carrying knives near Downing Street has pleaded not guilty to three charges.Khalid Ali, 27, from Edmonton, north London, was detained by police in Whitehall in April after he was allegedly found to be in possession of three blades.  Continue reading...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               text13937 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              &quot;Theresa May signs security partnership with Nigeria&#39;s president.\n.UK will provide military training to help fight Islamist militant group Boko HaramTheresa May has signed a security pact with Nigeria’s president aimed at helping the country combat the militant group Boko Haram through better military training and anti-terrorist propaganda techniques developed in the UK.The British prime minister’s agreement with Muhammadu Buhari was announced at a summit between the pair in Abuja and billed by the UK as an example of May’s ambition to promote a greater British presence in Africa and support states under pressure from terrorist threats. Continue reading...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               text84115 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     &quot;Is Jeremy Hunt positioning himself to be next prime minister? | Katy Balls.\n.By speaking frankly about NHS funding, the health secretary is rewriting the rulebook showing that anything is possibleAt the weekend a Conservative MP took to the airwaves to break from party orthodoxy. Decrying the government’s funding model for the NHS as “crazy”, this Tory rebel with a cause made clear their support for a new health tax. Only, this wasn’t an unruly backbencher fed up of Theresa May’s weak and wobbly leadership, nor was it an ambitious minister sticking their oar into the health brief. Instead, it was Jeremy Hunt – the secretary of state for health. Continue reading...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               text22626 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   &quot;Terrawatch: the reawakening of Öræfajökull.\n.While the world watches Agung, thousands of kilometres away another volcano is quaking and geologists are beginning to feel jitteryAll eyes have been on Mount Agung for the past week, watching the mesmerising clouds of ash pouring out of this tempestuous Indonesian volcano. Right now, the question is whether it is building for a repeat of the devastating eruption in 1963, when lava and lahars (rivers of water and rock) flooded hectares of land in minutes, killing 1,100 people. Continue reading...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              text116485 
+##                                                                                                                                                                                                                                                                                                       &quot;This Europe Day we send a message of solidarity and friendship to British people.\n.The UK may no longer be an EU member but, as the current health crisis shows, cooperation continues to be essentialOn Saturday, for the first time in almost 50 years, we observe Europe Day without the United Kingdom as a member state of the European Union. As ambassadors and high commissioners representing the EU and its 27 countries in the UK, we are nonetheless very keen to mark the date with all the citizens of this great country and with the millions of EU nationals who live and work in England, Scotland, Wales and Northern Ireland.We celebrate Europe on 9 May because on this same day in 1950, exactly 70 years ago, in the aftermath of the devastating second world war, Robert Schuman, the Luxembourg-born foreign minister of France, laid the foundations of our collective endeavour. He said then: “Europe will not be made all at once, or according to a single plan. It will be built through concrete achievements which first create a de facto solidarity.” Continue reading...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               text75190 
+## &quot;Genesis P-Orridge: troubling catalyst who loathed rock yet changed it for ever.\n.With Throbbing Gristle, P-Orridge inadvertently helped invent an entire genre – industrial musicFor someone who occasionally purported to hate rock music – it was, a homemade T-shirt s/he was fond of wearing in the 1970s proclaimed, “for arselickers” – Genesis Breyer P-Orridge ended up having a vast influence on it. With Throbbing Gristle, P-Orridge inadvertently helped invent an entire genre – industrial music, its name taken from the band’s Industrial record label – which, over the years, developed and mutated from a misunderstood and frequently reviled cult into a platinum-selling concern.Intent on, as one writer put it, “bursting open the blistered lie [that] rock and roll culture was telling about rebellion and transgression”, virtually every one of Throbbing Gristle’s radical, confrontational ideas was gradually subsumed into something approaching the mainstream. Electronic producers queued up to pay homage to the band, whose resident technical wizard Chris Carter may or may not have invented the first sampler by dismantling a series of cassette recorders and linking them to bandmate Peter Christopherson’s keyboard: Detroit techno pioneer Carl Craig named a 1991 EP Four Jazz Funk Classics in homage to TG’s 1979 album 20 Jazz Funk Greats. Continue reading...&quot; 
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               text56312 
+##                                                                                                                                                &quot;The government’s treatment of gay refugees shames Britain | Owen Jones.\n.The Home Office is deporting desperate people to places where they face persecution – often because of colonial-era laws“My neighbours will put a tyre around my neck and set it on fire.” That is what Rosemary fears will happen if she, a lesbian, is deported by Britain back to Nigeria. She fled her homeland nearly a decade ago after her husband discovered her sexuality and threatened to kill her. She knew she was gay from the age of 12 but, she says: “I come from a culture where you have to get married: my mother threatened to kill herself if I didn’t.”None of this satisfied the Home Office. It asked her why, if she was gay, she got married, had children and didn’t come out until she’d left the country. Even though she’s an active member of Leicester’s LGBT community, the authorities refused to believe her, and locked her up in Yarl’s Wood detention centre for four months. “It’s a place you wouldn’t wish on your enemy – a place of torture,” she tells me. She is now fighting deportation to Nigeria, a nation that forbids homosexuality, and where surveys suggest that nine out of 10 people oppose same-sex relations. Continue reading...&quot;</code></pre>
 <p>The sample appears correct but some corrections could be added. We could for example eliminate the double quotes that will complicate the analysis of text. We could also decide to eliminate the final sentences that are not completed, etc. But it can also be important to keep the text as similar as possible to the initial one and to delay these final check to the next chapter where the data will be focused on a specific question.</p>
-<p>The last step here is to store the clean file for further use.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-check.html#cb29-1"></a><span class="kw">saveRDS</span>(qd, <span class="st">&quot;_data/qd/fr_FRA_sudoue.Rdata&quot;</span>)</span></code></pre></div>
+<p>The last step here is to store the clean file for further use. Here we use the initial name but with adding information on the period of coverage.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-check.html#cb34-1"></a><span class="kw">saveRDS</span>(qd, <span class="st">&quot;_data/qd/en_GBR_guardi_20160815_20200630.Rdata&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
