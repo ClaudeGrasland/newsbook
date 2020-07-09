@@ -112,37 +112,13 @@ We have kept all the information present in the initial file, but also added spe
 
 ##  DATA LEVEL 2 : Title of news + description
 
-### metadata
-
-First, we define a distant directory where news are stored and we look at the metadata file :
+We take the example of The Guardian for which we have obtained a special extraction fo title + description.
 
 ```{r}
-base<-"C:/claude/data/mc2019"
-list.files(base)
-meta<-read.csv(paste(base,"/mc2019_meta.csv", sep=""), header=T, sep=";", dec=".", stringsAsFactors = F)
-head(meta)
-```
-
-If we are specifically interested in a country e.g. France) we can check which sources are available for this specific ountry by using its ISO3 code (e.g. FRA)
-
-```{r}
-meta[meta$pub_country=="FRA",1:3]
-```
-
-
-### Load .csv file
-
-If we are interesting in the regional newspaper *Sud-Ouest*, we pick the media_id number (41372) in order to load the corresponding file in the raw directory :
-
-```{r}
-id=41372
-df<-read.csv(file = paste(base, "/raw/stories_",id,".csv", sep=""),
-             sep=",",
-             header=T,
-             encoding = "UTF-8",
-             stringsAsFactors = F)
+df<-readRDS("_data/raw/GBR_guardi.Rdata")
 str(df)
 ```
+
 
 We can recognize many variables from our first example of download of title from Mediacloud. But with a new field called description that add more or less text, depending of the media under investigation.
 
@@ -165,11 +141,11 @@ df$description <-cleanFun(df$description)
 head(df$description,2)
 tail(df$description,2)
 ```
-In our example, we can see that the description is based on a numbr of characters rather than on a number of sentences, which produce a cut followed by *Lire la suite*. It can therefore be relevant to eliminate immediately the final part But the cleaning procedure is generally much longer and complex, especially when the corpus cover many years. Indeed, the style of description may have change through time. This point will be discuss in more details in the next chapter. 
+In our example, we can see that the description is related to a number of sentences followed by *Continue reading*.  It can therefore be relevant to eliminate immediately the final part But the cleaning procedure is generally much longer and complex, especially when the corpus cover many years. Indeed, the style of description may have change through time. This point will be discuss in more details in the next chapter. 
 
 ### Transformation of text+description in quanteda corpus 
 
-As we have done previously, we will store the resul in a quanteda corpus object with associated metadata. But before to do that we have to merge title + description in a same text where title will be the first sentence. 
+As we have done previously, we will store the result in a quanteda corpus object with associated metadata. But before to do that we have to merge title + description in a same text where title will be the first sentence. 
 
 N.B. I am not quite sure of the good separator to be used between title and description 
 
@@ -189,19 +165,19 @@ qd<-corpus(df$text)
 qd$date<-as.POSIXct(strptime(df$publish_date,"%Y-%m-%d %H:%M:%S"))
 
 # Add initial meta
-meta(qd,"language")<-df$language[1]
 meta(qd,"media_id")<-df$media_id[1]
 meta(qd,"media_name")<-df$media_name[1]
 meta(qd,"media_url")<-df$media_url[1]
 
 # Add supplementary meta
+meta(qd,"language")<-"en"
 meta(qd,"media_country")<-"FRA"
 meta(qd,"data_source")<-"Media Cloud "
 meta(qd,"data_time")<-"Special extraction"
 meta(qd,"data_author")<-"Elaborated by Claude Grasland"
 
 # Save in Rdata format
-saveRDS(qd,file = paste(base, "/qd/stories_",id,".Rdata", sep=""))
+saveRDS(qd,file ="_data/qd/en_GBR_guardi.Rdata")
 ```
 
 
