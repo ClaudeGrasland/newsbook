@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Data collection | The R News Book</title>
   <meta name="description" content="This is a summary of experience and methods developped for the analysis of news flow." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Data collection | The R News Book" />
   <meta property="og:type" content="book" />
@@ -50,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -198,11 +197,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We suppose that you want to analyze the title of the news collected by the New York Times during the first semester of 2020. You can easily proceed to such a collection with the application Mediacloud.</p>
 <p><a href="https://explorer.mediacloud.org" class="uri">https://explorer.mediacloud.org</a></p>
 <p>You need firstly to register (for free) in order to create an account. Then you can select your media, select your period and select all stories by using the request ’*’ as in the example presented below.</p>
-<p><img src="pics/mc001.png" /><!-- --></p>
+<p><img src="pics/mc001.png" width="604" /></p>
 <p>Below your request, you obtain a graphic entitled <em>Attention Over Time</em> with the distribution of the number of news published per day which help you to verify if the distribution of news is regular through time. In our example, you an notice a classical week cycle (with decrease of the number of news publish during the week-end). But you can also observe a discontinuity at the beginning of May 2020 with a decline to a lower level of production of news.</p>
-<p><img src="pics/mc002.png" /><!-- -->
+<p><img src="pics/mc002.png" width="585" />
 Going down, you will find a news panel entitled <em>Total Attention</em> which gives you the total number of stories found. In our example, we have a total of 47522 stories produced by the NYT during the first semester of 2020.</p>
-<p><img src="pics/mc003.png" /><!-- --></p>
+<p><img src="pics/mc003.png" width="553" /></p>
 <p>Finally, by clicking on the button <em>Download all story URLS</em>, you can get a .csv file that you can easily load in your favorite porgramming language. In the case of R, you can load it with a program like this.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-collect.html#cb1-1"></a>df&lt;-<span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;_data/mc/en_USA_nytime_20200101_20200630.csv&quot;</span>,</span>
 <span id="cb1-2"><a href="data-collect.html#cb1-2"></a>             <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,</span>
@@ -210,7 +209,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <span id="cb1-4"><a href="data-collect.html#cb1-4"></a>             <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>,</span>
 <span id="cb1-5"><a href="data-collect.html#cb1-5"></a>             <span class="dt">stringsAsFactors =</span> F)</span>
 <span id="cb1-6"><a href="data-collect.html#cb1-6"></a><span class="kw">str</span>(df)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	30265 obs. of  10 variables:
+<pre><code>## &#39;data.frame&#39;:    30265 obs. of  10 variables:
 ##  $ stories_id   : int  1483747633 1483747632 1483779604 1483817555 1483817553 1483858519 1483858517 1483858514 1483858512 1483858499 ...
 ##  $ publish_date : chr  &quot;2020-01-01 00:00:08&quot; &quot;2020-01-01 00:05:07&quot; &quot;2020-01-01 01:00:05&quot; &quot;2020-01-01 03:00:11&quot; ...
 ##  $ title        : chr  &quot;Meteor Showers in 2020 That Will Light Up Night Skies&quot; &quot;Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events&quot; &quot;What’s on TV Wednesday: A Linda Ronstadt Doc and ‘Doctor Who’&quot; &quot;Why Did the U.S. Become the Focus of Iraqis’ Anger?&quot; ...
@@ -247,7 +246,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-collect.html#cb4-1"></a><span class="kw">str</span>(qd)</span></code></pre></div>
 <pre><code>##  &#39;corpus&#39; Named chr [1:30265] &quot;Meteor Showers in 2020 That Will Light Up Night Skies&quot; ...
 ##  - attr(*, &quot;names&quot;)= chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
-##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:	30265 obs. of  4 variables:
+##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:  30265 obs. of  4 variables:
 ##   ..$ docname_: chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
 ##   ..$ docid_  : Factor w/ 30265 levels &quot;text1&quot;,&quot;text2&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
 ##   ..$ segid_  : int [1:30265] 1 1 1 1 1 1 1 1 1 1 ...
@@ -255,18 +254,15 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 ##  - attr(*, &quot;meta&quot;)=List of 3
 ##   ..$ system:List of 5
 ##   .. ..$ package-version:Classes &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1
-##   .. .. ..$ : int [1:3] 2 1 0
+##   .. .. ..$ : int [1:3] 2 0 1
 ##   .. ..$ r-version      :Classes &#39;R_system_version&#39;, &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1
-##   .. .. ..$ : int [1:3] 4 0 2
-##   .. ..$ system         : Named chr [1:3] &quot;Windows&quot; &quot;x86-64&quot; &quot;CIST&quot;
+##   .. .. ..$ : int [1:3] 3 6 3
+##   .. ..$ system         : Named chr [1:3] &quot;Linux&quot; &quot;x86_64&quot; &quot;cgrasland&quot;
 ##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;sysname&quot; &quot;machine&quot; &quot;user&quot;
-##   .. ..$ directory      : chr &quot;C:/claude/git/newsbook&quot;
+##   .. ..$ directory      : chr &quot;/data/user/g/cgrasland/newsbook&quot;
 ##   .. ..$ created        : Date[1:1], format: &quot;2020-07-09&quot;
-##   ..$ object:List of 2
-##   .. ..$ unit   : chr &quot;documents&quot;
-##   .. ..$ summary:List of 2
-##   .. .. ..$ hash: chr(0) 
-##   .. .. ..$ data: NULL
+##   ..$ object:List of 1
+##   .. ..$ unit: chr &quot;documents&quot;
 ##   ..$ user  :List of 8
 ##   .. ..$ language     : chr &quot;en&quot;
 ##   .. ..$ media_id     : int 1
@@ -279,27 +275,23 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <p>We can look at the first titles with <em>head()</em></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-collect.html#cb6-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(qd,<span class="dv">3</span>))</span></code></pre></div>
 <table>
-<colgroup>
-<col width="7%" />
-<col width="92%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
+<th></th>
 <th align="left">x</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">text1</td>
+<td>text1</td>
 <td align="left">Meteor Showers in 2020 That Will Light Up Night Skies</td>
 </tr>
 <tr class="even">
-<td align="left">text2</td>
+<td>text2</td>
 <td align="left">Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events</td>
 </tr>
 <tr class="odd">
-<td align="left">text3</td>
+<td>text3</td>
 <td align="left">What’s on TV Wednesday: A Linda Ronstadt Doc and ‘Doctor Who’</td>
 </tr>
 </tbody>
@@ -345,15 +337,15 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <div id="data-level-2-title-of-news-description" class="section level2">
 <h2><span class="header-section-number">3.2</span> DATA LEVEL 2 : Title of news + description</h2>
 <p>We take the example of The Guardian for which we have obtained a special extraction fo title + description.</p>
-<pre><code>## tibble [160,855 x 8] (S3: tbl_df/tbl/data.frame)
-##  $ stories_id  : num [1:160855] 5.15e+08 6.02e+08 6.02e+08 6.02e+08 6.01e+08 ...
-##  $ title       : chr [1:160855] &quot;Steve Bell’s If ... Watson-D2&#39;s booby-trap for Jez Bi-Wan Corbyn&quot; &quot;Conservative MP&#39;s aide appears in court on rape charges&quot; &quot;&#39;We&#39;re taking them home&#39;: saving Russia&#39;s brick slaves – video&quot; &quot;Saido Berahino: spiked nightclub drink was to blame for my drugs ban&quot; ...
-##  $ url         : chr [1:160855] &quot;https://www.theguardian.com/commentisfree/picture/2016/sep/19/steve-bells-if-watson-d2s-booby-trap-for-jez-bi-wan-corbyn&quot; &quot;https://www.theguardian.com/uk-news/2017/mar/31/conservative-mps-aide-appears-in-court-on-charges&quot; &quot;https://www.theguardian.com/global-development/video/2017/mar/31/were-taking-them-home-saving-russia-brick-slaves-video&quot; &quot;https://www.theguardian.com/football/2017/mar/31/saido-berahino-drugs-ban-from-spiked-nightclub-drink&quot; ...
-##  $ publish_date: POSIXct[1:160855], format: &quot;2016-09-19 02:15:39&quot; &quot;2017-03-31 05:46:18&quot; ...
-##  $ media_id    : num [1:160855] 300560 300560 300560 300560 300560 ...
-##  $ media_name  : chr [1:160855] &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; ...
-##  $ media_url   : chr [1:160855] &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; ...
-##  $ description : chr [1:160855] &quot;&lt;a href=\&quot;https://www.theguardian.com/commentisfree/picture/2016/sep/19/steve-bells-if-watson-d2s-booby-trap-fo&quot;| __truncated__ &quot;&lt;p&gt;Sam Armstrong, who has been suspended as Craig Mackinlay’s chief of staff, allegedly raped a woman in the Ho&quot;| __truncated__ &quot;&lt;p&gt;Thousands of Russia’s most vulnerable men and women go missing every year. They are plucked from cities and &quot;| __truncated__ &quot;• Former West Brom striker served eight-week ban for taking recreational drug&lt;br /&gt;• Berahino: ‘I still cannot &quot;| __truncated__ ...</code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    160855 obs. of  8 variables:
+##  $ stories_id  : num  5.15e+08 6.02e+08 6.02e+08 6.02e+08 6.01e+08 ...
+##  $ title       : chr  &quot;Steve Bell’s If ... Watson-D2&#39;s booby-trap for Jez Bi-Wan Corbyn&quot; &quot;Conservative MP&#39;s aide appears in court on rape charges&quot; &quot;&#39;We&#39;re taking them home&#39;: saving Russia&#39;s brick slaves – video&quot; &quot;Saido Berahino: spiked nightclub drink was to blame for my drugs ban&quot; ...
+##  $ url         : chr  &quot;https://www.theguardian.com/commentisfree/picture/2016/sep/19/steve-bells-if-watson-d2s-booby-trap-for-jez-bi-wan-corbyn&quot; &quot;https://www.theguardian.com/uk-news/2017/mar/31/conservative-mps-aide-appears-in-court-on-charges&quot; &quot;https://www.theguardian.com/global-development/video/2017/mar/31/were-taking-them-home-saving-russia-brick-slaves-video&quot; &quot;https://www.theguardian.com/football/2017/mar/31/saido-berahino-drugs-ban-from-spiked-nightclub-drink&quot; ...
+##  $ publish_date: POSIXct, format: &quot;2016-09-19 02:15:39&quot; &quot;2017-03-31 05:46:18&quot; ...
+##  $ media_id    : num  300560 300560 300560 300560 300560 ...
+##  $ media_name  : chr  &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; ...
+##  $ media_url   : chr  &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; ...
+##  $ description : chr  &quot;&lt;a href=\&quot;https://www.theguardian.com/commentisfree/picture/2016/sep/19/steve-bells-if-watson-d2s-booby-trap-fo&quot;| __truncated__ &quot;&lt;p&gt;Sam Armstrong, who has been suspended as Craig Mackinlay’s chief of staff, allegedly raped a woman in the Ho&quot;| __truncated__ &quot;&lt;p&gt;Thousands of Russia’s most vulnerable men and women go missing every year. They are plucked from cities and &quot;| __truncated__ &quot;• Former West Brom striker served eight-week ban for taking recreational drug&lt;br /&gt;• Berahino: ‘I still cannot &quot;| __truncated__ ...</code></pre>
 <p>We can recognize many variables from our first example of download of title from Mediacloud. But with a new field called description that add more or less text, depending of the media under investigation.</p>
 <div id="cleaning-the-html-code-in-description-file" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Cleaning the html code in description file</h3>
