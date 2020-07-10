@@ -1,0 +1,111 @@
+# Collection of rss {#data_rss}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(quanteda)
+```
+
+## Introduction {-}
+
+You have different ways to get RSS of news but in anay case you have a lot of work to do on the data before to obtain a table with the different fields include in the initial XML code. We don't develop here this part and we suppose that your RSS file has yet been parsed and are stored as a classical data.frame with various columns 
+
+
+## The example of RSS from Le Monde 
+
+The RSS flows has been here stored by the Media Cloud but can not vbe download directly on the website (which provide only the title). Here, we have obtained the same fields than before plus a field of description which provide some sentences about the content of the news. 
+
+
+
+```{r}
+df<-readRDS("_data/raw/lmonde_rss.Rdata")
+str(df)
+```
+
+We can recognize many variables from our first example of download of title from Mediacloud. But with a new field called description that add more or less text, depending of the media under investigation.
+
+## Cleaning the html code in description file
+
+We have generally a high risk to find html codes in the description field which are not of prior interest for textual analysis. The problem is clearly present in our example :
+
+Therefore, we can proceed to an immediate cleaning through a function. One of the most simple one is proposed below, but can be further completed for specific situation.
+
+```{r}
+
+cleanFun <- function(htmlString) {
+  return(gsub("<.*?>", "", htmlString))
+}
+df$description <-cleanFun(df$description)
+head(df$description,2)
+tail(df$description,2)
+```
+
+## Transformation in quanteda corpus 
+
+It is not necessary a good idea to merge the title and the description in the same text. We strongly sugegst to delay this operation that can be easily done letter. As the Quanteda format offers only one slot for the text, we put the description in this place and add the title in the metadata fields
+
+
+```{r , echo=T}
+# Create Quanteda corpus
+qd<-corpus(df$description)
+
+## Add id
+qd$id<-df$stories_id
+
+## Add source code
+qd$source<-"lmonde"
+
+# Add date
+qd$date<-df$publish_date
+
+# add language
+qd$lang<-"fr"
+
+# add_url
+qd$url<-df$url
+
+# add title
+qd$title<-df$title
+
+
+# Add global meta
+meta(qd,"meta_source")<-"Media Cloud - Special extraction"
+meta(qd,"meta_time")<-"Received the 11 July 2020"
+meta(qd,"meta_author")<-"Elaborated by Claude Grasland"
+```
+
+We have created a quanteda object with a lot of information stored in various fields. The structure of the object is the following one
+
+```{r, echo=TRUE}
+str(qd)
+```
+We can look at the first titles with *head()*
+
+```{r, echo=TRUE}
+kable(head(qd,3))
+```
+
+
+We can get meta information on each stories with *summary()*
+
+```{r, echo=TRUE}
+summary(qd,3)
+```
+
+We can get meta information about the full document
+
+```{r, echo=TRUE}
+meta(qd)
+```
+
+
+
+## Storage or exportation
+
+We can finally save the object in .Rdata format in a directory dedicated to our quanteda files. It can be usefull to give some information in the name of the file
+
+```{r, echo=TRUE}
+saveRDS(qd,"_data/qd/fr_FRA_lmonde_2013_2020.Rdata")
+```
+
+ 

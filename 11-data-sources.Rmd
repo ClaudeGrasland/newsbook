@@ -1,0 +1,27 @@
+# Data sources
+
+The aim of this chapter is to present the different types of data sources that can be use
+
+## Minimum requirement
+
+In any case the source should provide a list of texts described by four compulsory fields
+
+- **id** : identification of the text *(num)*
+- **source** : code of the source  *(char)*
+- **date** : date of publication or reception of the text *(char)*
+- **lang** : language of the text *(char)*
+
+Othe fields can be added as option :
+
+- **url** : when the text is linked to a webpage *(char)*
+- **title** : in the case where the title is separated from the text *(plain text)*
+
+
+## Mediacloud 
+
+## Factiva
+
+## Europresse
+
+## Others
+

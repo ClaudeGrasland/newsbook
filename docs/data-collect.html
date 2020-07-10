@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data collection | The R News Book</title>
+  <title>Chapter 2 Data collection | The R News Book</title>
   <meta name="description" content="This is a summary of experience and methods developped for the analysis of news flow." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data collection | The R News Book" />
+  <meta property="og:title" content="Chapter 2 Data collection | The R News Book" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data collection | The R News Book" />
+  <meta name="twitter:title" content="Chapter 2 Data collection | The R News Book" />
   
   <meta name="twitter:description" content="This is a summary of experience and methods developped for the analysis of news flow." />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Claude Grasland, Romain Leconte, Hugues Pecout, Etienne Toureille, …" />
 
 
-<meta name="date" content="2020-07-09" />
+<meta name="date" content="2020-07-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro.html"/>
+<link rel="prev" href="index.html"/>
 <link rel="next" href="data-check.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -133,34 +134,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">My Book</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objectives</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="data-collect.html"><a href="data-collect.html"><i class="fa fa-check"></i><b>3</b> Data collection</a><ul>
-<li class="chapter" data-level="3.1" data-path="data-collect.html"><a href="data-collect.html#data-level-1-title-of-news"><i class="fa fa-check"></i><b>3.1</b> DATA LEVEL 1 : Title of news</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="data-collect.html"><a href="data-collect.html#download-titles-with-mediacloud-interface"><i class="fa fa-check"></i><b>3.1.1</b> Download titles with mediacloud interface</a></li>
-<li class="chapter" data-level="3.1.2" data-path="data-collect.html"><a href="data-collect.html#transformation-and-storage-in-quanteda-format."><i class="fa fa-check"></i><b>3.1.2</b> Transformation and storage in quanteda format.</a></li>
+<li class="part"><span><b>I Objectives of the book</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why ?</a></li>
+<li class="part"><span><b>II DATA COLLECTION</b></span></li>
+<li class="chapter" data-level="2" data-path="data-collect.html"><a href="data-collect.html"><i class="fa fa-check"></i><b>2</b> Data collection</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-collect.html"><a href="data-collect.html#data-level-1-title-of-news"><i class="fa fa-check"></i><b>2.1</b> DATA LEVEL 1 : Title of news</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-collect.html"><a href="data-collect.html#download-titles-with-mediacloud-interface"><i class="fa fa-check"></i><b>2.1.1</b> Download titles with mediacloud interface</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-collect.html"><a href="data-collect.html#transformation-and-storage-in-quanteda-format."><i class="fa fa-check"></i><b>2.1.2</b> Transformation and storage in quanteda format.</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="data-collect.html"><a href="data-collect.html#data-level-2-title-of-news-description"><i class="fa fa-check"></i><b>3.2</b> DATA LEVEL 2 : Title of news + description</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="data-collect.html"><a href="data-collect.html#cleaning-the-html-code-in-description-file"><i class="fa fa-check"></i><b>3.2.1</b> Cleaning the html code in description file</a></li>
-<li class="chapter" data-level="3.2.2" data-path="data-collect.html"><a href="data-collect.html#transformation-of-textdescription-in-quanteda-corpus"><i class="fa fa-check"></i><b>3.2.2</b> Transformation of text+description in quanteda corpus</a></li>
+<li class="chapter" data-level="2.2" data-path="data-collect.html"><a href="data-collect.html#data-level-2-title-of-news-description"><i class="fa fa-check"></i><b>2.2</b> DATA LEVEL 2 : Title of news + description</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-collect.html"><a href="data-collect.html#cleaning-the-html-code-in-description-file"><i class="fa fa-check"></i><b>2.2.1</b> Cleaning the html code in description file</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-collect.html"><a href="data-collect.html#transformation-of-textdescription-in-quanteda-corpus"><i class="fa fa-check"></i><b>2.2.2</b> Transformation of text+description in quanteda corpus</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="data-collect.html"><a href="data-collect.html#data-level-3-full-text"><i class="fa fa-check"></i><b>3.3</b> DATA LEVEL 3 : Full text</a></li>
+<li class="chapter" data-level="2.3" data-path="data-collect.html"><a href="data-collect.html#data-level-3-full-text"><i class="fa fa-check"></i><b>2.3</b> DATA LEVEL 3 : Full text</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-check.html"><a href="data-check.html"><i class="fa fa-check"></i><b>4</b> Data Check and Clean</a><ul>
-<li class="chapter" data-level="4.1" data-path="data-check.html"><a href="data-check.html#prerequites-quanteda-or-tidytext"><i class="fa fa-check"></i><b>4.1</b> Prerequites : quanteda (or tidytext)</a></li>
-<li class="chapter" data-level="4.2" data-path="data-check.html"><a href="data-check.html#check-1-length-of-texts"><i class="fa fa-check"></i><b>4.2</b> CHECK 1 : length of texts</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="data-check.html"><a href="data-check.html#number-of-sentences"><i class="fa fa-check"></i><b>4.2.1</b> Number of sentences</a></li>
-<li class="chapter" data-level="4.2.2" data-path="data-check.html"><a href="data-check.html#number-of-tokens"><i class="fa fa-check"></i><b>4.2.2</b> Number of tokens</a></li>
+<li class="chapter" data-level="3" data-path="data-check.html"><a href="data-check.html"><i class="fa fa-check"></i><b>3</b> Data Check and Clean</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-check.html"><a href="data-check.html#prerequites-quanteda-or-tidytext"><i class="fa fa-check"></i><b>3.1</b> Prerequites : quanteda (or tidytext)</a></li>
+<li class="chapter" data-level="3.2" data-path="data-check.html"><a href="data-check.html#check-1-length-of-texts"><i class="fa fa-check"></i><b>3.2</b> CHECK 1 : length of texts</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-check.html"><a href="data-check.html#number-of-sentences"><i class="fa fa-check"></i><b>3.2.1</b> Number of sentences</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-check.html"><a href="data-check.html#number-of-tokens"><i class="fa fa-check"></i><b>3.2.2</b> Number of tokens</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="data-check.html"><a href="data-check.html#check-2-time-distribution"><i class="fa fa-check"></i><b>4.3</b> CHECK 2 : Time distribution</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="data-check.html"><a href="data-check.html#news-without-date"><i class="fa fa-check"></i><b>4.3.1</b> News without date</a></li>
-<li class="chapter" data-level="4.3.2" data-path="data-check.html"><a href="data-check.html#distribution-of-news-through-time"><i class="fa fa-check"></i><b>4.3.2</b> Distribution of news through time</a></li>
+<li class="chapter" data-level="3.3" data-path="data-check.html"><a href="data-check.html#check-2-time-distribution"><i class="fa fa-check"></i><b>3.3</b> CHECK 2 : Time distribution</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="data-check.html"><a href="data-check.html#news-without-date"><i class="fa fa-check"></i><b>3.3.1</b> News without date</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-check.html"><a href="data-check.html#distribution-of-news-through-time"><i class="fa fa-check"></i><b>3.3.2</b> Distribution of news through time</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="data-check.html"><a href="data-check.html#check-3-suspect-words"><i class="fa fa-check"></i><b>4.4</b> CHECK 3 : Suspect words</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="data-check.html"><a href="data-check.html#tips-1-simple-word-fequencies"><i class="fa fa-check"></i><b>4.4.1</b> Tips 1 : simple word fequencies</a></li>
-<li class="chapter" data-level="4.4.2" data-path="data-check.html"><a href="data-check.html#tips-2-most-frequent-n-grams"><i class="fa fa-check"></i><b>4.4.2</b> Tips 2 : most frequent n-grams</a></li>
+<li class="chapter" data-level="3.4" data-path="data-check.html"><a href="data-check.html#check-3-suspect-words"><i class="fa fa-check"></i><b>3.4</b> CHECK 3 : Suspect words</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="data-check.html"><a href="data-check.html#tips-1-simple-word-fequencies"><i class="fa fa-check"></i><b>3.4.1</b> Tips 1 : simple word fequencies</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-check.html"><a href="data-check.html#tips-2-most-frequent-n-grams"><i class="fa fa-check"></i><b>3.4.2</b> Tips 2 : most frequent n-grams</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="data-check.html"><a href="data-check.html#check-4-human-expertise"><i class="fa fa-check"></i><b>4.5</b> CHECK 4 : Human expertise</a></li>
+<li class="chapter" data-level="3.5" data-path="data-check.html"><a href="data-check.html#check-4-human-expertise"><i class="fa fa-check"></i><b>3.5</b> CHECK 4 : Human expertise</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/ClaudeGrasland/newsbook" target="blank"></a></li>
@@ -183,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="data_collect" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Data collection</h1>
+<h1><span class="header-section-number">Chapter 2</span> Data collection</h1>
 <p>We can have different use of data, depending on the amount of text available. Basically, we will distingush between three cases corresponding to three levels of information :</p>
 <ul>
 <li><strong>title of news</strong> : typically, the case of data downloaded on mediacloud</li>
@@ -191,17 +193,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>**full text of *news** : typically the data obtained through a private provider of newspapers (Factiva, EuroPresse, LexisNexis …) of by (non legal) scrapping of text through the URL’s.</li>
 </ul>
 <div id="data-level-1-title-of-news" class="section level2">
-<h2><span class="header-section-number">3.1</span> DATA LEVEL 1 : Title of news</h2>
+<h2><span class="header-section-number">2.1</span> DATA LEVEL 1 : Title of news</h2>
 <div id="download-titles-with-mediacloud-interface" class="section level3">
-<h3><span class="header-section-number">3.1.1</span> Download titles with mediacloud interface</h3>
+<h3><span class="header-section-number">2.1.1</span> Download titles with mediacloud interface</h3>
 <p>We suppose that you want to analyze the title of the news collected by the New York Times during the first semester of 2020. You can easily proceed to such a collection with the application Mediacloud.</p>
 <p><a href="https://explorer.mediacloud.org" class="uri">https://explorer.mediacloud.org</a></p>
 <p>You need firstly to register (for free) in order to create an account. Then you can select your media, select your period and select all stories by using the request ’*’ as in the example presented below.</p>
-<p><img src="pics/mc001.png" width="604" /></p>
+<p><img src="pics/mc001.png" /><!-- --></p>
 <p>Below your request, you obtain a graphic entitled <em>Attention Over Time</em> with the distribution of the number of news published per day which help you to verify if the distribution of news is regular through time. In our example, you an notice a classical week cycle (with decrease of the number of news publish during the week-end). But you can also observe a discontinuity at the beginning of May 2020 with a decline to a lower level of production of news.</p>
-<p><img src="pics/mc002.png" width="585" />
+<p><img src="pics/mc002.png" /><!-- -->
 Going down, you will find a news panel entitled <em>Total Attention</em> which gives you the total number of stories found. In our example, we have a total of 47522 stories produced by the NYT during the first semester of 2020.</p>
-<p><img src="pics/mc003.png" width="553" /></p>
+<p><img src="pics/mc003.png" /><!-- --></p>
 <p>Finally, by clicking on the button <em>Download all story URLS</em>, you can get a .csv file that you can easily load in your favorite porgramming language. In the case of R, you can load it with a program like this.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-collect.html#cb1-1"></a>df&lt;-<span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;_data/mc/en_USA_nytime_20200101_20200630.csv&quot;</span>,</span>
 <span id="cb1-2"><a href="data-collect.html#cb1-2"></a>             <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,</span>
@@ -209,7 +211,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <span id="cb1-4"><a href="data-collect.html#cb1-4"></a>             <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>,</span>
 <span id="cb1-5"><a href="data-collect.html#cb1-5"></a>             <span class="dt">stringsAsFactors =</span> F)</span>
 <span id="cb1-6"><a href="data-collect.html#cb1-6"></a><span class="kw">str</span>(df)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    30265 obs. of  10 variables:
+<pre><code>## &#39;data.frame&#39;:	30265 obs. of  10 variables:
 ##  $ stories_id   : int  1483747633 1483747632 1483779604 1483817555 1483817553 1483858519 1483858517 1483858514 1483858512 1483858499 ...
 ##  $ publish_date : chr  &quot;2020-01-01 00:00:08&quot; &quot;2020-01-01 00:05:07&quot; &quot;2020-01-01 01:00:05&quot; &quot;2020-01-01 03:00:11&quot; ...
 ##  $ title        : chr  &quot;Meteor Showers in 2020 That Will Light Up Night Skies&quot; &quot;Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events&quot; &quot;What’s on TV Wednesday: A Linda Ronstadt Doc and ‘Doctor Who’&quot; &quot;Why Did the U.S. Become the Focus of Iraqis’ Anger?&quot; ...
@@ -223,7 +225,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <p><strong>N.B.</strong> We can notice, without being able to explain this fact, that the number of stories downloaded (30265), which is less than what was announced by the mediacloud interface (47522). May be it is related to the elimination of duplicates ?</p>
 </div>
 <div id="transformation-and-storage-in-quanteda-format." class="section level3">
-<h3><span class="header-section-number">3.1.2</span> Transformation and storage in quanteda format.</h3>
+<h3><span class="header-section-number">2.1.2</span> Transformation and storage in quanteda format.</h3>
 <p>Currently, the size of the file (unzipped) is equal to 7.3 Mb. But we can observe that a lot of information are the same for all news and should not necessarily be kept. We can also exclude the url field if we are not interested in. We propose therefore to use a better form of storage based on <code>quanteda</code> format.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-collect.html#cb3-1"></a><span class="co"># Create Quanteda corpus</span></span>
 <span id="cb3-2"><a href="data-collect.html#cb3-2"></a>qd&lt;-<span class="kw">corpus</span>(df<span class="op">$</span>title)</span>
@@ -246,7 +248,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-collect.html#cb4-1"></a><span class="kw">str</span>(qd)</span></code></pre></div>
 <pre><code>##  &#39;corpus&#39; Named chr [1:30265] &quot;Meteor Showers in 2020 That Will Light Up Night Skies&quot; ...
 ##  - attr(*, &quot;names&quot;)= chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
-##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:  30265 obs. of  4 variables:
+##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:	30265 obs. of  4 variables:
 ##   ..$ docname_: chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
 ##   ..$ docid_  : Factor w/ 30265 levels &quot;text1&quot;,&quot;text2&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
 ##   ..$ segid_  : int [1:30265] 1 1 1 1 1 1 1 1 1 1 ...
@@ -254,15 +256,18 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 ##  - attr(*, &quot;meta&quot;)=List of 3
 ##   ..$ system:List of 5
 ##   .. ..$ package-version:Classes &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1
-##   .. .. ..$ : int [1:3] 2 0 1
+##   .. .. ..$ : int [1:3] 2 1 0
 ##   .. ..$ r-version      :Classes &#39;R_system_version&#39;, &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1
-##   .. .. ..$ : int [1:3] 3 6 3
-##   .. ..$ system         : Named chr [1:3] &quot;Linux&quot; &quot;x86_64&quot; &quot;cgrasland&quot;
+##   .. .. ..$ : int [1:3] 4 0 2
+##   .. ..$ system         : Named chr [1:3] &quot;Windows&quot; &quot;x86-64&quot; &quot;CIST&quot;
 ##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;sysname&quot; &quot;machine&quot; &quot;user&quot;
-##   .. ..$ directory      : chr &quot;/data/user/g/cgrasland/newsbook&quot;
-##   .. ..$ created        : Date[1:1], format: &quot;2020-07-09&quot;
-##   ..$ object:List of 1
-##   .. ..$ unit: chr &quot;documents&quot;
+##   .. ..$ directory      : chr &quot;C:/claude/git/newsbook&quot;
+##   .. ..$ created        : Date[1:1], format: &quot;2020-07-10&quot;
+##   ..$ object:List of 2
+##   .. ..$ unit   : chr &quot;documents&quot;
+##   .. ..$ summary:List of 2
+##   .. .. ..$ hash: chr(0) 
+##   .. .. ..$ data: NULL
 ##   ..$ user  :List of 8
 ##   .. ..$ language     : chr &quot;en&quot;
 ##   .. ..$ media_id     : int 1
@@ -275,23 +280,27 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <p>We can look at the first titles with <em>head()</em></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-collect.html#cb6-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(qd,<span class="dv">3</span>))</span></code></pre></div>
 <table>
+<colgroup>
+<col width="7%" />
+<col width="92%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="left">x</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>text1</td>
+<td align="left">text1</td>
 <td align="left">Meteor Showers in 2020 That Will Light Up Night Skies</td>
 </tr>
 <tr class="even">
-<td>text2</td>
+<td align="left">text2</td>
 <td align="left">Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events</td>
 </tr>
 <tr class="odd">
-<td>text3</td>
+<td align="left">text3</td>
 <td align="left">What’s on TV Wednesday: A Linda Ronstadt Doc and ‘Doctor Who’</td>
 </tr>
 </tbody>
@@ -335,20 +344,20 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 </div>
 </div>
 <div id="data-level-2-title-of-news-description" class="section level2">
-<h2><span class="header-section-number">3.2</span> DATA LEVEL 2 : Title of news + description</h2>
+<h2><span class="header-section-number">2.2</span> DATA LEVEL 2 : Title of news + description</h2>
 <p>We take the example of The Guardian for which we have obtained a special extraction fo title + description.</p>
-<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    160855 obs. of  8 variables:
-##  $ stories_id  : num  5.15e+08 6.02e+08 6.02e+08 6.02e+08 6.01e+08 ...
-##  $ title       : chr  &quot;Steve Bell’s If ... Watson-D2&#39;s booby-trap for Jez Bi-Wan Corbyn&quot; &quot;Conservative MP&#39;s aide appears in court on rape charges&quot; &quot;&#39;We&#39;re taking them home&#39;: saving Russia&#39;s brick slaves – video&quot; &quot;Saido Berahino: spiked nightclub drink was to blame for my drugs ban&quot; ...
-##  $ url         : chr  &quot;https://www.theguardian.com/commentisfree/picture/2016/sep/19/steve-bells-if-watson-d2s-booby-trap-for-jez-bi-wan-corbyn&quot; &quot;https://www.theguardian.com/uk-news/2017/mar/31/conservative-mps-aide-appears-in-court-on-charges&quot; &quot;https://www.theguardian.com/global-development/video/2017/mar/31/were-taking-them-home-saving-russia-brick-slaves-video&quot; &quot;https://www.theguardian.com/football/2017/mar/31/saido-berahino-drugs-ban-from-spiked-nightclub-drink&quot; ...
-##  $ publish_date: POSIXct, format: &quot;2016-09-19 02:15:39&quot; &quot;2017-03-31 05:46:18&quot; ...
-##  $ media_id    : num  300560 300560 300560 300560 300560 ...
-##  $ media_name  : chr  &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; ...
-##  $ media_url   : chr  &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; ...
-##  $ description : chr  &quot;&lt;a href=\&quot;https://www.theguardian.com/commentisfree/picture/2016/sep/19/steve-bells-if-watson-d2s-booby-trap-fo&quot;| __truncated__ &quot;&lt;p&gt;Sam Armstrong, who has been suspended as Craig Mackinlay’s chief of staff, allegedly raped a woman in the Ho&quot;| __truncated__ &quot;&lt;p&gt;Thousands of Russia’s most vulnerable men and women go missing every year. They are plucked from cities and &quot;| __truncated__ &quot;• Former West Brom striker served eight-week ban for taking recreational drug&lt;br /&gt;• Berahino: ‘I still cannot &quot;| __truncated__ ...</code></pre>
+<pre><code>## tibble [160,855 x 8] (S3: tbl_df/tbl/data.frame)
+##  $ stories_id  : num [1:160855] 5.15e+08 6.02e+08 6.02e+08 6.02e+08 6.01e+08 ...
+##  $ title       : chr [1:160855] &quot;Steve Bell’s If ... Watson-D2&#39;s booby-trap for Jez Bi-Wan Corbyn&quot; &quot;Conservative MP&#39;s aide appears in court on rape charges&quot; &quot;&#39;We&#39;re taking them home&#39;: saving Russia&#39;s brick slaves – video&quot; &quot;Saido Berahino: spiked nightclub drink was to blame for my drugs ban&quot; ...
+##  $ url         : chr [1:160855] &quot;https://www.theguardian.com/commentisfree/picture/2016/sep/19/steve-bells-if-watson-d2s-booby-trap-for-jez-bi-wan-corbyn&quot; &quot;https://www.theguardian.com/uk-news/2017/mar/31/conservative-mps-aide-appears-in-court-on-charges&quot; &quot;https://www.theguardian.com/global-development/video/2017/mar/31/were-taking-them-home-saving-russia-brick-slaves-video&quot; &quot;https://www.theguardian.com/football/2017/mar/31/saido-berahino-drugs-ban-from-spiked-nightclub-drink&quot; ...
+##  $ publish_date: POSIXct[1:160855], format: &quot;2016-09-19 02:15:39&quot; &quot;2017-03-31 05:46:18&quot; ...
+##  $ media_id    : num [1:160855] 300560 300560 300560 300560 300560 ...
+##  $ media_name  : chr [1:160855] &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; &quot;The Guardian UK&quot; ...
+##  $ media_url   : chr [1:160855] &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; &quot;http://www.theguardian.com/uk&quot; ...
+##  $ description : chr [1:160855] &quot;&lt;a href=\&quot;https://www.theguardian.com/commentisfree/picture/2016/sep/19/steve-bells-if-watson-d2s-booby-trap-fo&quot;| __truncated__ &quot;&lt;p&gt;Sam Armstrong, who has been suspended as Craig Mackinlay’s chief of staff, allegedly raped a woman in the Ho&quot;| __truncated__ &quot;&lt;p&gt;Thousands of Russia’s most vulnerable men and women go missing every year. They are plucked from cities and &quot;| __truncated__ &quot;• Former West Brom striker served eight-week ban for taking recreational drug&lt;br /&gt;• Berahino: ‘I still cannot &quot;| __truncated__ ...</code></pre>
 <p>We can recognize many variables from our first example of download of title from Mediacloud. But with a new field called description that add more or less text, depending of the media under investigation.</p>
 <div id="cleaning-the-html-code-in-description-file" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Cleaning the html code in description file</h3>
+<h3><span class="header-section-number">2.2.1</span> Cleaning the html code in description file</h3>
 <p>We have generally a high risk to find html codes in the description field which are not of prior interest for textual analysis. The problem is clearly present in our example :</p>
 <pre><code>## [1] &quot;&lt;a href=\&quot;https://www.theguardian.com/commentisfree/picture/2016/sep/19/steve-bells-if-watson-d2s-booby-trap-for-jez-bi-wan-corbyn\&quot;&gt;Continue reading...&lt;/a&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 ## [2] &quot;&lt;p&gt;Sam Armstrong, who has been suspended as Craig Mackinlay’s chief of staff, allegedly raped a woman in the Houses of Parliament&lt;/p&gt;&lt;p&gt;A Tory MP’s aide has appeared in court accused of raping a woman in the Houses of Parliament.&lt;/p&gt;&lt;p&gt;Sam Armstrong, who has been suspended as chief of staff to South Thanet MP Craig Mackinlay, appeared at Westminster magistrates court on Friday charged with two counts of rape and one count of sexual assault by penetration.&lt;/p&gt; &lt;a href=\&quot;https://www.theguardian.com/uk-news/2017/mar/31/conservative-mps-aide-appears-in-court-on-charges\&quot;&gt;Continue reading...&lt;/a&gt;&quot;</code></pre>
@@ -362,7 +371,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 <p>In our example, we can see that the description is related to a number of sentences followed by <em>Continue reading</em>. It can therefore be relevant to eliminate immediately the final part But the cleaning procedure is generally much longer and complex, especially when the corpus cover many years. Indeed, the style of description may have change through time. This point will be discuss in more details in the next chapter.</p>
 </div>
 <div id="transformation-of-textdescription-in-quanteda-corpus" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> Transformation of text+description in quanteda corpus</h3>
+<h3><span class="header-section-number">2.2.2</span> Transformation of text+description in quanteda corpus</h3>
 <p>As we have done previously, we will store the result in a quanteda corpus object with associated metadata. But before to do that we have to merge title + description in a same text where title will be the first sentence.</p>
 <p>N.B. I am not quite sure of the good separator to be used between title and description</p>
 <pre><code>## [1] &quot;Steve Bell’s If ... Watson-D2&#39;s booby-trap for Jez Bi-Wan Corbyn.\n.Continue reading...&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                  
@@ -392,7 +401,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
 </div>
 </div>
 <div id="data-level-3-full-text" class="section level2">
-<h2><span class="header-section-number">3.3</span> DATA LEVEL 3 : Full text</h2>
+<h2><span class="header-section-number">2.3</span> DATA LEVEL 3 : Full text</h2>
 <p>We consider finally the case of news based on full text. It is generally related to the selection of a precise corpus related to a specific topic (e.g. migration, border, …) in order to limit the size of the resulting database.</p>
 <p>We can take the example of …</p>
 <p><em>To be done.</em></p>
@@ -404,7 +413,7 @@ Going down, you will find a news panel entitled <em>Total Attention</em> which g
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="data-check.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -436,7 +445,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ClaudeGrasland/newsbook/edit/master/02-data-collection.Rmd",
+"link": "https://github.com/ClaudeGrasland/newsbook/edit/master/12-data-collection.Rmd",
 "text": "Edit"
 },
 "history": {
