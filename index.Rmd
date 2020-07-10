@@ -12,6 +12,7 @@ github-repo: rstudio/bookdown-demo
 description: "This is a summary of experience and methods developped for the analysis of news flow."
 ---
 
+# Foreword {-#foreword}
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
