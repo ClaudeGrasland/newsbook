@@ -1,8 +1,0 @@
-
-# The choice of the methods
-
-The methods arrive in last place, depending on your previous decision. If you put methods in first place of your list, you are not a researcher but a data scientist. This book is not for you !
-
-
-
-

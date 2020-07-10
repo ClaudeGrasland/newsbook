@@ -1,8 +1,23 @@
-
-# (PART) OBJECTIVES {-}
-
-
-# Introduction {-}
+# OBJECTIVES OF THE BOOK {#object}
 
 The objectives of this part is to define the general objectives of the book and to help the reader to understand the logig of the analysis of news. 
 
+## A short example 
+
+Let's start with an example derived from the publication *Socio-Anthropo* ...
+
+## The choice of the topic 
+
+What is your objective ? 
+
+## The formulation of hypothesis
+
+What are your initial hypothesis ?
+
+## The field of investigation
+
+What is the field of data on which you would like to investigate ? Which language ? Which period of time ..
+
+## The choice of the methods
+
+The methods arrive in last place, depending on your previous decision. If you put methods in first place of your list, you are not a researcher but a data scientist. This book is not for you !

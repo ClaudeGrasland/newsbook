@@ -2,4 +2,7 @@
 
 The objectives of this part is to discuss how to move from isolated sources to a coherent corpus with additionnal data and metadata making possible a sound comparison.  
 
+# Introduction {-}
+
+Building a corpus is not the same task as collecting isolated sources ...
 

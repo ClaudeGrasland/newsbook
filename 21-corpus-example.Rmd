@@ -1,6 +1,12 @@
-# The Venice's Corpus 
+# Examples of corpora {#corpus_example}
+
+## The Socio-Anthropo corpus
 
 Let's start with ane example : the summer school of ODYCCEUS Project in Venice ...
 
+## The Gazette corpus
 
+## The Venice corpus
+
+## The Covid corpus
 
