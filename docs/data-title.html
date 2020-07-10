@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Collection of titles | The R News Book</title>
+  <meta name="description" content="This is a summary of experience and methods developped for the analysis of news flow." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Collection of titles | The R News Book" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a summary of experience and methods developped for the analysis of news flow." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Collection of titles | The R News Book" />
+  
+  <meta name="twitter:description" content="This is a summary of experience and methods developped for the analysis of news flow." />
+  
+
+<meta name="author" content="Claude Grasland, Romain Leconte, Hugues Pecout, Etienne Toureille, …" />
+
+
+<meta name="date" content="2020-07-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-sources.html"/>
+<link rel="next" href="data-rss.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">My Book</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I OBJECTIVES</b></span></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="the-choice-of-the-topic.html"><a href="the-choice-of-the-topic.html"><i class="fa fa-check"></i><b>2</b> The choice of the topic</a></li>
+<li class="chapter" data-level="3" data-path="the-formulation-of-hypothesis.html"><a href="the-formulation-of-hypothesis.html"><i class="fa fa-check"></i><b>3</b> The formulation of hypothesis</a></li>
+<li class="chapter" data-level="4" data-path="the-field-of-investigation.html"><a href="the-field-of-investigation.html"><i class="fa fa-check"></i><b>4</b> The field of investigation</a></li>
+<li class="chapter" data-level="5" data-path="the-choice-of-the-methods.html"><a href="the-choice-of-the-methods.html"><i class="fa fa-check"></i><b>5</b> The choice of the methods</a></li>
+<li class="part"><span><b>II DATA ACQUISITION</b></span></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="6" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>6</b> Data sources</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-sources.html"><a href="data-sources.html#minimum-requirement"><i class="fa fa-check"></i><b>6.1</b> Minimum requirement</a></li>
+<li class="chapter" data-level="6.2" data-path="data-sources.html"><a href="data-sources.html#mediacloud"><i class="fa fa-check"></i><b>6.2</b> Mediacloud</a></li>
+<li class="chapter" data-level="6.3" data-path="data-sources.html"><a href="data-sources.html#factiva"><i class="fa fa-check"></i><b>6.3</b> Factiva</a></li>
+<li class="chapter" data-level="6.4" data-path="data-sources.html"><a href="data-sources.html#europresse"><i class="fa fa-check"></i><b>6.4</b> Europresse</a></li>
+<li class="chapter" data-level="6.5" data-path="data-sources.html"><a href="data-sources.html#others"><i class="fa fa-check"></i><b>6.5</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-title.html"><a href="data-title.html"><i class="fa fa-check"></i><b>7</b> Collection of titles</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="7.1" data-path="data-title.html"><a href="data-title.html#extraction-of-data"><i class="fa fa-check"></i><b>7.1</b> Extraction of data</a></li>
+<li class="chapter" data-level="7.2" data-path="data-title.html"><a href="data-title.html#transformation-in-quanteda-format."><i class="fa fa-check"></i><b>7.2</b> Transformation in quanteda format.</a></li>
+<li class="chapter" data-level="7.3" data-path="data-title.html"><a href="data-title.html#storage-or-exportation"><i class="fa fa-check"></i><b>7.3</b> Storage or exportation</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-rss.html"><a href="data-rss.html"><i class="fa fa-check"></i><b>8</b> Collection of rss</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="8.1" data-path="data-rss.html"><a href="data-rss.html#the-example-of-rss-from-le-monde"><i class="fa fa-check"></i><b>8.1</b> The example of RSS from Le Monde</a></li>
+<li class="chapter" data-level="8.2" data-path="data-rss.html"><a href="data-rss.html#cleaning-the-html-code-in-description-file"><i class="fa fa-check"></i><b>8.2</b> Cleaning the html code in description file</a></li>
+<li class="chapter" data-level="8.3" data-path="data-rss.html"><a href="data-rss.html#transformation-in-quanteda-corpus"><i class="fa fa-check"></i><b>8.3</b> Transformation in quanteda corpus</a></li>
+<li class="chapter" data-level="8.4" data-path="data-title.html"><a href="data-title.html#storage-or-exportation"><i class="fa fa-check"></i><b>8.4</b> Storage or exportation</a></li>
+</ul></li>
+<li class="part"><span><b>III CORPUS BUILDING</b></span></li>
+<li class="chapter" data-level="9" data-path="the-venices-corpus.html"><a href="the-venices-corpus.html"><i class="fa fa-check"></i><b>9</b> The Venice’s Corpus</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/ClaudeGrasland/newsbook" target="blank"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The R News Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data_title" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Collection of titles</h1>
+<div id="introduction" class="section level2 unnumbered">
+<h2>Introduction</h2>
+<p>You have different ways to get title of news. We will focus here on a simple example of data obtained through the mediacloud interface. We suppose that you want to analyze the title of the news collected by the New York Times during the first semester of 2020. You can easily proceed to such a collection with the application Mediacloud.</p>
+<p><a href="https://explorer.mediacloud.org" class="uri">https://explorer.mediacloud.org</a></p>
+</div>
+<div id="extraction-of-data" class="section level2">
+<h2><span class="header-section-number">7.1</span> Extraction of data</h2>
+<p>You need firstly to register (for free) in order to create an account. Then you can select your media, select your period and select all stories by using the request ’*’ as in the example presented below.</p>
+<p><img src="pics/mc001.png" /><!-- --></p>
+<p>Below your request, you obtain a graphic entitled <em>Attention Over Time</em> with the distribution of the number of news published per day which help you to verify if the distribution of news is regular through time. In our example, you an notice a classical week cycle (with decrease of the number of news publish during the week-end). But you can also observe a discontinuity at the beginning of May 2020 with a decline to a lower level of production of news.</p>
+<p><img src="pics/mc002.png" /><!-- -->
+Going down, you will find a news panel entitled <em>Total Attention</em> which gives you the total number of stories found. In our example, we have a total of 47522 stories produced by the NYT during the first semester of 2020.</p>
+<p><img src="pics/mc003.png" /><!-- --></p>
+<p>Finally, by clicking on the button <em>Download all story URLS</em>, you can get a .csv file that you can easily load in your favorite porgramming language. In the case of R, you can load it with a program like this.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-title.html#cb1-1"></a>df&lt;-<span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;_data/raw/nytime_titles.csv&quot;</span>,</span>
+<span id="cb1-2"><a href="data-title.html#cb1-2"></a>             <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,</span>
+<span id="cb1-3"><a href="data-title.html#cb1-3"></a>             <span class="dt">header=</span>T,</span>
+<span id="cb1-4"><a href="data-title.html#cb1-4"></a>             <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>,</span>
+<span id="cb1-5"><a href="data-title.html#cb1-5"></a>             <span class="dt">stringsAsFactors =</span> F)</span>
+<span id="cb1-6"><a href="data-title.html#cb1-6"></a><span class="kw">str</span>(df)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	30265 obs. of  10 variables:
+##  $ stories_id   : int  1483747633 1483747632 1483779604 1483817555 1483817553 1483858519 1483858517 1483858514 1483858512 1483858499 ...
+##  $ publish_date : chr  &quot;2020-01-01 00:00:08&quot; &quot;2020-01-01 00:05:07&quot; &quot;2020-01-01 01:00:05&quot; &quot;2020-01-01 03:00:11&quot; ...
+##  $ title        : chr  &quot;Meteor Showers in 2020 That Will Light Up Night Skies&quot; &quot;Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events&quot; &quot;What’s on TV Wednesday: A Linda Ronstadt Doc and ‘Doctor Who’&quot; &quot;Why Did the U.S. Become the Focus of Iraqis’ Anger?&quot; ...
+##  $ url          : chr  &quot;https://www.nytimes.com/2020/01/01/science/meteor-showers-2020.html&quot; &quot;https://www.nytimes.com/2020/01/01/science/space-astronomy-2020.html&quot; &quot;https://www.nytimes.com/2020/01/01/arts/television/whats-on-tv-wednesday-a-linda-ronstadt-doc-and-doctor-who.html&quot; &quot;https://www.nytimes.com/2020/01/01/world/middleeast/iraq-embassy-iran.html&quot; ...
+##  $ language     : chr  &quot;en&quot; &quot;en&quot; &quot;en&quot; &quot;en&quot; ...
+##  $ ap_syndicated: chr  &quot;False&quot; &quot;False&quot; &quot;False&quot; &quot;False&quot; ...
+##  $ themes       : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##  $ media_id     : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ media_name   : chr  &quot;New York Times&quot; &quot;New York Times&quot; &quot;New York Times&quot; &quot;New York Times&quot; ...
+##  $ media_url    : chr  &quot;http://nytimes.com&quot; &quot;http://nytimes.com&quot; &quot;http://nytimes.com&quot; &quot;http://nytimes.com&quot; ...</code></pre>
+<p><strong>N.B.</strong> We can notice, without being able to explain this fact, that the number of stories downloaded (30265), which is less than what was announced by the mediacloud interface (47522). May be it is related to the elimination of duplicates ?</p>
+</div>
+<div id="transformation-in-quanteda-format." class="section level2">
+<h2><span class="header-section-number">7.2</span> Transformation in quanteda format.</h2>
+<p>Currently, the size of the file (unzipped) is equal to 7.3 Mb. But we can observe that a lot of information are the same for all news and should not necessarily be kept. We can also exclude the url field if we are not interested in. We propose therefore to use a better form of storage based on <code>quanteda</code> format.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-title.html#cb3-1"></a><span class="co"># Create Quanteda corpus</span></span>
+<span id="cb3-2"><a href="data-title.html#cb3-2"></a>qd&lt;-<span class="kw">corpus</span>(df<span class="op">$</span>title)</span>
+<span id="cb3-3"><a href="data-title.html#cb3-3"></a></span>
+<span id="cb3-4"><a href="data-title.html#cb3-4"></a><span class="co">## Add id</span></span>
+<span id="cb3-5"><a href="data-title.html#cb3-5"></a>qd<span class="op">$</span>id&lt;-df<span class="op">$</span>stories_id</span>
+<span id="cb3-6"><a href="data-title.html#cb3-6"></a></span>
+<span id="cb3-7"><a href="data-title.html#cb3-7"></a><span class="co">## Add source code</span></span>
+<span id="cb3-8"><a href="data-title.html#cb3-8"></a>qd<span class="op">$</span>source&lt;-<span class="st">&quot;nytime&quot;</span></span>
+<span id="cb3-9"><a href="data-title.html#cb3-9"></a></span>
+<span id="cb3-10"><a href="data-title.html#cb3-10"></a><span class="co"># Add date</span></span>
+<span id="cb3-11"><a href="data-title.html#cb3-11"></a>qd<span class="op">$</span>date&lt;-df<span class="op">$</span>publish_date</span>
+<span id="cb3-12"><a href="data-title.html#cb3-12"></a></span>
+<span id="cb3-13"><a href="data-title.html#cb3-13"></a><span class="co"># add language</span></span>
+<span id="cb3-14"><a href="data-title.html#cb3-14"></a>qd<span class="op">$</span>lang&lt;-<span class="st">&quot;en&quot;</span></span>
+<span id="cb3-15"><a href="data-title.html#cb3-15"></a></span>
+<span id="cb3-16"><a href="data-title.html#cb3-16"></a><span class="co"># add_url</span></span>
+<span id="cb3-17"><a href="data-title.html#cb3-17"></a>qd<span class="op">$</span>url&lt;-df<span class="op">$</span>url</span>
+<span id="cb3-18"><a href="data-title.html#cb3-18"></a></span>
+<span id="cb3-19"><a href="data-title.html#cb3-19"></a></span>
+<span id="cb3-20"><a href="data-title.html#cb3-20"></a><span class="co"># Add global meta</span></span>
+<span id="cb3-21"><a href="data-title.html#cb3-21"></a><span class="kw">meta</span>(qd,<span class="st">&quot;meta_source&quot;</span>)&lt;-<span class="st">&quot;Media Cloud &quot;</span></span>
+<span id="cb3-22"><a href="data-title.html#cb3-22"></a><span class="kw">meta</span>(qd,<span class="st">&quot;meta_time&quot;</span>)&lt;-<span class="st">&quot;Download the 2020-07-06&quot;</span></span>
+<span id="cb3-23"><a href="data-title.html#cb3-23"></a><span class="kw">meta</span>(qd,<span class="st">&quot;meta_author&quot;</span>)&lt;-<span class="st">&quot;Elaborated by Claude Grasland&quot;</span></span></code></pre></div>
+<p>We have created a quanteda object with a lot of information stored in various fields. The structure of the object is the following one</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-title.html#cb4-1"></a><span class="kw">str</span>(qd)</span></code></pre></div>
+<pre><code>##  &#39;corpus&#39; Named chr [1:30265] &quot;Meteor Showers in 2020 That Will Light Up Night Skies&quot; ...
+##  - attr(*, &quot;names&quot;)= chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
+##  - attr(*, &quot;docvars&quot;)=&#39;data.frame&#39;:	30265 obs. of  8 variables:
+##   ..$ docname_: chr [1:30265] &quot;text1&quot; &quot;text2&quot; &quot;text3&quot; &quot;text4&quot; ...
+##   ..$ docid_  : Factor w/ 30265 levels &quot;text1&quot;,&quot;text2&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##   ..$ segid_  : int [1:30265] 1 1 1 1 1 1 1 1 1 1 ...
+##   ..$ id      : int [1:30265] 1483747633 1483747632 1483779604 1483817555 1483817553 1483858519 1483858517 1483858514 1483858512 1483858499 ...
+##   ..$ source  : chr [1:30265] &quot;nytime&quot; &quot;nytime&quot; &quot;nytime&quot; &quot;nytime&quot; ...
+##   ..$ date    : chr [1:30265] &quot;2020-01-01 00:00:08&quot; &quot;2020-01-01 00:05:07&quot; &quot;2020-01-01 01:00:05&quot; &quot;2020-01-01 03:00:11&quot; ...
+##   ..$ lang    : chr [1:30265] &quot;en&quot; &quot;en&quot; &quot;en&quot; &quot;en&quot; ...
+##   ..$ url     : chr [1:30265] &quot;https://www.nytimes.com/2020/01/01/science/meteor-showers-2020.html&quot; &quot;https://www.nytimes.com/2020/01/01/science/space-astronomy-2020.html&quot; &quot;https://www.nytimes.com/2020/01/01/arts/television/whats-on-tv-wednesday-a-linda-ronstadt-doc-and-doctor-who.html&quot; &quot;https://www.nytimes.com/2020/01/01/world/middleeast/iraq-embassy-iran.html&quot; ...
+##  - attr(*, &quot;meta&quot;)=List of 3
+##   ..$ system:List of 5
+##   .. ..$ package-version:Classes &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1
+##   .. .. ..$ : int [1:3] 2 1 0
+##   .. ..$ r-version      :Classes &#39;R_system_version&#39;, &#39;package_version&#39;, &#39;numeric_version&#39;  hidden list of 1
+##   .. .. ..$ : int [1:3] 4 0 2
+##   .. ..$ system         : Named chr [1:3] &quot;Windows&quot; &quot;x86-64&quot; &quot;CIST&quot;
+##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;sysname&quot; &quot;machine&quot; &quot;user&quot;
+##   .. ..$ directory      : chr &quot;C:/claude/git/newsbook&quot;
+##   .. ..$ created        : Date[1:1], format: &quot;2020-07-10&quot;
+##   ..$ object:List of 2
+##   .. ..$ unit   : chr &quot;documents&quot;
+##   .. ..$ summary:List of 2
+##   .. .. ..$ hash: chr(0) 
+##   .. .. ..$ data: NULL
+##   ..$ user  :List of 3
+##   .. ..$ meta_source: chr &quot;Media Cloud &quot;
+##   .. ..$ meta_time  : chr &quot;Download the 2020-07-06&quot;
+##   .. ..$ meta_author: chr &quot;Elaborated by Claude Grasland&quot;</code></pre>
+<p>We can look at the first titles with <em>head()</em></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-title.html#cb6-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(qd,<span class="dv">3</span>))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="92%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">text1</td>
+<td align="left">Meteor Showers in 2020 That Will Light Up Night Skies</td>
+</tr>
+<tr class="even">
+<td align="left">text2</td>
+<td align="left">Rocket Launches, Trips to Mars and More 2020 Space and Astronomy Events</td>
+</tr>
+<tr class="odd">
+<td align="left">text3</td>
+<td align="left">What’s on TV Wednesday: A Linda Ronstadt Doc and ‘Doctor Who’</td>
+</tr>
+</tbody>
+</table>
+<p>We can get meta information on each stories with <em>summary()</em></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-title.html#cb7-1"></a><span class="kw">summary</span>(qd,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## Corpus consisting of 30265 documents, showing 3 documents:
+## 
+##   Text Types Tokens Sentences         id source                date lang
+##  text1    10     10         1 1483747633 nytime 2020-01-01 00:00:08   en
+##  text2    12     13         1 1483747632 nytime 2020-01-01 00:05:07   en
+##  text3    13     14         1 1483779604 nytime 2020-01-01 01:00:05   en
+##                                                                                                                url
+##                                                https://www.nytimes.com/2020/01/01/science/meteor-showers-2020.html
+##                                               https://www.nytimes.com/2020/01/01/science/space-astronomy-2020.html
+##  https://www.nytimes.com/2020/01/01/arts/television/whats-on-tv-wednesday-a-linda-ronstadt-doc-and-doctor-who.html</code></pre>
+<p>We can get meta information about the full document</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data-title.html#cb9-1"></a><span class="kw">meta</span>(qd)</span></code></pre></div>
+<pre><code>## $meta_source
+## [1] &quot;Media Cloud &quot;
+## 
+## $meta_time
+## [1] &quot;Download the 2020-07-06&quot;
+## 
+## $meta_author
+## [1] &quot;Elaborated by Claude Grasland&quot;</code></pre>
+</div>
+<div id="storage-or-exportation" class="section level2">
+<h2><span class="header-section-number">7.3</span> Storage or exportation</h2>
+<p>We can finally save the object in .Rdata format in a directory dedicated to our quanteda files. It can be usefull to give some information in the name of the file</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-title.html#cb11-1"></a><span class="kw">saveRDS</span>(qd,<span class="st">&quot;_data/qd/en_USA_nytime_2020.Rdata&quot;</span>)</span></code></pre></div>
+<p>We have kept all the information present in the initial file, but also added specific metadata of interest for us. The size of the storage is now equal to 1.2Mb which means a division by 6 as compared to the initial .csv file downloaded from Media Cloud.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-sources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-rss.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ClaudeGrasland/newsbook/edit/master/12-data-title.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["newsbook.pdf", "newsbook.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
