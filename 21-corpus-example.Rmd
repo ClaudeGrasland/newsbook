@@ -8,16 +8,16 @@ library(tidytext)
 library(knitr)
 ```
 
+We present here a list of corpora previously elaborated for different purposes. Thye ahve been carefully elaborated by their authors for the preparation of publication and/or the preparation of teaching courses and summer schools. All of them are available here and will be use in the fllowing sections. 
 
 
-
-## The Geomedia corpus
+## Geomedia corpora
 
 The Geomedia corpus is the result of the research project ANR Corpus Geomedia (2013-2016), coordinated by Claude Grasland (Université Paris Diderot) and Marta Severo (Univerté de Nanterre) 
 
 The project created a tool for the harvest of RSS flows that realized collection from daily newspapers located in all countries of the world. Contrary to Mediacloud, the Geomedia project did not collected together all the feed of a newspaper but proceed to a selection of specific topics, generally limited to the *international/world* flow and the *general/breaking news* flow. But the other flows related to sport, economy, culture, ... was generaly ignored. The majority of studies realized during the project focused on the *international* feeds because they present the advantage to produce theoretically a selection of foreign news of interest for the host country where the media is located (ref.).
 
-### The socant corpus
+### The corpus "socant"
 
 The "socant" corpus is a specific extraction from the Geomedia database realized in order to prepare a publication about the Migrant crisi of 2015 in the french journal *Socio-Anthropologie*. We present here a version of the corpus after several steps of cleaning described in the publication :
 
@@ -65,13 +65,86 @@ p
 
 ```
 
+## Media Cloud corpora
+
+### The corpus "venise"
+
+The corpus named "**venise**" has been elaborated during the H2020 ODYCCEUS summer school held in Venice in September 2019. It was the basis of exercises proposed by teachers and researchers from University Paris Diderot (Claude Grasland, ROmain Leconte, Etienne Toureille) to the members of their workshop. As students originated from a great diversity of countries, we decided to collect titles of news from Media Cloud for a five-year period from 1-1-2014 to 31-12-2018. Each student was committed to download a minimum of three newspapers from the same country with various constraints of time continuity but also relevance from media point of view (broadsheet newspapers with different political orientations when possible). The sumer school realized the collection for Germany, Austria, Italy, Spain, France United Kingdom and Netherlands. Some other countries has been further added by Claude Grasland for Belgium, Portugal, Russia and Ireland in order to complete the coverage.
+
+N.B. The data has been rearranged after the summer school in order to adopt the harmonised format proposed in the present newsbook in order to take the recent evolution of quanteda toward version 2.0. 
+
+#### list of newspapers
+
+```{r}
+list.files("corpora/mediacloud/venise")
+```
+
+<tbd : provide better metadata ...>
+
+
+#### example : Frankfurter Allgemaine Zeitung (frankf)
+
+We present briefly an example on how to load and use the corpus. Here, we try just to examine the number of news published by the FAZ related to climate questions. More precisely, we research the news including the word *klima* with prefix or suffix
+
+
+```{r}
+qd<-readRDS("corpora/mediacloud/venise/mc_de_DEU_frankf.Rdata")
+summary(qd,2)
+head(qd,2)
+```
+
+We check briefly the regularity of the production of news through time :
+
+```{r, faz_2014_2018}
+x<-tidy(qd)
+faz_time <- tidy(qd) %>%
+              mutate(weeks=cut(as.Date(date), "weeks"))%>%
+              group_by(weeks)%>%
+              summarise(newstot=n()) %>%
+              mutate(weeks = as.Date(weeks)) %>%
+              filter(weeks > as.Date("2014-01-01")) %>%
+              filter(weeks < as.Date("2018-12-25"))
+  
+p<-ggplot(faz_time, aes(x=weeks,y=newstot))+
+   geom_line()+
+   scale_y_continuous("Number of news published by week") +
+   ggtitle("Regularity of the RSS flow of Frankfurter Allgemeine Zeitung (2015-2018) ?")
+p
+
+```
 
 
 
 
-## The Gazette corpus
 
-## The Venice corpus
 
-## The Covid corpus
+
+```{r}
+dico_klima<-dictionary(list (QUAKE = c("*klima*")))
+tok<-tokens(qd)
+qd$klima_nb<-as.vector(dfm(tok, dictionary=dico_klima))
+qd$klima<-qd$klima_nb>0
+table(qd$klima_nb)
+```
+
+
+```{r, klima_2014_2018}
+x<-tidy(qd)
+klima_time <- tidy(qd) %>%
+              mutate(month=cut(as.Date(date), "months"))%>%
+              group_by(source,month)%>%
+              summarise(newstot=n(),klimatot=sum(klima), klimapct=100*klimatot/newstot) %>%
+              mutate(month = as.Date(month)+15)
+  
+p<-ggplot(klima_time, aes(x=month,y=klimapct,color=source))+
+   geom_line()+
+    geom_smooth(method = "lm", color="blue")+
+   scale_y_continuous("% of title news including -klima-") +
+   ggtitle("Salience of klima in FAZ (2015-2018)")
+p
+
+```
+
+
+
 

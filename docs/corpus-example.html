@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="introduction-3.html"/>
-
+<link rel="next" href="corpus-tagging.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -166,12 +166,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II CORPUS BUILDING</b></span></li>
 <li class="chapter" data-level="" data-path="introduction-3.html"><a href="introduction-3.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="5" data-path="corpus-example.html"><a href="corpus-example.html"><i class="fa fa-check"></i><b>5</b> Examples of corpora</a><ul>
-<li class="chapter" data-level="5.1" data-path="corpus-example.html"><a href="corpus-example.html#the-geomedia-corpus"><i class="fa fa-check"></i><b>5.1</b> The Geomedia corpus</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="corpus-example.html"><a href="corpus-example.html#the-socant-corpus"><i class="fa fa-check"></i><b>5.1.1</b> The socant corpus</a></li>
+<li class="chapter" data-level="5.1" data-path="corpus-example.html"><a href="corpus-example.html#geomedia-corpora"><i class="fa fa-check"></i><b>5.1</b> Geomedia corpora</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="corpus-example.html"><a href="corpus-example.html#the-corpus-socant"><i class="fa fa-check"></i><b>5.1.1</b> The corpus “socant”</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="corpus-example.html"><a href="corpus-example.html#the-gazette-corpus"><i class="fa fa-check"></i><b>5.2</b> The Gazette corpus</a></li>
-<li class="chapter" data-level="5.3" data-path="corpus-example.html"><a href="corpus-example.html#the-venice-corpus"><i class="fa fa-check"></i><b>5.3</b> The Venice corpus</a></li>
-<li class="chapter" data-level="5.4" data-path="corpus-example.html"><a href="corpus-example.html#the-covid-corpus"><i class="fa fa-check"></i><b>5.4</b> The Covid corpus</a></li>
+<li class="chapter" data-level="5.2" data-path="corpus-example.html"><a href="corpus-example.html#media-cloud-corpora"><i class="fa fa-check"></i><b>5.2</b> Media Cloud corpora</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="corpus-example.html"><a href="corpus-example.html#the-corpus-venise"><i class="fa fa-check"></i><b>5.2.1</b> The corpus “venise”</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="corpus-tagging.html"><a href="corpus-tagging.html"><i class="fa fa-check"></i><b>6</b> Identification of a topic</a><ul>
+<li class="chapter" data-level="" data-path="corpus-tagging.html"><a href="corpus-tagging.html#introduction-4"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="6.1" data-path="corpus-tagging.html"><a href="corpus-tagging.html#preparation-of-the-data"><i class="fa fa-check"></i><b>6.1</b> Preparation of the data</a></li>
+<li class="chapter" data-level="6.2" data-path="corpus-tagging.html"><a href="corpus-tagging.html#the-case-of-a-single-topic-earthquake-news"><i class="fa fa-check"></i><b>6.2</b> The case of a single topic (earthquake news)</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/ClaudeGrasland/newsbook" target="blank"></a></li>
@@ -216,12 +221,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="corpus-example.html#cb11-1"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb11-2"><a href="corpus-example.html#cb11-2"></a><span class="kw">library</span>(tidytext)</span>
 <span id="cb11-3"><a href="corpus-example.html#cb11-3"></a><span class="kw">library</span>(knitr)</span></code></pre></div>
-<div id="the-geomedia-corpus" class="section level2">
-<h2><span class="header-section-number">5.1</span> The Geomedia corpus</h2>
+<p>We present here a list of corpora previously elaborated for different purposes. Thye ahve been carefully elaborated by their authors for the preparation of publication and/or the preparation of teaching courses and summer schools. All of them are available here and will be use in the fllowing sections.</p>
+<div id="geomedia-corpora" class="section level2">
+<h2><span class="header-section-number">5.1</span> Geomedia corpora</h2>
 <p>The Geomedia corpus is the result of the research project ANR Corpus Geomedia (2013-2016), coordinated by Claude Grasland (Université Paris Diderot) and Marta Severo (Univerté de Nanterre)</p>
 <p>The project created a tool for the harvest of RSS flows that realized collection from daily newspapers located in all countries of the world. Contrary to Mediacloud, the Geomedia project did not collected together all the feed of a newspaper but proceed to a selection of specific topics, generally limited to the <em>international/world</em> flow and the <em>general/breaking news</em> flow. But the other flows related to sport, economy, culture, … was generaly ignored. The majority of studies realized during the project focused on the <em>international</em> feeds because they present the advantage to produce theoretically a selection of foreign news of interest for the host country where the media is located (ref.).</p>
-<div id="the-socant-corpus" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> The socant corpus</h3>
+<div id="the-corpus-socant" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> The corpus “socant”</h3>
 <p>The “socant” corpus is a specific extraction from the Geomedia database realized in order to prepare a publication about the Migrant crisi of 2015 in the french journal <em>Socio-Anthropologie</em>. We present here a version of the corpus after several steps of cleaning described in the publication :</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="corpus-example.html#cb12-1"></a>qd&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;corpora/geomedia/socant.Rdata&quot;</span>)</span>
 <span id="cb12-2"><a href="corpus-example.html#cb12-2"></a><span class="kw">summary</span>(qd,<span class="dv">2</span>)</span></code></pre></div>
@@ -388,15 +394,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="newsbook_files/figure-html/socant_source_time-1.png" width="672" /></p>
 </div>
 </div>
-<div id="the-gazette-corpus" class="section level2">
-<h2><span class="header-section-number">5.2</span> The Gazette corpus</h2>
+<div id="media-cloud-corpora" class="section level2">
+<h2><span class="header-section-number">5.2</span> Media Cloud corpora</h2>
+<div id="the-corpus-venise" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> The corpus “venise”</h3>
+<p>The corpus named “<strong>venise</strong>” has been elaborated during the H2020 ODYCCEUS summer school held in Venice in September 2019. It was the basis of exercises proposed by teachers and researchers from University Paris Diderot (Claude Grasland, ROmain Leconte, Etienne Toureille) to the members of their workshop. As students originated from a great diversity of countries, we decided to collect titles of news from Media Cloud for a five-year period from 1-1-2014 to 31-12-2018. Each student was committed to download a minimum of three newspapers from the same country with various constraints of time continuity but also relevance from media point of view (broadsheet newspapers with different political orientations when possible). The sumer school realized the collection for Germany, Austria, Italy, Spain, France United Kingdom and Netherlands. Some other countries has been further added by Claude Grasland for Belgium, Portugal, Russia and Ireland in order to complete the coverage.</p>
+<p>N.B. The data has been rearranged after the summer school in order to adopt the harmonised format proposed in the present newsbook in order to take the recent evolution of quanteda toward version 2.0.</p>
+<div id="list-of-newspapers" class="section level4">
+<h4><span class="header-section-number">5.2.1.1</span> list of newspapers</h4>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="corpus-example.html#cb19-1"></a><span class="kw">list.files</span>(<span class="st">&quot;corpora/mediacloud/venise&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;mc_de_AUT_dersta.Rdata&quot; &quot;mc_de_AUT_krone.Rdata&quot;  &quot;mc_de_AUT_orf.Rdata&quot;   
+##  [4] &quot;mc_de_DEU_diewel.Rdata&quot; &quot;mc_de_DEU_frankf.Rdata&quot; &quot;mc_de_DEU_suddeu.Rdata&quot;
+##  [7] &quot;mc_en_GBR_dailyt.Rdata&quot; &quot;mc_en_GBR_guardi.Rdata&quot; &quot;mc_en_GBR_indept.Rdata&quot;
+## [10] &quot;mc_en_IRL_examin.Rdata&quot; &quot;mc_es_ESP_abc.Rdata&quot;    &quot;mc_es_ESP_elmund.Rdata&quot;
+## [13] &quot;mc_es_ESP_period.Rdata&quot; &quot;mc_fr_BEL_librbe.Rdata&quot; &quot;mc_fr_FRA_figaro.Rdata&quot;
+## [16] &quot;mc_fr_FRA_libera.Rdata&quot; &quot;mc_fr_FRA_lmonde.Rdata&quot; &quot;mc_it_ITA_reppub.Rdata&quot;
+## [19] &quot;mc_it_ITA_stampa.Rdata&quot; &quot;mc_nl_BEL_standa.Rdata&quot; &quot;mc_nl_NLD_telegr.Rdata&quot;
+## [22] &quot;mc_nl_NLD_trouw.Rdata&quot;  &quot;mc_pt_PRT_acoria.Rdata&quot; &quot;mc_pt_PRT_expres.Rdata&quot;
+## [25] &quot;mc_pt_PRT_public.Rdata&quot; &quot;mc_ru_RUS_kommer.Rdata&quot; &quot;mc_ru_RUS_nezgaz.Rdata&quot;
+## [28] &quot;recode.R&quot;</code></pre>
+<p>&lt;tbd : provide better metadata …&gt;</p>
 </div>
-<div id="the-venice-corpus" class="section level2">
-<h2><span class="header-section-number">5.3</span> The Venice corpus</h2>
-</div>
-<div id="the-covid-corpus" class="section level2">
-<h2><span class="header-section-number">5.4</span> The Covid corpus</h2>
+<div id="example-frankfurter-allgemaine-zeitung-frankf" class="section level4">
+<h4><span class="header-section-number">5.2.1.2</span> example : Frankfurter Allgemaine Zeitung (frankf)</h4>
+<p>We present briefly an example on how to load and use the corpus. Here, we try just to examine the number of news published by the FAZ related to climate questions. More precisely, we research the news including the word <em>klima</em> with prefix or suffix</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="corpus-example.html#cb21-1"></a>qd&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;corpora/mediacloud/venise/mc_de_DEU_frankf.Rdata&quot;</span>)</span>
+<span id="cb21-2"><a href="corpus-example.html#cb21-2"></a><span class="kw">summary</span>(qd,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Corpus consisting of 198646 documents, showing 2 documents:
+## 
+##   Text Types Tokens Sentences      id     source                date lang
+##  text1     8      8         1 frankf1 DEU_frankf 2014-01-02 14:19:10   de
+##  text2     8      8         1 frankf2 DEU_frankf 2014-01-12 07:00:00   de</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="corpus-example.html#cb23-1"></a><span class="kw">head</span>(qd,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Corpus consisting of 2 documents and 4 docvars.
+## text1 :
+## &quot;Andrea Henkel: Ein bisschen Wehmut im Wohnzimmer&quot;
+## 
+## text2 :
+## &quot;Schlaganfallforschung: Wenn das Herz dem Hirn schadet&quot;</code></pre>
+<p>We check briefly the regularity of the production of news through time :</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="corpus-example.html#cb25-1"></a>x&lt;-<span class="kw">tidy</span>(qd)</span>
+<span id="cb25-2"><a href="corpus-example.html#cb25-2"></a>faz_time &lt;-<span class="st"> </span><span class="kw">tidy</span>(qd) <span class="op">%&gt;%</span></span>
+<span id="cb25-3"><a href="corpus-example.html#cb25-3"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">weeks=</span><span class="kw">cut</span>(<span class="kw">as.Date</span>(date), <span class="st">&quot;weeks&quot;</span>))<span class="op">%&gt;%</span></span>
+<span id="cb25-4"><a href="corpus-example.html#cb25-4"></a><span class="st">              </span><span class="kw">group_by</span>(weeks)<span class="op">%&gt;%</span></span>
+<span id="cb25-5"><a href="corpus-example.html#cb25-5"></a><span class="st">              </span><span class="kw">summarise</span>(<span class="dt">newstot=</span><span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb25-6"><a href="corpus-example.html#cb25-6"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">weeks =</span> <span class="kw">as.Date</span>(weeks)) <span class="op">%&gt;%</span></span>
+<span id="cb25-7"><a href="corpus-example.html#cb25-7"></a><span class="st">              </span><span class="kw">filter</span>(weeks <span class="op">&gt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2014-01-01&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb25-8"><a href="corpus-example.html#cb25-8"></a><span class="st">              </span><span class="kw">filter</span>(weeks <span class="op">&lt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2018-12-25&quot;</span>))</span>
+<span id="cb25-9"><a href="corpus-example.html#cb25-9"></a>  </span>
+<span id="cb25-10"><a href="corpus-example.html#cb25-10"></a>p&lt;-<span class="kw">ggplot</span>(faz_time, <span class="kw">aes</span>(<span class="dt">x=</span>weeks,<span class="dt">y=</span>newstot))<span class="op">+</span></span>
+<span id="cb25-11"><a href="corpus-example.html#cb25-11"></a><span class="st">   </span><span class="kw">geom_line</span>()<span class="op">+</span></span>
+<span id="cb25-12"><a href="corpus-example.html#cb25-12"></a><span class="st">   </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Number of news published by week&quot;</span>) <span class="op">+</span></span>
+<span id="cb25-13"><a href="corpus-example.html#cb25-13"></a><span class="st">   </span><span class="kw">ggtitle</span>(<span class="st">&quot;Regularity of the RSS flow of Frankfurter Allgemeine Zeitung (2015-2018) ?&quot;</span>)</span>
+<span id="cb25-14"><a href="corpus-example.html#cb25-14"></a>p</span></code></pre></div>
+<p><img src="newsbook_files/figure-html/faz_2014_2018-1.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="corpus-example.html#cb26-1"></a>dico_klima&lt;-<span class="kw">dictionary</span>(<span class="kw">list</span> (<span class="dt">QUAKE =</span> <span class="kw">c</span>(<span class="st">&quot;*klima*&quot;</span>)))</span>
+<span id="cb26-2"><a href="corpus-example.html#cb26-2"></a>tok&lt;-<span class="kw">tokens</span>(qd)</span>
+<span id="cb26-3"><a href="corpus-example.html#cb26-3"></a>qd<span class="op">$</span>klima_nb&lt;-<span class="kw">as.vector</span>(<span class="kw">dfm</span>(tok, <span class="dt">dictionary=</span>dico_klima))</span>
+<span id="cb26-4"><a href="corpus-example.html#cb26-4"></a>qd<span class="op">$</span>klima&lt;-qd<span class="op">$</span>klima_nb<span class="op">&gt;</span><span class="dv">0</span></span>
+<span id="cb26-5"><a href="corpus-example.html#cb26-5"></a><span class="kw">table</span>(qd<span class="op">$</span>klima_nb)</span></code></pre></div>
+<pre><code>## 
+##      0      1      2 
+## 197908    706     32</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="corpus-example.html#cb28-1"></a>x&lt;-<span class="kw">tidy</span>(qd)</span>
+<span id="cb28-2"><a href="corpus-example.html#cb28-2"></a>klima_time &lt;-<span class="st"> </span><span class="kw">tidy</span>(qd) <span class="op">%&gt;%</span></span>
+<span id="cb28-3"><a href="corpus-example.html#cb28-3"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">month=</span><span class="kw">cut</span>(<span class="kw">as.Date</span>(date), <span class="st">&quot;months&quot;</span>))<span class="op">%&gt;%</span></span>
+<span id="cb28-4"><a href="corpus-example.html#cb28-4"></a><span class="st">              </span><span class="kw">group_by</span>(source,month)<span class="op">%&gt;%</span></span>
+<span id="cb28-5"><a href="corpus-example.html#cb28-5"></a><span class="st">              </span><span class="kw">summarise</span>(<span class="dt">newstot=</span><span class="kw">n</span>(),<span class="dt">klimatot=</span><span class="kw">sum</span>(klima), <span class="dt">klimapct=</span><span class="dv">100</span><span class="op">*</span>klimatot<span class="op">/</span>newstot) <span class="op">%&gt;%</span></span>
+<span id="cb28-6"><a href="corpus-example.html#cb28-6"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">month =</span> <span class="kw">as.Date</span>(month)<span class="op">+</span><span class="dv">15</span>)</span>
+<span id="cb28-7"><a href="corpus-example.html#cb28-7"></a>  </span>
+<span id="cb28-8"><a href="corpus-example.html#cb28-8"></a>p&lt;-<span class="kw">ggplot</span>(klima_time, <span class="kw">aes</span>(<span class="dt">x=</span>month,<span class="dt">y=</span>klimapct,<span class="dt">color=</span>source))<span class="op">+</span></span>
+<span id="cb28-9"><a href="corpus-example.html#cb28-9"></a><span class="st">   </span><span class="kw">geom_line</span>()<span class="op">+</span></span>
+<span id="cb28-10"><a href="corpus-example.html#cb28-10"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb28-11"><a href="corpus-example.html#cb28-11"></a><span class="st">   </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;% of title news including -klima-&quot;</span>) <span class="op">+</span></span>
+<span id="cb28-12"><a href="corpus-example.html#cb28-12"></a><span class="st">   </span><span class="kw">ggtitle</span>(<span class="st">&quot;Salience of klima in FAZ (2015-2018)&quot;</span>)</span>
+<span id="cb28-13"><a href="corpus-example.html#cb28-13"></a>p</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="newsbook_files/figure-html/klima_2014_2018-1.png" width="672" /></p>
 
+</div>
+</div>
 </div>
 </div>
             </section>
@@ -404,8 +481,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="introduction-3.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="introduction-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="corpus-tagging.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
