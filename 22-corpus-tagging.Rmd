@@ -1,0 +1,94 @@
+# Identification of a topic {#corpus_tagging}
+
+```{r}
+library(quanteda)
+library(dplyr)
+library(ggplot2)
+library(tidytext)
+library(knitr)
+```
+
+
+## Introduction {-}
+
+In the majority of case, the researcher try to identify news belonging to a specific topic of interest in the whole corpus. This topic of interest can be characterized by a simple level (e.g. does the news speak about earthquakes ?) but it is also possible that the topic of interest is more complex and can be divided in sub-topics (e.g. does the news speak about migrants or refugees or asylum seeker ?). Finally, the topic can be related to a predefined grid with a lot of options, like in the case of the research of geographical tags (e.g. what are the countries mentionned in the news ?).
+
+The important point in all previous situations is the fact that **the topics are defined in advance by the researcher**, which means that we proceed to the analysis in a **deductive way**. An alternative strategy could be to proceed in an **inductive way**, like in the case of lda() and other methods of clustering that do not specify initially what will be the category obtained. 
+
+- **Definition of tags :** a tag is an attribute of news resulting from the application of a preconceived grid of analysis, taking the boolean form TRUE of FALSE. 
+
+
+## Preparation of the data
+
+In this chapter, we will extract a sample of 4 french and belgian newspapers from the corpus *socant*.
+
+
+```{r}
+corp<-readRDS("corpora/geomedia/socant.Rdata")
+qd<-corp[substr(corp$source,1,3) %in% c("FRA", "BEL")]
+table(qd$source)
+```
+
+We decide to merge title + description in the same filed of text. 
+
+```{r}
+texts(qd)<-as.character(paste(qd$title, texts(qd), sep=". "))
+summary(qd,3)
+```
+
+## The case of a single topic (earthquake news) 
+
+We know that two giant earthquakes occured in Nepal in spring 2015 and we want to examine what has been the coverage of this event in our two french newspapers. But we want also more generally to have a look at all the news related to earhquake during the period. As our newspapers are in french language, we have to provide a list of keywords or regular expression associated to the topic in order to define if the tag "QUAKE" can be considered as TRUE or FALSE for each of the news.
+
+
+
+```{r}
+dico_quake<-dictionary(list (QUAKE = c("tremblement de terre",
+                                       "tremblements de terre",
+                                       "IPGP",
+                                       "USGS",
+                                       "séisme*",
+                                       "secousse*",
+                                       "sismique*",
+                                       "richter",
+                                       "tsunami*")))
+dico_quake
+```
+
+After tokenization, we can extract the dfm matrix which gives the number of occurences of selected keywords in the news : 
+
+```{r}
+tok<-tokens(qd)
+qd$quake_nb<-as.vector(dfm(tok, dictionary=dico_quake))
+qd$quake<-qd$quake_nb>0
+table(qd$quake,qd$source)
+table(qd$quake_nb,qd$source)
+```
+
+We can have a look at the news that has collected the maximum number of keywords :
+
+```{r}
+texts(qd[qd$quake_nb>5])
+```
+
+
+But we can also have a look at the salience of the topic by weeks :
+
+
+```{r, quake2015}
+x<-tidy(qd)
+quake_time <- tidy(qd) %>%
+              mutate(week=cut(as.Date(date), "weeks"))%>%
+              group_by(source,week)%>%
+              summarise(newstot=n(),quaktot=sum(quake), quakpct=100*quaktot/newstot) %>%
+              mutate(week = as.Date(week))
+  
+p<-ggplot(quake_time, aes(x=week,y=quakpct,color=source))+
+   geom_line()+
+   scale_y_continuous("% of news related to earthquakes") +
+   ggtitle("Salience of earthquake topic in international RSS in 2015")
+p
+
+```
+
+
